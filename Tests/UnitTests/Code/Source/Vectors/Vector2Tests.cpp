@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include <Vectors/Vector2.h>
+#include <Vector/Vector2.h>
 
 template <typename T>
 class Vector2Test : public testing::Test {};
