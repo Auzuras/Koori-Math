@@ -8,39 +8,49 @@
 template<Arithmetic T>
 struct Vector2
 {
+public:
+
     T x, y;
+
+public:
 
 #pragma region Constructors
 
     /**
      * @brief Default constructor, initializes all components to a default value.
      */
-    Vector2() : x(T{}), y(T{}) {}
+    Vector2() noexcept : x(T{}), y(T{}) {}
 
     /**
      * @brief Constructor initializing all the components to the same value.
      * @param _value Value to assign to x and y .
      */
-    explicit Vector2(T _value) : x(_value), y(_value) {}
+    explicit Vector2(T _value) noexcept : x(_value), y(_value) {}
 
     /**
      * @brief Constructor initializing each component to a specific value.
      * @param _xValue Value to assign to x.
      * @param _yValue Value to assign to y.
      */
-    Vector2(T _xValue, T _yValue) : x(_xValue), y(_yValue) {}
+    Vector2(T _xValue, T _yValue) noexcept : x(_xValue), y(_yValue) {}
 
     /**
      * @brief Constructor copying from a reference.
      * @param _vector Reference to the Vector2 to copy.
      */
-    Vector2(const Vector2<T>& _vector) : x(_vector.x), y(_vector.y) {}
+    Vector2(const Vector2<T>& _vector) noexcept : x(_vector.x), y(_vector.y) {}
+
+    /**
+     * @brief Constructor moving from a rvalue reference.
+     * @param _vector Rvalue reference to the Vector2 to move.
+     */
+    Vector2(const Vector2<T>&& _vector) noexcept : x(_vector.x), y(_vector.y) { _vector.x = _vector.y = T{}; }
 
     /**
      * @brief Constructor copying from a pointer.
      * @param _vector Pointer to the Vector2 to copy.
      */
-    explicit Vector2<T>(const Vector2<T>* _vector) : x(_vector->x), y(_vector->y) {}
+    explicit Vector2<T>(const Vector2<T>* _vector) noexcept : x(_vector->x), y(_vector->y) {}
 
 #pragma endregion
 
@@ -119,52 +129,52 @@ struct Vector2
 #pragma region Vector2 Methods
 
     /**
-     * @brief Adds each component of two vectors together.
+     * @brief Adds two Vector2 objects component-wise.
      * @param _vector Vector to add.
      */
     inline void AddVector(const Vector2<T>& _vector) noexcept;
 
     /**
      * @brief Adds a scalar value to each component of the vector.
-     * @param _value Scalar value to add.
+     * @param _scalar Scalar value to add.
      */
-    inline void AddScalar(T _value) noexcept;
+    inline void AddScalar(T _scalar) noexcept;
 
     /**
-     * @brief Subtracts each component of two vectors together.
+     * @brief Subtracts two Vector2 objects component-wise.
      * @param _vector Vector to subtract.
      */
     inline void SubtractVector(const Vector2<T>& _vector) noexcept;
 
     /**
      * @brief Subtracts a scalar value to each component of the vector.
-     * @param _value Scalar value to subtract.
+     * @param _scalar Scalar value to subtract.
      */
-    inline void SubtractScalar(T _value) noexcept;
+    inline void SubtractScalar(T _scalar) noexcept;
 
     /**
-     * @brief Multiplies each component of two vectors together.
+     * @brief Multiplies two Vector2 objects component-wise.
      * @param _vector Vector to multiply.
      */
     inline void MultiplyVector(const Vector2<T>& _vector) noexcept;
 
     /**
      * @brief Multiplies a scalar value to each component of the vector.
-     * @param _value Scalar value to multiply.
+     * @param _scalar Scalar value to multiply.
      */
-    inline void MultiplyScalar(T _value) noexcept;
+    inline void MultiplyScalar(T _scalar) noexcept;
 
     /**
-     * @brief Divides each component of two vectors together.
+     * @brief Divides two Vector2 objects component-wise.
      * @param _vector Vector to divide.
      */
     inline void DivideVector(const Vector2<T>& _vector) noexcept;
 
     /**
      * @brief Divides a scalar value to each component of the vector.
-     * @param _value Scalar value to divide.
+     * @param _scalar Scalar value to divide.
      */
-    inline void DivideScalar(T _value) noexcept;
+    inline void DivideScalar(T _scalar) noexcept;
 
     /**
      * @brief Computes the doct product between this vector and a second one.
@@ -179,6 +189,128 @@ struct Vector2
      * @return The result of the 2D cross product.
      */
     [[nodiscard]] inline T CrossProduct(const Vector2<T>& _vector) const noexcept;
+
+#pragma endregion
+
+#pragma region Operators
+
+    /**
+     * @brief Adds two Vector2 objects component-wise.
+     * @param _vector Vector to add.
+     * @return A new Vector2 representing the sum of both vectors.
+     */
+    inline Vector2<T> operator+(const Vector2<T>& _vector) noexcept;
+
+    /**
+     * @brief Adds a scalar value to each component of the vector.
+     * @param _scalar Scalar value to add.
+     * @return A new Vector2 with the scalar added to both x and y.
+     */
+    inline Vector2<T> operator+(T _scalar) noexcept;
+
+    /**
+     * @brief Subtracts two Vector2 objects component-wise.
+     * @param _vector Vector to subtract.
+     * @return A new Vector2 representing the subtraction of both vectors.
+     */
+    inline Vector2<T> operator-(const Vector2<T>& _vector) noexcept;
+
+    /**
+     * @brief Subtracts a scalar value to each component of the vector.
+     * @param _scalar Scalar value to subtract.
+     * @return A new Vector2 with the scalar subtracted to both x and y.
+     */
+    inline Vector2<T> operator-(T _scalar) noexcept;
+
+    /**
+     * @brief Multiplies two Vector2 objects component-wise.
+     * @param _vector Vector to multiply.
+     * @return A new Vector2 representing the multiplication of both vectors.
+     */
+    inline Vector2<T> operator*(const Vector2<T>& _vector) noexcept;
+
+    /**
+     * @brief Multiplies a scalar value to each component of the vector.
+     * @param _scalar Scalar value to multiply.
+     * @return A new Vector2 with the scalar multiplied to both x and y.
+     */
+    inline Vector2<T> operator*(T _scalar) noexcept;
+
+    /**
+     * @brief Divides two Vector2 objects component-wise.
+     * @param _vector Vector to divide.
+     * @return A new Vector2 representing the division of both vectors.
+     */
+    inline Vector2<T> operator/(const Vector2<T>& _vector) noexcept;
+
+    /**
+     * @brief Divides a scalar value to each component of the vector.
+     * @param _scalar Scalar value to divide.
+     * @return A new Vector2 with the scalar divided to both x and y.
+     */
+    inline Vector2<T> operator/(T _scalar) noexcept;
+
+    /**
+     * @brief Adds another Vector2 to this one, component-wise.
+     * @param _vector Vector to add.
+     */
+    inline void operator+=(const Vector2<T>& _vector) noexcept;
+
+    /**
+     * @brief Adds a scalar value to each component of this vector.
+     * @param _scalar Scalar value to add.
+     */
+    inline void operator+=(T _scalar) noexcept;
+
+    /**
+     * @brief Subtracts another Vector2 to this one, component-wise.
+     * @param _vector Vector to subtract.
+     */
+    inline void operator-=(const Vector2<T>& _vector) noexcept;
+
+    /**
+     * @brief Subtracts a scalar value to each component of this vector.
+     * @param _scalar Scalar value to subtract.
+     */
+    inline void operator-=(T _scalar) noexcept;
+
+    /**
+     * @brief Multiplies another Vector2 to this one, component-wise.
+     * @param _vector Vector to multiply.
+     */
+    inline void operator*=(const Vector2<T>& _vector) noexcept;
+
+    /**
+     * @brief Multiplies a scalar value to each component of this vector.
+     * @param _scalar Scalar value to multiply.
+     */
+    inline void operator*=(T _scalar) noexcept;
+
+    /**
+     * @brief Divides another Vector2 to this one, component-wise.
+     * @param _vector Vector to divide.
+     */
+    inline void operator/=(const Vector2<T>& _vector) noexcept;
+
+    /**
+     * @brief Divides a scalar value to each component of this vector.
+     * @param _scalar Scalar value to divide.
+     */
+    inline void operator/=(T _scalar) noexcept;
+
+    /**
+     * @brief Assigns the values of another Vector2 to this one.
+     * @param _vector Vector to assign from.
+     * @return Reference to this vector.
+     */
+    inline Vector2<T>& operator=(const Vector2<T>& _vector) noexcept;
+
+    /**
+     * @brief Moves the values of another Vector2 to this one.
+     * @param _vector Rvalue reference to vector to assign from.
+     * @return Reference to this vector.
+     */
+    inline Vector2<T>& operator=(const Vector2<T>&& _vector) noexcept;
 
 #pragma endregion
 

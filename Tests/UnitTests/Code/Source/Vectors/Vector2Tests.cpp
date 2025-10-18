@@ -67,22 +67,66 @@ TYPED_TEST(Vector2Test, Setters)
 
 TYPED_TEST(Vector2Test, Addition)
 {
+    Vector2<TypeParam> v1(static_cast<TypeParam>(0), static_cast<TypeParam>(1));
+    Vector2<TypeParam> v2(static_cast<TypeParam>(5), static_cast<TypeParam>(1));
 
+    v1 = v1 + v2;
+
+    EXPECT_EQ(v1.x, static_cast<TypeParam>(5));
+    EXPECT_EQ(v1.y, static_cast<TypeParam>(2));
+
+    v2 += v2;
+
+    EXPECT_EQ(v2.x, static_cast<TypeParam>(10));
+    EXPECT_EQ(v2.y, static_cast<TypeParam>(2));
 }
 
 TYPED_TEST(Vector2Test, Substraction)
 {
+    Vector2<TypeParam> v1(static_cast<TypeParam>(15), static_cast<TypeParam>(3));
+    Vector2<TypeParam> v2(static_cast<TypeParam>(20), static_cast<TypeParam>(2));
 
+    v1 = v1 - v2;
+
+    EXPECT_EQ(v1.x, static_cast<TypeParam>(-5));
+    EXPECT_EQ(v1.y, static_cast<TypeParam>(1));
+
+    v2 -= v2;
+
+    EXPECT_EQ(v2.x, static_cast<TypeParam>(0));
+    EXPECT_EQ(v2.y, static_cast<TypeParam>(0));
 }
 
 TYPED_TEST(Vector2Test, Multiplication)
 {
+    Vector2<TypeParam> v1(static_cast<TypeParam>(10), static_cast<TypeParam>(5));
+    Vector2<TypeParam> v2(static_cast<TypeParam>(6), static_cast<TypeParam>(2));
 
+    v1 = v1 * v2;
+
+    EXPECT_EQ(v1.x, static_cast<TypeParam>(60));
+    EXPECT_EQ(v1.y, static_cast<TypeParam>(10));
+
+    v2 *= v2;
+
+    EXPECT_EQ(v2.x, static_cast<TypeParam>(36));
+    EXPECT_EQ(v2.y, static_cast<TypeParam>(4));
 }
 
 TYPED_TEST(Vector2Test, Division)
 {
+    Vector2<TypeParam> v1(static_cast<TypeParam>(10), static_cast<TypeParam>(15));
+    Vector2<TypeParam> v2(static_cast<TypeParam>(2), static_cast<TypeParam>(3));
 
+    v1 = v1 / v2;
+
+    EXPECT_EQ(v1.x, static_cast<TypeParam>(5));
+    EXPECT_EQ(v1.y, static_cast<TypeParam>(5));
+
+    v2 /= v2;
+
+    EXPECT_EQ(v2.x, static_cast<TypeParam>(1));
+    EXPECT_EQ(v2.y, static_cast<TypeParam>(1));
 }
 
 TYPED_TEST(Vector2Test, DotProduct)
