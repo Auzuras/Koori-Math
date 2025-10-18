@@ -7,7 +7,9 @@ option(KOORI_MATH_TEST_OPT "Build Koori Math tests" ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_library(KooriMath INTERFACE)
+add_library(KooriMath INTERFACE
+        Include/Quaternion/Quaternion.h
+        Include/Matrix/Matrix4.h)
 
 target_include_directories(KooriMath INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Include> $<INSTALL_INTERFACE:Include>)
 

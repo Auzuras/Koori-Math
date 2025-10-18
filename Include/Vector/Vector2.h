@@ -1,9 +1,9 @@
 #ifndef KOORI_MATH_VECTOR2_H
 #define KOORI_MATH_VECTOR2_H
 
-#include <string>
-
 #include <Arithmetic/Arithmetic.h>
+
+#include <string>
 
 template<Arithmetic T>
 struct Vector2
