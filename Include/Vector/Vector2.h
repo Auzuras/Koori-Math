@@ -190,6 +190,43 @@ public:
      */
     [[nodiscard]] inline T CrossProduct(const Vector2<T>& _vector) const noexcept;
 
+    /**
+     * @brief Computes the squared length of the vector.
+     * @return The value of the squared length.
+     */
+    [[nodiscard]] inline T SquaredLength() const noexcept;
+
+    /**
+     * @brief Computes the length of the vector.
+     * @return The value of the length.
+     */
+    [[nodiscard]] inline T Length() const noexcept;
+
+    /**
+     * @brief Computes the squared distance between the current vector and another vector.
+     * @param _vector The second vector.
+     * @return The squared distance between the two vectors.
+     */
+    [[nodiscard]] inline T SquaredDistance(const Vector2<T> _vector) const noexcept;
+
+    /**
+     * @brief Computes the distance between the current vector and another vector.
+     * @param _vector The second vector.
+     * @return The distance between the two vectors.
+     */
+    [[nodiscard]] inline T Distance(const Vector2<T> _vector) const noexcept;
+
+    /**
+     * @brief Checks if the components of the vector are close to zero (i.e., near null).
+     * @return A boolean, true if the vector's components are close to zero.
+     */
+    [[nodiscard]] inline bool IsNull() const noexcept;
+
+    /**
+     * @brief Normalizes the vector to produce a unit vector (length of 1).
+     */
+    inline void Normalize() noexcept;
+
 #pragma endregion
 
 #pragma region Operators
@@ -317,15 +354,15 @@ public:
 #pragma region String
 
     /**
-    * @brief Converts the vector to a string representation.
-    * @return A string representing the vector: "(X, Y)".
-    */
+     * @brief Converts the vector to a string representation.
+     * @return A string representing the vector: "(X, Y)".
+     */
     [[nodiscard]] inline std::string ToString() const;
 
     /**
-    * @brief Converts the vector to a list of characters.
-    * @return A list of characters representing the vector: "(X, Y)".
-    */
+     * @brief Converts the vector to a list of characters.
+     * @return A list of characters representing the vector: "(X, Y)".
+     */
     [[nodiscard]] inline const char* ToCstr() const;
 
 #pragma endregion

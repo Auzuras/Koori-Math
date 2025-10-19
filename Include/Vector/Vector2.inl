@@ -76,6 +76,49 @@ inline T Vector2<T>::CrossProduct(const Vector2<T>& _vector) const noexcept
 }
 
 template<Arithmetic T>
+inline T Vector2<T>::SquaredLength() const noexcept
+{
+    return x * x + y * y;
+}
+
+template<Arithmetic T>
+inline T Vector2<T>::Length() const noexcept
+{
+    return Koori::Math::Sqrt(SquaredLength());
+}
+
+template<Arithmetic T>
+inline T Vector2<T>::SquaredDistance(const Vector2<T> _vector) const noexcept
+{
+    return (x - _vector.x) * (x - _vector.x) + (y - _vector.y) * (y - _vector.y);
+}
+
+template<Arithmetic T>
+inline T Vector2<T>::Distance(const Vector2<T> _vector) const noexcept
+{
+    return Koori::Math::Sqrt(SquaredDistance(_vector));
+}
+
+template<Arithmetic T>
+inline bool Vector2<T>::IsNull() const noexcept
+{
+    return (Koori::Math::Abs(x) <= KM_EPSILON) && (Koori::Math::Abs(y) <= KM_EPSILON);
+}
+
+template<Arithmetic T>
+inline void Vector2<T>::Normalize() noexcept
+{
+    T length = Length();
+
+    x /= length;
+    y /= length;
+}
+
+#pragma endregion
+
+#pragma region String
+
+template<Arithmetic T>
 inline std::string Vector2<T>::ToString() const
 {
     return "(" + std::to_string(x) + ", " + std::to_string(y) + ")";

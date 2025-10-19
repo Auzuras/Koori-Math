@@ -16,31 +16,33 @@ using TestTypes = ::testing::Types<
 
 TYPED_TEST_SUITE(Vector2Test, TestTypes);
 
+#define Vec2T Vector2<TypeParam>
+
 TYPED_TEST(Vector2Test, Constructors)
 {
-    Vector2<TypeParam> v1;
+    Vec2T v1;
 
     EXPECT_EQ(v1.x, static_cast<TypeParam>(0));
     EXPECT_EQ(v1.y, static_cast<TypeParam>(0));
 
-    v1 = Vector2<TypeParam>(static_cast<TypeParam>(10));
+    v1 = Vec2T(static_cast<TypeParam>(10));
 
     EXPECT_EQ(v1.x, static_cast<TypeParam>(10));
     EXPECT_EQ(v1.y, static_cast<TypeParam>(10));
 
-    v1 = Vector2<TypeParam>(static_cast<TypeParam>(20), static_cast<TypeParam>(5));
+    v1 = Vec2T(static_cast<TypeParam>(20), static_cast<TypeParam>(5));
 
     EXPECT_EQ(v1.x, static_cast<TypeParam>(20));
     EXPECT_EQ(v1.y, static_cast<TypeParam>(5));
 
-    Vector2<TypeParam> v2 = Vector2<TypeParam>(static_cast<TypeParam>(3), static_cast<TypeParam>(2));
-    v1 = Vector2<TypeParam>(v2);
+    Vec2T v2 = Vec2T(static_cast<TypeParam>(3), static_cast<TypeParam>(2));
+    v1 = Vec2T(v2);
 
     EXPECT_EQ(v1.x, v2.x);
     EXPECT_EQ(v1.y, v2.y);
 
-    v2 = Vector2<TypeParam>(static_cast<TypeParam>(15), static_cast<TypeParam>(12));
-    v1 = Vector2<TypeParam>(&v2);
+    v2 = Vec2T(static_cast<TypeParam>(15), static_cast<TypeParam>(12));
+    v1 = Vec2T(&v2);
 
     EXPECT_EQ(v1.x, v2.x);
     EXPECT_EQ(v1.y, v2.y);
@@ -48,7 +50,7 @@ TYPED_TEST(Vector2Test, Constructors)
 
 TYPED_TEST(Vector2Test, Getters)
 {
-    Vector2<TypeParam> v1 = Vector2<TypeParam>(static_cast<TypeParam>(3), static_cast<TypeParam>(2));
+    Vec2T v1 = Vec2T(static_cast<TypeParam>(3), static_cast<TypeParam>(2));
 
     EXPECT_EQ(v1.GetX(), static_cast<TypeParam>(3));
     EXPECT_EQ(v1.GetY(), static_cast<TypeParam>(2));
@@ -56,7 +58,7 @@ TYPED_TEST(Vector2Test, Getters)
 
 TYPED_TEST(Vector2Test, Setters)
 {
-    Vector2<TypeParam> v1;
+    Vec2T v1;
 
     v1.SetX(static_cast<TypeParam>(111));
     v1.SetY(static_cast<TypeParam>(101));
@@ -67,8 +69,8 @@ TYPED_TEST(Vector2Test, Setters)
 
 TYPED_TEST(Vector2Test, Addition)
 {
-    Vector2<TypeParam> v1(static_cast<TypeParam>(0), static_cast<TypeParam>(1));
-    Vector2<TypeParam> v2(static_cast<TypeParam>(5), static_cast<TypeParam>(1));
+    Vec2T v1(static_cast<TypeParam>(0), static_cast<TypeParam>(1));
+    Vec2T v2(static_cast<TypeParam>(5), static_cast<TypeParam>(1));
 
     v1 = v1 + v2;
 
@@ -83,8 +85,8 @@ TYPED_TEST(Vector2Test, Addition)
 
 TYPED_TEST(Vector2Test, Substraction)
 {
-    Vector2<TypeParam> v1(static_cast<TypeParam>(15), static_cast<TypeParam>(3));
-    Vector2<TypeParam> v2(static_cast<TypeParam>(20), static_cast<TypeParam>(2));
+    Vec2T v1(static_cast<TypeParam>(15), static_cast<TypeParam>(3));
+    Vec2T v2(static_cast<TypeParam>(20), static_cast<TypeParam>(2));
 
     v1 = v1 - v2;
 
@@ -99,8 +101,8 @@ TYPED_TEST(Vector2Test, Substraction)
 
 TYPED_TEST(Vector2Test, Multiplication)
 {
-    Vector2<TypeParam> v1(static_cast<TypeParam>(10), static_cast<TypeParam>(5));
-    Vector2<TypeParam> v2(static_cast<TypeParam>(6), static_cast<TypeParam>(2));
+    Vec2T v1(static_cast<TypeParam>(10), static_cast<TypeParam>(5));
+    Vec2T v2(static_cast<TypeParam>(6), static_cast<TypeParam>(2));
 
     v1 = v1 * v2;
 
@@ -115,8 +117,8 @@ TYPED_TEST(Vector2Test, Multiplication)
 
 TYPED_TEST(Vector2Test, Division)
 {
-    Vector2<TypeParam> v1(static_cast<TypeParam>(10), static_cast<TypeParam>(15));
-    Vector2<TypeParam> v2(static_cast<TypeParam>(2), static_cast<TypeParam>(3));
+    Vec2T v1(static_cast<TypeParam>(10), static_cast<TypeParam>(15));
+    Vec2T v2(static_cast<TypeParam>(2), static_cast<TypeParam>(3));
 
     v1 = v1 / v2;
 
@@ -131,16 +133,36 @@ TYPED_TEST(Vector2Test, Division)
 
 TYPED_TEST(Vector2Test, DotProduct)
 {
-    Vector2<TypeParam> v1(static_cast<TypeParam>(10), static_cast<TypeParam>(20));
-    Vector2<TypeParam> v2(static_cast<TypeParam>(2), static_cast<TypeParam>(5));
+    Vec2T v1(static_cast<TypeParam>(10), static_cast<TypeParam>(20));
+    Vec2T v2(static_cast<TypeParam>(2), static_cast<TypeParam>(5));
 
     EXPECT_EQ(v1.DotProduct(v2), static_cast<TypeParam>(120));
 }
 
 TYPED_TEST(Vector2Test, CrossProduct)
 {
-    Vector2<TypeParam> v1(static_cast<TypeParam>(10), static_cast<TypeParam>(20));
-    Vector2<TypeParam> v2(static_cast<TypeParam>(2), static_cast<TypeParam>(5));
+    Vec2T v1(static_cast<TypeParam>(10), static_cast<TypeParam>(20));
+    Vec2T v2(static_cast<TypeParam>(2), static_cast<TypeParam>(5));
 
     EXPECT_EQ(v1.CrossProduct(v2), static_cast<TypeParam>(10));
+}
+
+TYPED_TEST(Vector2Test, Length)
+{
+    Vec2T v1(static_cast<TypeParam>(3), static_cast<TypeParam>(0));
+
+    EXPECT_EQ(v1.SquaredLength(), static_cast<TypeParam>(9));
+
+    EXPECT_EQ(v1.Length(), static_cast<TypeParam>(3));
+}
+
+TYPED_TEST(Vector2Test, BooleanOperations)
+{
+    Vec2T v1(static_cast<TypeParam>(3), static_cast<TypeParam>(0));
+
+    EXPECT_EQ(v1.IsNull(), false);
+
+    v1 = Vec2T(static_cast<TypeParam>(0), static_cast<TypeParam>(0));
+
+    EXPECT_EQ(v1.IsNull(), true);
 }
