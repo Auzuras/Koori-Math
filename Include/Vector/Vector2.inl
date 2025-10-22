@@ -1,4 +1,5 @@
 #pragma region Vector Type
+#include "src/gtest-internal-inl.h"
 
 using Vector2f = Vector2<float>;
 using Vector2d = Vector2<double>;
@@ -88,21 +89,69 @@ inline T Vector2<T>::Length() const noexcept
 }
 
 template<Arithmetic T>
-inline T Vector2<T>::SquaredDistance(const Vector2<T> _vector) const noexcept
+inline T Vector2<T>::SquaredMagnitude() const noexcept
+{
+    return SquaredLength();
+}
+
+template<Arithmetic T>
+inline T Vector2<T>::Magnitude() const noexcept
+{
+    return Length();
+}
+
+template<Arithmetic T>
+inline T Vector2<T>::SquaredDistance(const Vector2<T>& _vector) const noexcept
 {
     return (x - _vector.x) * (x - _vector.x) + (y - _vector.y) * (y - _vector.y);
 }
 
 template<Arithmetic T>
-inline T Vector2<T>::Distance(const Vector2<T> _vector) const noexcept
+inline T Vector2<T>::Distance(const Vector2<T>& _vector) const noexcept
 {
     return Koori::Math::Sqrt(SquaredDistance(_vector));
+}
+
+template<Arithmetic T>
+inline void Vector2<T>::Inverse() const noexcept
+{
+    const T one = static_cast<T>(1);
+    x = one / x;
+    y = one / y;
 }
 
 template<Arithmetic T>
 inline bool Vector2<T>::IsNull() const noexcept
 {
     return (Koori::Math::Abs(x) <= KM_EPSILON) && (Koori::Math::Abs(y) <= KM_EPSILON);
+}
+
+template<Arithmetic T>
+inline bool Vector2<T>::Equal(const Vector2<T>& _vector) const noexcept
+{
+    return (Koori::Math::Abs(x - _vector.x) <= KM_EPSILON) && (Koori::Math::Abs(y - _vector.y) <= KM_EPSILON);
+}
+
+template<Arithmetic T>
+inline float Vector2<T>::Angle(const Vector2<T>& _vector) const noexcept
+{
+    return (DotProduct(_vector)) / (Length() * _vector.Length());
+}
+
+template<Arithmetic T>
+inline void Vector2<T>::Lerp(const Vector2<T>& _vector, float _t) noexcept
+{
+    *this * (1.f - _t) + _vector * _t;
+}
+
+template<Arithmetic T>
+inline void Vector2<T>::Slerp(const Vector2<T>& _vector, float _t) noexcept
+{
+    const float dot = Koori::Math::Clamp(DotProduct(_vector), -1.f, 1.f);
+    const float theta = Koori::Math::ACos(dot) * _t;
+
+    Vector2<float> relative = (_vector - (*this) * dot).Normalize();
+    *this = *this * Koori::Math::Cos(theta) + relative * Koori::Math::Sin(theta);
 }
 
 template<Arithmetic T>
@@ -246,6 +295,12 @@ inline Vector2<T>& Vector2<T>::operator=(const Vector2<T>&& _vector) noexcept
     y = _vector.y;
 
     return *this;
+}
+
+template<Arithmetic T>
+inline bool Vector2<T>::operator==(const Vector2<T>& _vector) const noexcept
+{
+    return Equal(_vector);
 }
 
 #pragma endregion

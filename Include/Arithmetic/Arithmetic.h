@@ -196,6 +196,24 @@ namespace Koori::Math
         return std::log(_value);
     }
 
+    template<Arithmetic T>
+    [[nodiscard]] inline T Clamp(T _value, T _min, T _max)
+    {
+        return (_value < _min) ? _min : (_value > _max) ? _max : _value;
+    }
+
+    template<Arithmetic T>
+    [[nodiscard]] inline T Min(T _firstValue, T _secondValue)
+    {
+        return (_firstValue < _secondValue) ? _firstValue : _secondValue;
+    }
+
+    template<Arithmetic T>
+    [[nodiscard]] inline T Max(T _firstValue, T _secondValue)
+    {
+        return (_firstValue > _secondValue) ? _firstValue : _secondValue;
+    }
+
 }
 
 #endif //KOORI_MATH_ARITHMETIC_H

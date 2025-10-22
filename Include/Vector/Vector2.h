@@ -203,18 +203,32 @@ public:
     [[nodiscard]] inline T Length() const noexcept;
 
     /**
+     * @brief Computes the squared length of the vector.
+     * @return The value of the squared length.
+     */
+    [[nodiscard]] inline T SquaredMagnitude() const noexcept;
+
+    /**
+     * @brief Computes the length of the vector.
+     * @return The value of the length.
+     */
+    [[nodiscard]] inline T Magnitude() const noexcept;
+
+    /**
      * @brief Computes the squared distance between the current vector and another vector.
      * @param _vector The second vector.
      * @return The squared distance between the two vectors.
      */
-    [[nodiscard]] inline T SquaredDistance(const Vector2<T> _vector) const noexcept;
+    [[nodiscard]] inline T SquaredDistance(const Vector2<T>& _vector) const noexcept;
 
     /**
      * @brief Computes the distance between the current vector and another vector.
      * @param _vector The second vector.
      * @return The distance between the two vectors.
      */
-    [[nodiscard]] inline T Distance(const Vector2<T> _vector) const noexcept;
+    [[nodiscard]] inline T Distance(const Vector2<T>& _vector) const noexcept;
+
+    inline void Inverse() const noexcept;
 
     /**
      * @brief Checks if the components of the vector are close to zero (i.e., near null).
@@ -223,9 +237,43 @@ public:
     [[nodiscard]] inline bool IsNull() const noexcept;
 
     /**
+     * @brief Checks the equality of two vectors
+     * @param _vector The second vector.
+     * @return A boolean, true if the vectors are equal, false if not.
+     */
+    [[nodiscard]] inline bool Equal(const Vector2<T>& _vector) const noexcept;
+
+    /**
+     * @brief
+     * @param _vector
+     * @return
+     */
+    [[nodiscard]] inline float Angle(const Vector2<T>& _vector) const noexcept;
+
+    /**
+     * @brief
+     * @param _vector
+     * @param _t
+     */
+    inline void Lerp(const Vector2<T>& _vector, float _t) noexcept;
+
+    /**
+     * @brief
+     * @param _vector
+     * @param _t
+     */
+    inline void Slerp(const Vector2<T>& _vector, float _t) noexcept;
+
+    /**
      * @brief Normalizes the vector to produce a unit vector (length of 1).
      */
     inline void Normalize() noexcept;
+
+    inline void Translate(const Vector2<T>& _vector) noexcept;
+
+    inline void Scale(const Vector2<T>& _anchor, T _value) noexcept;
+
+    inline void Rotate(const Vector2<T>& _anchor, T _angle) noexcept;
 
 #pragma endregion
 
@@ -348,6 +396,21 @@ public:
      * @return Reference to this vector.
      */
     inline Vector2<T>& operator=(const Vector2<T>&& _vector) noexcept;
+
+    /**
+     * @brief
+     * @param _vector
+     * @return
+     */
+    inline bool operator==(const Vector2<T>& _vector) const noexcept;
+
+    inline T operator[](int _index) const noexcept;
+
+    friend inline std::ostream& operator<< (std::ostream& _stream, const Vector2<T>& _vector)
+    {
+        _stream << _vector.ToString();
+        return _stream;
+    }
 
 #pragma endregion
 
