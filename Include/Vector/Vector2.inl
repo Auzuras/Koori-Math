@@ -163,6 +163,29 @@ inline void Vector2<T>::Normalize() noexcept
     y /= length;
 }
 
+template<Arithmetic T>
+inline void Vector2<T>::Translate(const Vector2<T>& _vector) noexcept
+{
+    *this += _vector;
+}
+
+template<Arithmetic T>
+inline void Vector2<T>::Scale(const Vector2<T>& _anchor, T _value) noexcept
+{
+    *this -= _anchor;
+    *this *= _value;
+    *this += _anchor;
+}
+
+template<Arithmetic T>
+inline void Vector2<T>::Rotate(const Vector2<T>& _anchor, T _angle) noexcept
+{
+    *this -= _anchor;
+    x * Koori::Math::Cos(_angle) - y * Koori::Math::Sin(_angle);
+    x * Koori::Math::Sin(_angle) + y * Koori::Math::Cos(_angle);
+    *this += _anchor;
+}
+
 #pragma endregion
 
 #pragma region String
@@ -301,6 +324,20 @@ template<Arithmetic T>
 inline bool Vector2<T>::operator==(const Vector2<T>& _vector) const noexcept
 {
     return Equal(_vector);
+}
+
+template<Arithmetic T>
+inline T Vector2<T>::operator[](const int _index) const noexcept
+{
+    switch (_index)
+    {
+        case 0:
+            return x;
+        case 1:
+            return y;
+        default:
+            return NAN;
+    }
 }
 
 #pragma endregion

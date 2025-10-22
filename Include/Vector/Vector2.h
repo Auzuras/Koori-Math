@@ -60,13 +60,13 @@ public:
      * @brief Gets the value of the x component.
      * @return The value from the x component.
      */
-    inline T GetX() const { return x; };
+    [[nodiscard]] inline T GetX() const { return x; };
 
     /**
      * @brief Gets the value of the y component.
      * @return The value from the y component.
      */
-    inline T GetY() const { return y; };
+    [[nodiscard]] inline T GetY() const { return y; };
 
 #pragma endregion
 
@@ -110,19 +110,19 @@ public:
      * @brief Provides direct, read-only access to the underlying data.
      * @return A constant pointer to the first element of the vector.
      */
-    inline const T* Data() const { return &x; };
+    [[nodiscard]] inline const T* Data() const { return &x; };
 
     /**
      * @brief Returns a constant iterator (pointer) to the first element of the vector.
      * @return A constant pointer to one past the last element.
      */
-    inline const T* Begin() const { return &x; };
+    [[nodiscard]] inline const T* Begin() const { return &x; };
 
     /**
      * @brief Returns a constant iterator (pointer) to one past the last element of the vector.
      * @return A constant pointer to one past the last element.
      */
-    inline const T* End() const { return &x + 2; };
+    [[nodiscard]] inline const T* End() const { return &x + 2; };
 
 #pragma endregion
 
@@ -404,7 +404,7 @@ public:
      */
     inline bool operator==(const Vector2<T>& _vector) const noexcept;
 
-    inline T operator[](int _index) const noexcept;
+    inline T operator[](const int _index) const noexcept;
 
     friend inline std::ostream& operator<< (std::ostream& _stream, const Vector2<T>& _vector)
     {
