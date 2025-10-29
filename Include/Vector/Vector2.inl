@@ -1,5 +1,4 @@
 #pragma region Vector Type
-#include "src/gtest-internal-inl.h"
 
 using Vector2f = Vector2<float>;
 using Vector2d = Vector2<double>;
@@ -17,7 +16,7 @@ inline void Vector2<T>::AddVector(const Vector2<T>& _vector) noexcept
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::AddScalar(T _scalar) noexcept
+inline void Vector2<T>::AddScalar(const T _scalar) noexcept
 {
     x += _scalar;
     y += _scalar;
@@ -31,7 +30,7 @@ inline void Vector2<T>::SubtractVector(const Vector2<T>& _vector) noexcept
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::SubtractScalar(T _scalar) noexcept
+inline void Vector2<T>::SubtractScalar(const T _scalar) noexcept
 {
     x -= _scalar;
     y -= _scalar;
@@ -45,7 +44,7 @@ inline void Vector2<T>::MultiplyVector(const Vector2<T>& _vector) noexcept
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::MultiplyScalar(T _scalar) noexcept
+inline void Vector2<T>::MultiplyScalar(const T _scalar) noexcept
 {
     x *= _scalar;
     y *= _scalar;
@@ -59,7 +58,7 @@ inline void Vector2<T>::DivideVector(const Vector2<T>& _vector) noexcept
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::DivideScalar(T _scalar) noexcept
+inline void Vector2<T>::DivideScalar(const T _scalar) noexcept
 {
     x /= _scalar;
     y /= _scalar;
@@ -139,13 +138,13 @@ inline float Vector2<T>::Angle(const Vector2<T>& _vector) const noexcept
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::Lerp(const Vector2<T>& _vector, float _t) noexcept
+inline void Vector2<T>::Lerp(const Vector2<T>& _vector, const float _t) noexcept
 {
     *this * (1.f - _t) + _vector * _t;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::Slerp(const Vector2<T>& _vector, float _t) noexcept
+inline void Vector2<T>::Slerp(const Vector2<T>& _vector, const float _t) noexcept
 {
     const float dot = Koori::Math::Clamp(DotProduct(_vector), -1.f, 1.f);
     const float theta = Koori::Math::ACos(dot) * _t;
@@ -170,20 +169,16 @@ inline void Vector2<T>::Translate(const Vector2<T>& _vector) noexcept
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::Scale(const Vector2<T>& _anchor, T _value) noexcept
+inline void Vector2<T>::Scale(const Vector2<T>& _anchor, const T _value) noexcept
 {
-    *this -= _anchor;
-    *this *= _value;
-    *this += _anchor;
+    *this = _anchor + (*this - _anchor) * _value;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::Rotate(const Vector2<T>& _anchor, T _angle) noexcept
+inline void Vector2<T>::Rotate(const Vector2<T>& _anchor, const T _angle) noexcept
 {
-    *this -= _anchor;
-    x * Koori::Math::Cos(_angle) - y * Koori::Math::Sin(_angle);
-    x * Koori::Math::Sin(_angle) + y * Koori::Math::Cos(_angle);
-    *this += _anchor;
+    x = _anchor.x + (x - _anchor.x) * Koori::Math::Cos(_angle) - (y - _anchor.y) * Koori::Math::Sin(_angle);
+    x = _anchor.y + (x - _anchor.x) * Koori::Math::Sin(_angle) + (y - _anchor.y) * Koori::Math::Cos(_angle);
 }
 
 #pragma endregion
@@ -213,7 +208,7 @@ inline Vector2<T> Vector2<T>::operator+(const Vector2<T>& _vector) noexcept
 }
 
 template<Arithmetic T>
-inline Vector2<T> Vector2<T>::operator+(T _scalar) noexcept
+inline Vector2<T> Vector2<T>::operator+(const T _scalar) noexcept
 {
     return Vector2<T>(x + _scalar, y + _scalar);
 }
@@ -225,7 +220,7 @@ inline Vector2<T> Vector2<T>::operator-(const Vector2<T>& _vector) noexcept
 }
 
 template<Arithmetic T>
-inline Vector2<T> Vector2<T>::operator-(T _scalar) noexcept
+inline Vector2<T> Vector2<T>::operator-(const T _scalar) noexcept
 {
     return Vector2<T>(x - _scalar, y - _scalar);
 }
@@ -237,7 +232,7 @@ inline Vector2<T> Vector2<T>::operator*(const Vector2<T>& _vector) noexcept
 }
 
 template<Arithmetic T>
-inline Vector2<T> Vector2<T>::operator*(T _scalar) noexcept
+inline Vector2<T> Vector2<T>::operator*(const T _scalar) noexcept
 {
     return Vector2<T>(x * _scalar, y * _scalar);
 }
@@ -249,7 +244,7 @@ inline Vector2<T> Vector2<T>::operator/(const Vector2<T>& _vector) noexcept
 }
 
 template<Arithmetic T>
-inline Vector2<T> Vector2<T>::operator/(T _scalar) noexcept
+inline Vector2<T> Vector2<T>::operator/(const T _scalar) noexcept
 {
     return Vector2<T>(x / _scalar, y / _scalar);
 }
@@ -261,7 +256,7 @@ inline void Vector2<T>::operator+=(const Vector2<T>& _vector) noexcept
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::operator+=(T _scalar) noexcept
+inline void Vector2<T>::operator+=(const T _scalar) noexcept
 {
     AddScalar(_scalar);
 }
@@ -273,7 +268,7 @@ inline void Vector2<T>::operator-=(const Vector2<T>& _vector) noexcept
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::operator-=(T _scalar) noexcept
+inline void Vector2<T>::operator-=(const T _scalar) noexcept
 {
     SubtractScalar(_scalar);
 }
@@ -285,7 +280,7 @@ inline void Vector2<T>::operator*=(const Vector2<T>& _vector) noexcept
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::operator*=(T _scalar) noexcept
+inline void Vector2<T>::operator*=(const T _scalar) noexcept
 {
     MultiplyScalar(_scalar);
 }
@@ -297,7 +292,7 @@ inline void Vector2<T>::operator/=(const Vector2<T>& _vector) noexcept
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::operator/=(T _scalar) noexcept
+inline void Vector2<T>::operator/=(const T _scalar) noexcept
 {
     DivideScalar(_scalar);
 }

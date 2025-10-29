@@ -138,7 +138,7 @@ public:
      * @brief Adds a scalar value to each component of the vector.
      * @param _scalar Scalar value to add.
      */
-    inline void AddScalar(T _scalar) noexcept;
+    inline void AddScalar(const T _scalar) noexcept;
 
     /**
      * @brief Subtracts two Vector2 objects component-wise.
@@ -150,7 +150,7 @@ public:
      * @brief Subtracts a scalar value to each component of the vector.
      * @param _scalar Scalar value to subtract.
      */
-    inline void SubtractScalar(T _scalar) noexcept;
+    inline void SubtractScalar(const T _scalar) noexcept;
 
     /**
      * @brief Multiplies two Vector2 objects component-wise.
@@ -162,7 +162,7 @@ public:
      * @brief Multiplies a scalar value to each component of the vector.
      * @param _scalar Scalar value to multiply.
      */
-    inline void MultiplyScalar(T _scalar) noexcept;
+    inline void MultiplyScalar(const T _scalar) noexcept;
 
     /**
      * @brief Divides two Vector2 objects component-wise.
@@ -174,7 +174,7 @@ public:
      * @brief Divides a scalar value to each component of the vector.
      * @param _scalar Scalar value to divide.
      */
-    inline void DivideScalar(T _scalar) noexcept;
+    inline void DivideScalar(const T _scalar) noexcept;
 
     /**
      * @brief Computes the doct product between this vector and a second one.
@@ -228,6 +228,9 @@ public:
      */
     [[nodiscard]] inline T Distance(const Vector2<T>& _vector) const noexcept;
 
+    /**
+     *
+     */
     inline void Inverse() const noexcept;
 
     /**
@@ -255,25 +258,39 @@ public:
      * @param _vector
      * @param _t
      */
-    inline void Lerp(const Vector2<T>& _vector, float _t) noexcept;
+    inline void Lerp(const Vector2<T>& _vector, const float _t) noexcept;
 
     /**
      * @brief
      * @param _vector
      * @param _t
      */
-    inline void Slerp(const Vector2<T>& _vector, float _t) noexcept;
+    inline void Slerp(const Vector2<T>& _vector, const float _t) noexcept;
 
     /**
      * @brief Normalizes the vector to produce a unit vector (length of 1).
      */
     inline void Normalize() noexcept;
 
+    /**
+     *
+     * @param _vector
+     */
     inline void Translate(const Vector2<T>& _vector) noexcept;
 
-    inline void Scale(const Vector2<T>& _anchor, T _value) noexcept;
+    /**
+     *
+     * @param _anchor
+     * @param _value
+     */
+    inline void Scale(const Vector2<T>& _anchor, const T _value) noexcept;
 
-    inline void Rotate(const Vector2<T>& _anchor, T _angle) noexcept;
+    /**
+     *
+     * @param _anchor
+     * @param _angle
+     */
+    inline void Rotate(const Vector2<T>& _anchor, const T _angle) noexcept;
 
 #pragma endregion
 
@@ -291,7 +308,7 @@ public:
      * @param _scalar Scalar value to add.
      * @return A new Vector2 with the scalar added to both x and y.
      */
-    inline Vector2<T> operator+(T _scalar) noexcept;
+    inline Vector2<T> operator+(const T _scalar) noexcept;
 
     /**
      * @brief Subtracts two Vector2 objects component-wise.
@@ -305,7 +322,7 @@ public:
      * @param _scalar Scalar value to subtract.
      * @return A new Vector2 with the scalar subtracted to both x and y.
      */
-    inline Vector2<T> operator-(T _scalar) noexcept;
+    inline Vector2<T> operator-(const T _scalar) noexcept;
 
     /**
      * @brief Multiplies two Vector2 objects component-wise.
@@ -319,7 +336,7 @@ public:
      * @param _scalar Scalar value to multiply.
      * @return A new Vector2 with the scalar multiplied to both x and y.
      */
-    inline Vector2<T> operator*(T _scalar) noexcept;
+    inline Vector2<T> operator*(const T _scalar) noexcept;
 
     /**
      * @brief Divides two Vector2 objects component-wise.
@@ -333,7 +350,7 @@ public:
      * @param _scalar Scalar value to divide.
      * @return A new Vector2 with the scalar divided to both x and y.
      */
-    inline Vector2<T> operator/(T _scalar) noexcept;
+    inline Vector2<T> operator/(const T _scalar) noexcept;
 
     /**
      * @brief Adds another Vector2 to this one, component-wise.
@@ -345,7 +362,7 @@ public:
      * @brief Adds a scalar value to each component of this vector.
      * @param _scalar Scalar value to add.
      */
-    inline void operator+=(T _scalar) noexcept;
+    inline void operator+=(const T _scalar) noexcept;
 
     /**
      * @brief Subtracts another Vector2 to this one, component-wise.
@@ -357,7 +374,7 @@ public:
      * @brief Subtracts a scalar value to each component of this vector.
      * @param _scalar Scalar value to subtract.
      */
-    inline void operator-=(T _scalar) noexcept;
+    inline void operator-=(const T _scalar) noexcept;
 
     /**
      * @brief Multiplies another Vector2 to this one, component-wise.
@@ -369,7 +386,7 @@ public:
      * @brief Multiplies a scalar value to each component of this vector.
      * @param _scalar Scalar value to multiply.
      */
-    inline void operator*=(T _scalar) noexcept;
+    inline void operator*=(const T _scalar) noexcept;
 
     /**
      * @brief Divides another Vector2 to this one, component-wise.
@@ -381,7 +398,7 @@ public:
      * @brief Divides a scalar value to each component of this vector.
      * @param _scalar Scalar value to divide.
      */
-    inline void operator/=(T _scalar) noexcept;
+    inline void operator/=(const T _scalar) noexcept;
 
     /**
      * @brief Assigns the values of another Vector2 to this one.
