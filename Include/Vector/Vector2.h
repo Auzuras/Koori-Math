@@ -294,6 +294,62 @@ public:
 
 #pragma endregion
 
+#pragma region Vector2 Static Functions
+
+    [[nodiscard]] inline static Vector2<T> AddVector(const Vector2<T>& _vector1, const Vector2<T>& _vector2) noexcept;
+
+    [[nodiscard]] inline static Vector2<T> AddScalar(const Vector2<T>& _vector, const T _scalar) noexcept;
+
+    [[nodiscard]] inline static Vector2<T> SubtractVector(const Vector2<T>& _vector1, const Vector2<T>& _vector2) noexcept;
+
+    [[nodiscard]] inline static Vector2<T> SubtractScalar(const Vector2<T>& _vector, const T _scalar) noexcept;
+
+    [[nodiscard]] inline static Vector2<T> MultiplyVector(const Vector2<T>& _vector1, const Vector2<T>& _vector2) noexcept;
+
+    [[nodiscard]] inline static Vector2<T> MultiplyScalar(const Vector2<T>& _vector, const T _scalar) noexcept;
+
+    [[nodiscard]] inline static Vector2<T> DivideVector(const Vector2<T>& _vector1, const Vector2<T>& _vector2) noexcept;
+
+    [[nodiscard]] inline static Vector2<T> DivideScalar(const Vector2<T>& _vector, const T _scalar) noexcept;
+
+    [[nodiscard]] inline static  T DotProduct(const Vector2<T>& _vector1, const Vector2<T>& _vector2) noexcept;
+
+    [[nodiscard]] inline static T CrossProduct(const Vector2<T>& _vector1, const Vector2<T>& _vector2) noexcept;
+
+    [[nodiscard]] inline static T SquaredLength(const Vector2<T>& _vector) noexcept;
+
+    [[nodiscard]] inline static T Length(const Vector2<T>& _vector) noexcept;
+
+    [[nodiscard]] inline static T SquaredMagnitude(const Vector2<T>& _vector) noexcept;
+
+    [[nodiscard]] inline static T Magnitude(const Vector2<T>& _vector) noexcept;
+
+    [[nodiscard]] inline static T SquaredDistance(const Vector2<T>& _vector1, const Vector2<T>& _vector2) noexcept;
+
+    [[nodiscard]] inline static T Distance(const Vector2<T>& _vector1, const Vector2<T>& _vector2) noexcept;
+
+    [[nodiscard]] inline static Vector2<T> Inverse(const Vector2<T>& _vector) noexcept;
+
+    [[nodiscard]] inline static bool IsNull(const Vector2<T>& _vector) noexcept;
+
+    [[nodiscard]] inline static bool Equal(const Vector2<T>& _vector1, const Vector2<T>& _vector2) noexcept;
+
+    [[nodiscard]] inline static float Angle(const Vector2<T>& _vector1, const Vector2<T>& _vector2) noexcept;
+
+    [[nodiscard]] inline static Vector2<T> Lerp(const Vector2<T>& _vector1, const Vector2<T>& _vector2, const float _t) noexcept;
+
+    [[nodiscard]] inline static Vector2<T> Slerp(const Vector2<T>& _vector1, const Vector2<T>& _vector2, const float _t) noexcept;
+
+    [[nodiscard]] inline static Vector2<T> Normalize(const Vector2<T>& _vector) noexcept;
+
+    [[nodiscard]] inline static Vector2<T> Translate(const Vector2<T>& _vector, const Vector2<T>& _value) noexcept;
+
+    [[nodiscard]] inline static Vector2<T> Scale(const Vector2<T>& _vector, const Vector2<T>& _anchor, const T _value) noexcept;
+
+    [[nodiscard]] inline static Vector2<T> Rotate(const Vector2<T>& _vector, const Vector2<T>& _anchor, const T _angle) noexcept;
+
+#pragma endregion
+
 #pragma region Operators
 
     /**
