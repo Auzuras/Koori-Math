@@ -292,6 +292,18 @@ public:
      */
     inline void Rotate(const Vector2<T>& _anchor, const T _angle) noexcept;
 
+    /**
+     * @brief
+     * @param _normal
+     */
+    inline void Reflect(const Vector2<T>& _normal) const noexcept;
+
+    /**
+     * @brief
+     * @param _normal
+     */
+    inline void Refract(const Vector2<T>& _normal) const noexcept;
+
 #pragma endregion
 
 #pragma region Vector2 Static Functions
@@ -347,6 +359,10 @@ public:
     [[nodiscard]] inline static Vector2<T> Scale(const Vector2<T>& _vector, const Vector2<T>& _anchor, const T _value) noexcept;
 
     [[nodiscard]] inline static Vector2<T> Rotate(const Vector2<T>& _vector, const Vector2<T>& _anchor, const T _angle) noexcept;
+
+    [[nodiscard]] inline Vector2<T> Reflect(const Vector2<T>& _vector,const Vector2<T>& _normal) const noexcept;
+
+    [[nodiscard]] inline Vector2<T> Refract(const Vector2<T>& _vector, const Vector2<T>& _normal) const noexcept;
 
 #pragma endregion
 
