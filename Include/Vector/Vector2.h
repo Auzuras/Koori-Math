@@ -337,7 +337,7 @@ public:
 
     [[nodiscard]] inline static Vector2<T> DivideScalar(const Vector2<T>& _vector, const T _scalar) noexcept;
 
-    [[nodiscard]] inline static  T DotProduct(const Vector2<T>& _vector1, const Vector2<T>& _vector2) noexcept;
+    [[nodiscard]] inline static T DotProduct(const Vector2<T>& _vector1, const Vector2<T>& _vector2) noexcept;
 
     [[nodiscard]] inline static T CrossProduct(const Vector2<T>& _vector1, const Vector2<T>& _vector2) noexcept;
 
@@ -373,9 +373,11 @@ public:
 
     [[nodiscard]] inline static Vector2<T> Rotate(const Vector2<T>& _vector, const Vector2<T>& _anchor, const T _angle) noexcept;
 
-    [[nodiscard]] inline Vector2<T> Reflect(const Vector2<T>& _vector,const Vector2<T>& _normal) const noexcept;
+    [[nodiscard]] inline static Vector2<T> Reflect(const Vector2<T>& _vector,const Vector2<T>& _normal) noexcept;
 
-    [[nodiscard]] inline Vector2<T> Refract(const Vector2<T>& _vector, const Vector2<T>& _normal) const noexcept;
+    [[nodiscard]] inline static Vector2<T> Refract(const Vector2<T>& _vector, const Vector2<T>& _normal, const T _ior) noexcept;
+
+    [[nodiscard]] inline static Vector2<T> Project(const Vector2<T>& _vector1, const Vector2<T>& _vector2) noexcept;
 
 #pragma endregion
 
