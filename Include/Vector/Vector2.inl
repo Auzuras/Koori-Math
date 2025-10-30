@@ -212,7 +212,7 @@ inline void Vector2<T>::Refract(const Vector2<T>& _normal, const T _ior) noexcep
 template<Arithmetic T>
 inline void Vector2<T>::Project(const Vector2<T>& _vector) noexcept
 {
-    *this = Dotproduct(_vector) / _vector.DotProduct(_vector) * _vector;
+    *this = _vector * (Dotproduct(_vector) / _vector.DotProduct(_vector));
 }
 
 #pragma endregion
@@ -226,9 +226,9 @@ inline Vector2<T> Vector2<T>::AddVector(const Vector2<T>& _vector1, const Vector
 }
 
 template<Arithmetic T>
-inline Vector2<T> Vector2<T>::AddScalar(const Vector2<T>& _vector1, const T _scalar) noexcept
+inline Vector2<T> Vector2<T>::AddScalar(const Vector2<T>& _vector, const T _scalar) noexcept
 {
-    return Vector2<T>(_vector1.x + _scalar, _vector1.y + _scalar);
+    return Vector2<T>(_vector.x + _scalar, _vector.y + _scalar);
 }
 
 template<Arithmetic T>
@@ -238,9 +238,9 @@ inline Vector2<T> Vector2<T>::SubtractVector(const Vector2<T>& _vector1, const V
 }
 
 template<Arithmetic T>
-inline Vector2<T> Vector2<T>::SubtractScalar(const Vector2<T>& _vector1, const T _scalar) noexcept
+inline Vector2<T> Vector2<T>::SubtractScalar(const Vector2<T>& _vector, const T _scalar) noexcept
 {
-    return Vector2<T>(_vector1.x - _scalar, _vector1.y - _scalar);
+    return Vector2<T>(_vector.x - _scalar, _vector.y - _scalar);
 }
 
 template<Arithmetic T>
@@ -250,9 +250,9 @@ inline Vector2<T> Vector2<T>::MultiplyVector(const Vector2<T>& _vector1, const V
 }
 
 template<Arithmetic T>
-inline Vector2<T> Vector2<T>::MultiplyScalar(const Vector2<T>& _vector1, const T _scalar) noexcept
+inline Vector2<T> Vector2<T>::MultiplyScalar(const Vector2<T>& _vector, const T _scalar) noexcept
 {
-    return Vector2<T>(_vector1.x * _scalar, _vector1.y * _scalar);
+    return Vector2<T>(_vector.x * _scalar, _vector.y * _scalar);
 }
 
 template<Arithmetic T>
@@ -262,9 +262,9 @@ inline Vector2<T> Vector2<T>::DivideVector(const Vector2<T>& _vector1, const Vec
 }
 
 template<Arithmetic T>
-inline Vector2<T> Vector2<T>::DivideScalar(const Vector2<T>& _vector1, const T _scalar) noexcept
+inline Vector2<T> Vector2<T>::DivideScalar(const Vector2<T>& _vector, const T _scalar) noexcept
 {
-    return Vector2<T>(_vector1.x / _scalar, _vector1.y / _scalar);
+    return Vector2<T>(_vector.x / _scalar, _vector.y / _scalar);
 }
 
 template<Arithmetic T>
@@ -399,7 +399,7 @@ inline Vector2<T> Vector2<T>::Refract(const Vector2<T>& _vector, const Vector2<T
 template<Arithmetic T>
 inline Vector2<T> Vector2<T>::Project(const Vector2<T>& _vector1, const Vector2<T>& _vector2) noexcept
 {
-    return Dotproduct(_vector1, _vector2) / DotProduct(_vector1, _vector2) * _vector1;
+    return _vector1 * (Dotproduct(_vector1, _vector2) / DotProduct(_vector1, _vector2));
 }
 
 #pragma endregion
