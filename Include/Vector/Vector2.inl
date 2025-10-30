@@ -1,4 +1,5 @@
 #pragma region Vector Type
+#include "src/gtest-internal-inl.h"
 
 using Vector2f = Vector2<float>;
 using Vector2d = Vector2<double>;
@@ -156,7 +157,7 @@ inline void Vector2<T>::Slerp(const Vector2<T>& _vector, const float _t) noexcep
 template<Arithmetic T>
 inline void Vector2<T>::Normalize() noexcept
 {
-    T length = Length();
+    const T length = Length();
 
     x /= length;
     y /= length;
@@ -179,6 +180,19 @@ inline void Vector2<T>::Rotate(const Vector2<T>& _anchor, const T _angle) noexce
 {
     x = _anchor.x + (x - _anchor.x) * Koori::Math::Cos(_angle) - (y - _anchor.y) * Koori::Math::Sin(_angle);
     x = _anchor.y + (x - _anchor.x) * Koori::Math::Sin(_angle) + (y - _anchor.y) * Koori::Math::Cos(_angle);
+}
+
+template<Arithmetic T>
+inline void Vector2<T>::Reflect(const Vector2<T>& _normal) noexcept
+{
+    *this = *this - static_cast<T>(2) * (DotProduct(_normal)) * _normal;
+}
+
+template<Arithmetic T>
+inline void Vector2<T>::Refract(const Vector2<T>& _normal, const T _ior) noexcept
+{
+    const T k = static_cast<T>(1) - _ior * _ior * (static_cast<T>(1) - Dot(_normal) * Dot(_normal));
+    *this = k < static_cast<T>(0) ? Vector2<T>(0) : _ior * *this - (_ior * DotProduct(_normal) + Koori::Math::Sqrt(k)) * _normal;
 }
 
 #pragma endregion

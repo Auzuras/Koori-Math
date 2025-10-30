@@ -296,13 +296,13 @@ public:
      * @brief
      * @param _normal
      */
-    inline void Reflect(const Vector2<T>& _normal) const noexcept;
+    inline void Reflect(const Vector2<T>& _normal) noexcept;
 
     /**
      * @brief
      * @param _normal
      */
-    inline void Refract(const Vector2<T>& _normal) const noexcept;
+    inline void Refract(const Vector2<T>& _normal, const T _ior) noexcept;
 
 #pragma endregion
 
