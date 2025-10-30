@@ -1,5 +1,22 @@
 #pragma region Vector Type
-#include "src/gtest-internal-inl.h"
+
+template<Arithmetic T>
+Vector2<T> Vector2<T>::Zero = Vector2<T>(T(0));
+
+template<Arithmetic T>
+Vector2<T> Vector2<T>::One = Vector2<T>(T(1));
+
+template<Arithmetic T>
+Vector2<T> Vector2<T>::Right = Vector2<T>(T(1), T(0));
+
+template<Arithmetic T>
+Vector2<T> Vector2<T>::Up = Vector2<T>(T(0), T(1));
+
+template<Arithmetic T>
+Vector2<T> Vector2<T>::Left = Vector2<T>(T(-1), T(0));
+
+template<Arithmetic T>
+Vector2<T> Vector2<T>::Down = Vector2<T>(T(0), T(-1));
 
 using Vector2f = Vector2<float>;
 using Vector2d = Vector2<double>;
@@ -195,6 +212,15 @@ inline void Vector2<T>::Refract(const Vector2<T>& _normal, const T _ior) noexcep
     *this = k < static_cast<T>(0) ? Vector2<T>(0) : _ior * *this - (_ior * DotProduct(_normal) + Koori::Math::Sqrt(k)) * _normal;
 }
 
+template<Arithmetic T>
+inline void Vector2<T>::Project(const Vector2<T>& _vector) noexcept
+{
+    *this = Dotproduct(_vector) / _vector.DotProduct(_vector) * _vector;
+}
+
+#pragma endregion
+
+#pragma region Vector2 Static Functions
 #pragma endregion
 
 #pragma region String
@@ -336,7 +362,7 @@ inline bool Vector2<T>::operator==(const Vector2<T>& _vector) const noexcept
 }
 
 template<Arithmetic T>
-inline T Vector2<T>::operator[](const int _index) const noexcept
+inline T Vector2<T>::operator[](const size_t _index) const noexcept
 {
     switch (_index)
     {

@@ -166,3 +166,36 @@ TYPED_TEST(Vector2Test, BooleanOperations)
 
     EXPECT_EQ(v1.IsNull(), true);
 }
+
+TYPED_TEST(Vector2Test, StaticValues)
+{
+    Vec2T v = Vec2T::Zero;
+
+    EXPECT_EQ(v.x, static_cast<TypeParam>(0));
+    EXPECT_EQ(v.y, static_cast<TypeParam>(0));
+
+    v = Vec2T::One;
+
+    EXPECT_EQ(v.x, static_cast<TypeParam>(1));
+    EXPECT_EQ(v.y, static_cast<TypeParam>(1));
+
+    v = Vec2T::Right;
+
+    EXPECT_EQ(v.x, static_cast<TypeParam>(1));
+    EXPECT_EQ(v.y, static_cast<TypeParam>(0));
+
+    v = Vec2T::Up;
+
+    EXPECT_EQ(v.x, static_cast<TypeParam>(0));
+    EXPECT_EQ(v.y, static_cast<TypeParam>(1));
+
+    v = Vec2T::Left;
+
+    EXPECT_EQ(v.x, static_cast<TypeParam>(-1));
+    EXPECT_EQ(v.y, static_cast<TypeParam>(0));
+
+    v = Vec2T::Down;
+
+    EXPECT_EQ(v.x, static_cast<TypeParam>(0));
+    EXPECT_EQ(v.y, static_cast<TypeParam>(-1));
+}

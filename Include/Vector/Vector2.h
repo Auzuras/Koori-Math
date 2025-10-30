@@ -14,6 +14,13 @@ public:
 
 public:
 
+    static Vector2<T> Zero;
+    static Vector2<T> One;
+    static Vector2<T> Right;
+    static Vector2<T> Up;
+    static Vector2<T> Left;
+    static Vector2<T> Down;
+
 #pragma region Constructors
 
     /**
@@ -304,6 +311,12 @@ public:
      */
     inline void Refract(const Vector2<T>& _normal, const T _ior) noexcept;
 
+    /**
+     * @brief
+     * @param _vector
+     */
+    inline void Project(const Vector2<T>& _vector) noexcept;
+
 #pragma endregion
 
 #pragma region Vector2 Static Functions
@@ -493,7 +506,7 @@ public:
      */
     inline bool operator==(const Vector2<T>& _vector) const noexcept;
 
-    inline T operator[](const int _index) const noexcept;
+    inline T operator[](const size_t _index) const noexcept;
 
     friend inline std::ostream& operator<< (std::ostream& _stream, const Vector2<T>& _vector)
     {
