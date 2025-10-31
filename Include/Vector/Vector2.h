@@ -139,49 +139,49 @@ public:
      * @brief Adds two Vector2 objects component-wise.
      * @param _vector Vector to add.
      */
-    inline void AddVector(const Vector2<T>& _vector) noexcept;
+    inline Vector2<T>& AddVector(const Vector2<T>& _vector) noexcept;
 
     /**
      * @brief Adds a scalar value to each component of the vector.
      * @param _scalar Scalar value to add.
      */
-    inline void AddScalar(const T _scalar) noexcept;
+    inline Vector2<T>& AddScalar(const T _scalar) noexcept;
 
     /**
      * @brief Subtracts two Vector2 objects component-wise.
      * @param _vector Vector to subtract.
      */
-    inline void SubtractVector(const Vector2<T>& _vector) noexcept;
+    inline Vector2<T>& SubtractVector(const Vector2<T>& _vector) noexcept;
 
     /**
      * @brief Subtracts a scalar value to each component of the vector.
      * @param _scalar Scalar value to subtract.
      */
-    inline void SubtractScalar(const T _scalar) noexcept;
+    inline Vector2<T>& SubtractScalar(const T _scalar) noexcept;
 
     /**
      * @brief Multiplies two Vector2 objects component-wise.
      * @param _vector Vector to multiply.
      */
-    inline void MultiplyVector(const Vector2<T>& _vector) noexcept;
+    inline Vector2<T>& MultiplyVector(const Vector2<T>& _vector) noexcept;
 
     /**
      * @brief Multiplies a scalar value to each component of the vector.
      * @param _scalar Scalar value to multiply.
      */
-    inline void MultiplyScalar(const T _scalar) noexcept;
+    inline Vector2<T>& MultiplyScalar(const T _scalar) noexcept;
 
     /**
      * @brief Divides two Vector2 objects component-wise.
      * @param _vector Vector to divide.
      */
-    inline void DivideVector(const Vector2<T>& _vector) noexcept;
+    inline Vector2<T>& DivideVector(const Vector2<T>& _vector) noexcept;
 
     /**
      * @brief Divides a scalar value to each component of the vector.
      * @param _scalar Scalar value to divide.
      */
-    inline void DivideScalar(const T _scalar) noexcept;
+    inline Vector2<T>& DivideScalar(const T _scalar) noexcept;
 
     /**
      * @brief Computes the doct product between this vector and a second one.
@@ -238,7 +238,7 @@ public:
     /**
      *
      */
-    inline void Inverse() const noexcept;
+    inline Vector2<T>& Inverse() const noexcept;
 
     /**
      * @brief Checks if the components of the vector are close to zero (i.e., near null).
@@ -265,61 +265,61 @@ public:
      * @param _vector
      * @param _t
      */
-    inline void Lerp(const Vector2<T>& _vector, const float _t) noexcept;
+    inline Vector2<T>& Lerp(const Vector2<T>& _vector, const float _t) noexcept;
 
     /**
      * @brief
      * @param _vector
      * @param _t
      */
-    inline void Slerp(const Vector2<T>& _vector, const float _t) noexcept;
+    inline Vector2<T>& Slerp(const Vector2<T>& _vector, const float _t) noexcept;
 
     /**
      * @brief Normalizes the vector to produce a unit vector (length of 1).
      */
-    inline void Normalize() noexcept;
+    inline Vector2<T>& Normalize() noexcept;
 
     /**
      *
      * @param _vector
      */
-    inline void Translate(const Vector2<T>& _vector) noexcept;
+    inline Vector2<T>& Translate(const Vector2<T>& _vector) noexcept;
 
     /**
      *
      * @param _anchor
      * @param _value
      */
-    inline void Scale(const Vector2<T>& _anchor, const T _value) noexcept;
+    inline Vector2<T>& Scale(const Vector2<T>& _anchor, const T _value) noexcept;
 
     /**
      *
      * @param _anchor
      * @param _angle
      */
-    inline void Rotate(const Vector2<T>& _anchor, const T _angle) noexcept;
+    inline Vector2<T>& Rotate(const Vector2<T>& _anchor, const T _angle) noexcept;
 
     /**
      * @brief
      * @param _normal
      */
-    inline void Reflect(const Vector2<T>& _normal) noexcept;
+    inline Vector2<T>& Reflect(const Vector2<T>& _normal) noexcept;
 
     /**
      * @brief
      * @param _normal
      */
-    inline void Refract(const Vector2<T>& _normal, const T _ior) noexcept;
+    inline Vector2<T>& Refract(const Vector2<T>& _normal, const T _ior) noexcept;
 
     /**
      * @brief
      * @param _vector
      */
-    inline void Project(const Vector2<T>& _vector) noexcept;
+    inline Vector2<T>& Project(const Vector2<T>& _vector) noexcept;
 
 #pragma endregion
 
-#pragma region Vector2 Static Functions
+#pragma region Vector2 Static Methods
 
     [[nodiscard]] inline static Vector2<T> AddVector(const Vector2<T>& _vector1, const Vector2<T>& _vector2) noexcept;
 

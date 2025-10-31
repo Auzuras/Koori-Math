@@ -27,59 +27,67 @@ using Vector2i = Vector2<int>;
 #pragma region Vector2 Methods
 
 template<Arithmetic T>
-inline void Vector2<T>::AddVector(const Vector2<T>& _vector) noexcept
+inline Vector2<T>& Vector2<T>::AddVector(const Vector2<T>& _vector) noexcept
 {
     x += _vector.x;
     y += _vector.y;
+    return *this;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::AddScalar(const T _scalar) noexcept
+inline Vector2<T>& Vector2<T>::AddScalar(const T _scalar) noexcept
 {
     x += _scalar;
     y += _scalar;
+    return *this;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::SubtractVector(const Vector2<T>& _vector) noexcept
+inline Vector2<T>& Vector2<T>::SubtractVector(const Vector2<T>& _vector) noexcept
 {
     x -= _vector.x;
     y -= _vector.y;
+    return *this;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::SubtractScalar(const T _scalar) noexcept
+inline Vector2<T>& Vector2<T>::SubtractScalar(const T _scalar) noexcept
 {
     x -= _scalar;
     y -= _scalar;
+    return *this;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::MultiplyVector(const Vector2<T>& _vector) noexcept
+inline Vector2<T>& Vector2<T>::MultiplyVector(const Vector2<T>& _vector) noexcept
 {
     x *= _vector.x;
     y *= _vector.y;
+    return *this;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::MultiplyScalar(const T _scalar) noexcept
+inline Vector2<T>& Vector2<T>::MultiplyScalar(const T _scalar) noexcept
 {
     x *= _scalar;
     y *= _scalar;
+    return *this;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::DivideVector(const Vector2<T>& _vector) noexcept
+inline Vector2<T>& Vector2<T>::DivideVector(const Vector2<T>& _vector) noexcept
 {
     x /= _vector.x;
     y /= _vector.y;
+    return *this;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::DivideScalar(const T _scalar) noexcept
+inline Vector2<T>& Vector2<T>::DivideScalar(const T _scalar) noexcept
 {
     x /= _scalar;
     y /= _scalar;
+    return *this;
 }
 template<Arithmetic T>
 inline T Vector2<T>::DotProduct(const Vector2<T>& _vector) const noexcept
@@ -130,11 +138,12 @@ inline T Vector2<T>::Distance(const Vector2<T>& _vector) const noexcept
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::Inverse() const noexcept
+inline Vector2<T>& Vector2<T>::Inverse() const noexcept
 {
     const T one = static_cast<T>(1);
     x = one / x;
     y = one / y;
+    return *this;
 }
 
 template<Arithmetic T>
@@ -156,68 +165,77 @@ inline float Vector2<T>::Angle(const Vector2<T>& _vector) const noexcept
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::Lerp(const Vector2<T>& _vector, const float _t) noexcept
+inline Vector2<T>& Vector2<T>::Lerp(const Vector2<T>& _vector, const float _t) noexcept
 {
     *this * (1.f - _t) + _vector * _t;
+    return *this;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::Slerp(const Vector2<T>& _vector, const float _t) noexcept
+inline Vector2<T>& Vector2<T>::Slerp(const Vector2<T>& _vector, const float _t) noexcept
 {
     const float dot = Koori::Math::Clamp(DotProduct(_vector), -1.f, 1.f);
     const float theta = Koori::Math::ACos(dot) * _t;
 
     Vector2<float> relative = (_vector - (*this) * dot).Normalize();
     *this = *this * Koori::Math::Cos(theta) + relative * Koori::Math::Sin(theta);
+    return *this;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::Normalize() noexcept
+inline Vector2<T>& Vector2<T>::Normalize() noexcept
 {
     *this /= Length();
+    return *this;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::Translate(const Vector2<T>& _vector) noexcept
+inline Vector2<T>& Vector2<T>::Translate(const Vector2<T>& _vector) noexcept
 {
     *this += _vector;
+    return *this;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::Scale(const Vector2<T>& _anchor, const T _value) noexcept
+inline Vector2<T>& Vector2<T>::Scale(const Vector2<T>& _anchor, const T _value) noexcept
 {
     *this = _anchor + (*this - _anchor) * _value;
+    return *this;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::Rotate(const Vector2<T>& _anchor, const T _angle) noexcept
+inline Vector2<T>& Vector2<T>::Rotate(const Vector2<T>& _anchor, const T _angle) noexcept
 {
     x = _anchor.x + (x - _anchor.x) * Koori::Math::Cos(_angle) - (y - _anchor.y) * Koori::Math::Sin(_angle);
     y = _anchor.y + (x - _anchor.x) * Koori::Math::Sin(_angle) + (y - _anchor.y) * Koori::Math::Cos(_angle);
+    return *this;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::Reflect(const Vector2<T>& _normal) noexcept
+inline Vector2<T>& Vector2<T>::Reflect(const Vector2<T>& _normal) noexcept
 {
     *this = *this - static_cast<T>(2) * (DotProduct(_normal)) * _normal;
+    return *this;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::Refract(const Vector2<T>& _normal, const T _ior) noexcept
+inline Vector2<T>& Vector2<T>::Refract(const Vector2<T>& _normal, const T _ior) noexcept
 {
     const T k = static_cast<T>(1) - _ior * _ior * (static_cast<T>(1) - Dot(_normal) * Dot(_normal));
     *this = k < static_cast<T>(0) ? Vector2<T>(0) : _ior * *this - (_ior * DotProduct(_normal) + Koori::Math::Sqrt(k)) * _normal;
+    return *this;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::Project(const Vector2<T>& _vector) noexcept
+inline Vector2<T>& Vector2<T>::Project(const Vector2<T>& _vector) noexcept
 {
     *this = _vector * (Dotproduct(_vector) / _vector.DotProduct(_vector));
+    return *this;
 }
 
 #pragma endregion
 
-#pragma region Vector2 Static Functions
+#pragma region Vector2 Static Methods
 
 template<Arithmetic T>
 inline Vector2<T> Vector2<T>::AddVector(const Vector2<T>& _vector1, const Vector2<T>& _vector2) noexcept
