@@ -1,5 +1,13 @@
 #pragma region Vector Type
 
+using Vector2f = Vector2<float>;
+using Vector2d = Vector2<double>;
+using Vector2i = Vector2<int>;
+
+#pragma endregion
+
+#pragma region Static Vectors
+
 template<Arithmetic T>
 Vector2<T> Vector2<T>::Zero = Vector2<T>(T(0));
 
@@ -17,10 +25,6 @@ Vector2<T> Vector2<T>::Left = Vector2<T>(T(-1), T(0));
 
 template<Arithmetic T>
 Vector2<T> Vector2<T>::Down = Vector2<T>(T(0), T(-1));
-
-using Vector2f = Vector2<float>;
-using Vector2d = Vector2<double>;
-using Vector2i = Vector2<int>;
 
 #pragma endregion
 

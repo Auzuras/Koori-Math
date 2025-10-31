@@ -14,12 +14,16 @@ public:
 
 public:
 
+#pragma region Static Vectors
+
     static Vector2<T> Zero;
     static Vector2<T> One;
     static Vector2<T> Right;
     static Vector2<T> Up;
     static Vector2<T> Left;
     static Vector2<T> Down;
+
+#pragma endregion
 
 #pragma region Constructors
 
