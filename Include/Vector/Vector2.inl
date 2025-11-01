@@ -703,17 +703,9 @@ inline bool Vector2<T>::operator==(const Vector2<T>& _vector) const noexcept
 }
 
 template<Arithmetic T>
-inline T Vector2<T>::operator[](const size_t _index) const noexcept
+inline T& Vector2<T>::operator[](const size_t _index) const noexcept
 {
-    switch (_index)
-    {
-        case 0:
-            return x;
-        case 1:
-            return y;
-        default:
-            return NAN;
-    }
+    return Data()[_index];
 }
 
 #pragma endregion

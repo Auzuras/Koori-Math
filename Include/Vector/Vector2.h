@@ -17,32 +17,32 @@ public:
 #pragma region Static Vectors
 
     /**
-     * @brief The zero static vector: (0, 0)
+     * @brief Zero vector constant: (0, 0)
      */
     static Vector2<T> Zero;
 
     /**
-     * @brief The one static vector: (1, 1)
+     * @brief One vector constant: (1, 1)
      */
     static Vector2<T> One;
 
     /**
-     * @brief The right static vector: (1, 0)
+     * @brief Right vector constant: (1, 0)
      */
     static Vector2<T> Right;
 
     /**
-     * @brief The up static vector: (0, 1)
+     * @brief Up vector constant: (0, 1)
      */
     static Vector2<T> Up;
 
     /**
-     * @brief The left static vector: (-1, 0)
+     * @brief Left vector constant: (-1, 0)
      */
     static Vector2<T> Left;
 
     /**
-     * @brief The down static vector: (0, -1)
+     * @brief Down vector constant: (0, -1)
      */
     static Vector2<T> Down;
 
@@ -53,7 +53,7 @@ public:
     /**
      * @brief Default constructor, initializes all components to a default value.
      */
-    Vector2() noexcept : x(T{}), y(T{}) {}
+    Vector2() noexcept : x(T()), y(T()) {}
 
     /**
      * @brief Constructor initializing all the components to the same value.
@@ -78,7 +78,7 @@ public:
      * @brief Constructor moving from a rvalue reference.
      * @param _vector Rvalue reference to the Vector2 to move.
      */
-    Vector2(const Vector2<T>&& _vector) noexcept : x(_vector.x), y(_vector.y) { _vector.x = _vector.y = T{}; }
+    Vector2(const Vector2<T>&& _vector) noexcept : x(_vector.x), y(_vector.y) { _vector.x = _vector.y = T(); }
 
     /**
      * @brief Constructor copying from a pointer.
@@ -868,15 +868,26 @@ public:
     inline Vector2<T>& operator=(Vector2<T>&& _vector) noexcept;
 
     /**
-     * @brief
-     * @param _vector
-     * @return
+     * @brief Checks the equality of another vector and this one.
+     * @param _vector The second vector.
+     * @return A boolean, true if the vectors are equal, false if not.
      */
     inline bool operator==(const Vector2<T>& _vector) const noexcept;
 
-    inline T operator[](size_t _index) const noexcept;
+    /**
+     * @brief Returns a reference to the x or y component of the vector.
+     * @param _index The index of the component (0 for x, 1 for y).
+     * @return A reference to the specified component.
+     */
+    inline T& operator[](size_t _index) const noexcept;
 
-    friend inline std::ostream& operator<< (std::ostream& _stream, const Vector2<T>& _vector)
+    /**
+     * @brief Outputs the vector to a stream in a readable format.
+     * @param _stream The output stream.
+     * @param _vector The vector to output.
+     * @return A reference to the output stream.
+     */
+    friend inline std::ostream& operator<<(std::ostream& _stream, const Vector2<T>& _vector)
     {
         _stream << _vector.ToString();
         return _stream;
