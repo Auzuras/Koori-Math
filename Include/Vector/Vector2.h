@@ -326,7 +326,7 @@ public:
      * @param _angle The rotation angle in radians.
      * @return A reference to the modified vector.
      */
-    inline Vector2<T>& Rotate(const Vector2<T>& _anchor, T _angle) noexcept;
+    inline Vector2<T>& Rotate(const Vector2<T>& _anchor, float _angle) noexcept;
 
     /**
      * @brief Return the result of rotating this vector around an anchor point.
@@ -334,7 +334,7 @@ public:
      * @param _angle The rotation angle in radians.
      * @return A new vector corresponding to the result of the operation.
      */
-    [[nodiscard]] inline Vector2<T> Rotated(const Vector2<T>& _anchor, T _angle) const noexcept;
+    [[nodiscard]] inline Vector2<T> Rotated(const Vector2<T>& _anchor, float _angle) const noexcept;
 
     /**
      * @brief Reflects this vector about the given normal.
@@ -530,7 +530,7 @@ public:
      * @param _angle The rotation angle in radians.
      * @return A new vector corresponding to the result of the operation.
      */
-    [[nodiscard]] inline static Vector2<T> Rotate(const Vector2<T>& _vector, const Vector2<T>& _anchor, T _angle) noexcept;
+    [[nodiscard]] inline static Vector2<T> Rotate(const Vector2<T>& _vector, const Vector2<T>& _anchor, float _angle) noexcept;
 
     /**
      * @brief Returns the result of reflecting the incident vector about the given normal.

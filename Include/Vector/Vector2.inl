@@ -209,7 +209,7 @@ inline Vector2<T> Vector2<T>::Scaled(const Vector2<T>& _anchor, const T _value) 
 }
 
 template<Arithmetic T>
-inline Vector2<T>& Vector2<T>::Rotate(const Vector2<T>& _anchor, const T _angle) noexcept
+inline Vector2<T>& Vector2<T>::Rotate(const Vector2<T>& _anchor, const float _angle) noexcept
 {
     T tx = _anchor.x + (x - _anchor.x) * Koori::Math::Cos(_angle) - (y - _anchor.y) * Koori::Math::Sin(_angle);
     T ty = _anchor.y + (x - _anchor.x) * Koori::Math::Sin(_angle) + (y - _anchor.y) * Koori::Math::Cos(_angle);
@@ -221,7 +221,7 @@ inline Vector2<T>& Vector2<T>::Rotate(const Vector2<T>& _anchor, const T _angle)
 }
 
 template<Arithmetic T>
-inline Vector2<T> Vector2<T>::Rotated(const Vector2<T>& _anchor, const T _angle) const noexcept
+inline Vector2<T> Vector2<T>::Rotated(const Vector2<T>& _anchor, const float _angle) const noexcept
 {
     Vector2<T> ret = *this;
     ret.Rotate(_anchor, _angle);
@@ -388,7 +388,7 @@ inline Vector2<T> Vector2<T>::Scale(const Vector2<T>& _vector, const Vector2<T>&
 }
 
 template<Arithmetic T>
-inline Vector2<T> Vector2<T>::Rotate(const Vector2<T>& _vector, const Vector2<T>& _anchor, const T _angle) noexcept
+inline Vector2<T> Vector2<T>::Rotate(const Vector2<T>& _vector, const Vector2<T>& _anchor, const float _angle) noexcept
 {
     return _vector.Rotated(_anchor, _angle);
 }

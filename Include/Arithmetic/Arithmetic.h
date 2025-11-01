@@ -39,6 +39,8 @@ concept ArithmeticUnsigned = Unsigned<T>;
  * @brief KM_INTERNAL_PI macro, defines the internal constant value of PI used in the toolbox
  */
 #define KM_INTERNAL_PI 3.14159265358979323846
+#define KM_INTERNAL_RAD_2_DEG (180 / KM_INTERNAL_PI)
+#define KM_INTERNAL_DEG_2_RAD (KM_INTERNAL_PI / 180)
 
 namespace Koori::Math
 {
