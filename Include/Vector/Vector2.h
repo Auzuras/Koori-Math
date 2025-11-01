@@ -16,11 +16,34 @@ public:
 
 #pragma region Static Vectors
 
+    /**
+     * @brief The zero static vector: (0, 0)
+     */
     static Vector2<T> Zero;
+
+    /**
+     * @brief The one static vector: (1, 1)
+     */
     static Vector2<T> One;
+
+    /**
+     * @brief The right static vector: (1, 0)
+     */
     static Vector2<T> Right;
+
+    /**
+     * @brief The up static vector: (0, 1)
+     */
     static Vector2<T> Up;
+
+    /**
+     * @brief The left static vector: (-1, 0)
+     */
     static Vector2<T> Left;
+
+    /**
+     * @brief The down static vector: (0, -1)
+     */
     static Vector2<T> Down;
 
 #pragma endregion
@@ -140,233 +163,346 @@ public:
 #pragma region Vector2 Methods
 
     /**
-     * @brief Adds two Vector2 objects component-wise.
-     * @param _vector Vector to add.
-     * @return A reference to the modified vector
+     * @brief Adds another vector to this one, component-wise.
+     * @param _vector The vector to add.
+     * @return A reference to the modified vector.
      */
     inline Vector2<T>& AddVector(const Vector2<T>& _vector) noexcept;
 
     /**
-     * @brief Adds two Vector2 objects component-wise.
-     * @param _vector Vector to add.
-     * @return A new vector
+     * @brief Returns the result of adding another vector to this one, component-wise.
+     * @param _vector The vector to add.
+     * @return A new vector representing to the result of the operation.
      */
-    [[nodiscard]] inline Vector2<T> AddVector(const Vector2<T>& _vector) const noexcept;
+    [[nodiscard]] inline Vector2<T> AddedVector(const Vector2<T>& _vector) const noexcept;
 
     /**
-     * @brief Adds a scalar value to each component of the vector.
-     * @param _scalar Scalar value to add.
+     * @brief Adds a scalar to this vector, component-wise.
+     * @param _scalar The scalar value to add.
+     * @return A reference to the modified vector.
      */
     inline Vector2<T>& AddScalar(T _scalar) noexcept;
 
-    [[nodiscard]] inline Vector2<T> AddScalar(T _scalar) const noexcept;
+    /**
+     * @brief Returns the result of adding a scalar to this vector, component-wise.
+     * @param _scalar The scalar value to add.
+     * @return A new vector corresponding to the result of the operation.
+     */
+    [[nodiscard]] inline Vector2<T> AddedScalar(T _scalar) const noexcept;
 
     /**
-     * @brief Subtracts two Vector2 objects component-wise.
-     * @param _vector Vector to subtract.
+     * @brief Subtracts another vector to this one, component-wise.
+     * @param _vector The vector to subtract.
+     * @return A reference to the modified vector.
      */
     inline Vector2<T>& SubtractVector(const Vector2<T>& _vector) noexcept;
 
-    [[nodiscard]] inline Vector2<T> SubtractVector(const Vector2<T>& _vector) const noexcept;
+    /**
+     * @brief Returns the result of subtracting another vector to this one, component-wise.
+     * @param _vector The vector to subtract.
+     * @return A new vector representing to the result of the operation.
+     */
+    [[nodiscard]] inline Vector2<T> SubtractedVector(const Vector2<T>& _vector) const noexcept;
 
     /**
-     * @brief Subtracts a scalar value to each component of the vector.
-     * @param _scalar Scalar value to subtract.
+     * @brief Subtracts a scalar to this vector, component-wise.
+     * @param _scalar The scalar value to subtract.
+     * @return A reference to the modified vector.
      */
     inline Vector2<T>& SubtractScalar(T _scalar) noexcept;
 
-    [[nodiscard]] inline Vector2<T> SubtractScalar(T _scalar) const noexcept;
+    /**
+     * @brief Returns the result of subtracting a scalar to this vector, component-wise.
+     * @param _scalar The scalar value to subtract.
+     * @return A new vector corresponding to the result of the operation.
+     */
+    [[nodiscard]] inline Vector2<T> SubtractedScalar(T _scalar) const noexcept;
 
     /**
-     * @brief Multiplies two Vector2 objects component-wise.
-     * @param _vector Vector to multiply.
+     * @brief Multiplies another vector to this one, component-wise.
+     * @param _vector The vector to multiply.
+     * @return A reference to the modified vector.
      */
     inline Vector2<T>& MultiplyVector(const Vector2<T>& _vector) noexcept;
 
-    [[nodiscard]] inline Vector2<T> MultiplyVector(const Vector2<T>& _vector) const noexcept;
+    /**
+     * @brief Returns the result of multiplying another vector to this one, component-wise.
+     * @param _vector The vector to multiply.
+     * @return A new vector representing to the result of the operation.
+     */
+    [[nodiscard]] inline Vector2<T> MultipliedVector(const Vector2<T>& _vector) const noexcept;
 
     /**
-     * @brief Multiplies a scalar value to each component of the vector.
-     * @param _scalar Scalar value to multiply.
+     * @brief Multiplies a scalar to this vector, component-wise.
+     * @param _scalar The scalar value to multiply.
+     * @return A reference to the modified vector.
      */
     inline Vector2<T>& MultiplyScalar(T _scalar) noexcept;
 
-    [[nodiscard]] inline Vector2<T> MultiplyScalar(T _scalar) const noexcept;
+    /**
+     * @brief Returns the result of multiplying a scalar to this vector, component-wise.
+     * @param _scalar The scalar value to multiply.
+     * @return A new vector corresponding to the result of the operation.
+     */
+    [[nodiscard]] inline Vector2<T> MultipliedScalar(T _scalar) const noexcept;
 
     /**
-     * @brief Divides two Vector2 objects component-wise.
-     * @param _vector Vector to divide.
+     * @brief Divides another vector to this one, component-wise.
+     * @param _vector The vector to divide.
+     * @return A reference to the modified vector.
      */
     inline Vector2<T>& DivideVector(const Vector2<T>& _vector) noexcept;
 
-    [[nodiscard]] inline Vector2<T> DivideVector(const Vector2<T>& _vector) const noexcept;
+    /**
+     * @brief Returns the result of dividing another vector to this one, component-wise.
+     * @param _vector The vector to divide.
+     * @return A new vector representing to the result of the operation.
+     */
+    [[nodiscard]] inline Vector2<T> DividedVector(const Vector2<T>& _vector) const noexcept;
 
     /**
-     * @brief Divides a scalar value to each component of the vector.
-     * @param _scalar Scalar value to divide.
+     * @brief Divides a scalar to this vector, component-wise.
+     * @param _scalar The scalar value to divide.
+     * @return A reference to the modified vector.
      */
     inline Vector2<T>& DivideScalar(T _scalar) noexcept;
 
-    [[nodiscard]] inline Vector2<T> DivideScalar(T _scalar) const noexcept;
+    /**
+     * @brief Returns the result of dividing a scalar to this vector, component-wise.
+     * @param _scalar The scalar value to divide.
+     * @return A new vector corresponding to the result of the operation.
+     */
+    [[nodiscard]] inline Vector2<T> DividedScalar(T _scalar) const noexcept;
 
     /**
-     * @brief Computes the doct product between this vector and a second one.
-     * @param _vector Vector
+     * @brief Computes the dot product between another vector and this one.
+     * @param _vector The second vector required to compute the dot product.
      * @return The result of the dot product.
      */
     [[nodiscard]] inline T DotProduct(const Vector2<T>& _vector) const noexcept;
 
     /**
-     * @brief Computes the cross product between this vector and a second one.
-     * @param _vector
+     * @brief Computes the cross product between another vector and this one.
+     * @param _vector The second vector required to compute the cross product.
      * @return The result of the 2D cross product.
      */
     [[nodiscard]] inline T CrossProduct(const Vector2<T>& _vector) const noexcept;
 
     /**
-     * @brief Computes the squared length of the vector.
+     * @brief Computes the squared length of this vector.
      * @return The value of the squared length.
      */
-    [[nodiscard]] inline T SquaredLength() const noexcept;
+    [[nodiscard]] inline T SqrLength() const noexcept;
 
     /**
-     * @brief Computes the length of the vector.
+     * @brief Computes the length of this vector.
      * @return The value of the length.
      */
     [[nodiscard]] inline T Length() const noexcept;
 
     /**
-     * @brief Computes the squared length of the vector.
-     * @return The value of the squared length.
+     * @brief Computes the squared magnitude of this vector (Alias for squared length).
+     * @return The value of the squared magnitude.
      */
-    [[nodiscard]] inline T SquaredMagnitude() const noexcept;
+    [[nodiscard]] inline T SqrMagnitude() const noexcept;
 
     /**
-     * @brief Computes the length of the vector.
-     * @return The value of the length.
+     * @brief Computes the magnitude of this vector (Alias for length).
+     * @return The value of the magnitude.
      */
     [[nodiscard]] inline T Magnitude() const noexcept;
 
     /**
-     * @brief Computes the squared distance between the current vector and another vector.
-     * @param _vector The second vector.
+     * @brief Computes the squared distance between another vector and this one.
+     * @param _vector The second vector required to compute the squared distance.
      * @return The squared distance between the two vectors.
      */
-    [[nodiscard]] inline T SquaredDistance(const Vector2<T>& _vector) const noexcept;
+    [[nodiscard]] inline T SqrDistance(const Vector2<T>& _vector) const noexcept;
 
     /**
-     * @brief Computes the distance between the current vector and another vector.
-     * @param _vector The second vector.
+     * @brief Computes the distance between another vector and this one.
+     * @param _vector The second vector required to compute the distance.
      * @return The distance between the two vectors.
      */
     [[nodiscard]] inline T Distance(const Vector2<T>& _vector) const noexcept;
 
-    inline Vector2<T>& Opposite() noexcept;
-
-    [[nodiscard]] inline Vector2<T> Opposite() const noexcept;
+    /**
+     * @brief Negates each component of this vector.
+     * @return A reference to the modified vector.
+     */
+    inline Vector2<T>& Negate() noexcept;
 
     /**
-     *
+     * @brief Returns the result of negating each component of this vector.
+     * @return A new vector corresponding to the result of the operation.
+     */
+    [[nodiscard]] inline Vector2<T> Negated() const noexcept;
+
+    /**
+     * @brief Inverts each component of this vector.
+     * @return A reference to the modified vector.
      */
     inline Vector2<T>& Inverse() noexcept;
 
-    [[nodiscard]] inline Vector2<T> Inverse() const noexcept;
+    /**
+     * @brief Returns the result of inverting each component of this vector.
+     * @return A new vector corresponding to the result of the operation.
+     */
+    [[nodiscard]] inline Vector2<T> Inversed() const noexcept;
 
     /**
-     * @brief Checks if the components of the vector are close to zero (i.e., near null).
+     * @brief Checks if the components of this vector are close to zero (i.e., near null).
      * @return A boolean, true if the vector's components are close to zero.
      */
     [[nodiscard]] inline bool IsNull() const noexcept;
 
     /**
-     * @brief Checks the equality of two vectors
+     * @brief Checks the equality of another vector and this one.
      * @param _vector The second vector.
      * @return A boolean, true if the vectors are equal, false if not.
      */
     [[nodiscard]] inline bool Equal(const Vector2<T>& _vector) const noexcept;
 
     /**
-     * @brief
-     * @param _vector
-     * @return
+     * @brief Computes the angle between another vector and this one.
+     * @param _vector The second vector.
+     * @return The angle (in radians) between the two vectors.
      */
     [[nodiscard]] inline float Angle(const Vector2<T>& _vector) const noexcept;
 
     /**
-     * @brief
-     * @param _vector
-     * @param _t
+     * @brief Linearly interpolates this vector toward another one.
+     * @param _end The second vector to interpolate toward.
+     * @param _t The interpolation factor.
+     * @return A reference to the modified vector.
      */
-    inline Vector2<T>& Lerp(const Vector2<T>& _vector, float _t) noexcept;
-
-    [[nodiscard]] inline Vector2<T> Lerp(const Vector2<T>& _vector, float _t) const noexcept;
+    inline Vector2<T>& Lerp(const Vector2<T>& _end, float _t) noexcept;
 
     /**
-     * @brief
-     * @param _vector
-     * @param _t
+     * @brief Returns the result of linearly interpolating this vector toward another one.
+     * @param _end The second vector to interpolate toward.
+     * @param _t The interpolation factor.
+     * @return A new vector corresponding to the result of the operation.
      */
-    inline Vector2<T>& Slerp(const Vector2<T>& _vector, float _t) noexcept;
-
-    [[nodiscard]] inline Vector2<T> Slerp(const Vector2<T>& _vector, float _t) const noexcept;
+    [[nodiscard]] inline Vector2<T> Lerped(const Vector2<T>& _end, float _t) const noexcept;
 
     /**
-     * @brief Normalizes the vector to produce a unit vector (length of 1).
+     * @brief Spherically interpolates this vector toward another one.
+     * @param _end The second vector to interpolate toward.
+     * @param _t The interpolation factor.
+     * @return A reference to the modified vector.
+     */
+    inline Vector2<T>& Slerp(const Vector2<T>& _end, float _t) noexcept;
+
+    /**
+     * @brief Returns the result of spherically interpolating this vector toward another one.
+     * @param _end The second vector to interpolate toward.
+     * @param _t The interpolation factor.
+     * @return A new vector corresponding to the result of the operation.
+     */
+    [[nodiscard]] inline Vector2<T> Slerped(const Vector2<T>& _end, float _t) const noexcept;
+
+    /**
+     * @brief Normalizes this vector to produce a unit vector (length of 1).
+     * @return A reference to the modified vector.
      */
     inline Vector2<T>& Normalize() noexcept;
 
-    [[nodiscard]] inline Vector2<T> Normalize() const noexcept;
+    /**
+     * @brief Returns the result of normalizing this vector to produce a unit vector (length of 1).
+     * @return A new vector corresponding to the result of the operation.
+     */
+    [[nodiscard]] inline Vector2<T> Normalized() const noexcept;
 
     /**
-     *
-     * @param _vector
+     * @brief Translates this vector with another one (adds the two vectors).
+     * @param _vector Translation vector.
+     * @return A reference to the modified vector.
      */
     inline Vector2<T>& Translate(const Vector2<T>& _vector) noexcept;
 
-    [[nodiscard]] inline Vector2<T> Translate(const Vector2<T>& _vector) const noexcept;
+    /**
+     * @brief Returns the result of translating this vector with another one (adds the two vectors).
+     * @param _vector Translation vector.
+     * @return A new vector corresponding to the result of the operation.
+     */
+    [[nodiscard]] inline Vector2<T> Translated(const Vector2<T>& _vector) const noexcept;
 
     /**
-     *
-     * @param _anchor
-     * @param _value
+     * @brief Scales this vector around an anchor point.
+     * @param _anchor The point around which to scale this vector.
+     * @param _value The scaling factor.
+     * @return A reference to the modified vector.
      */
     inline Vector2<T>& Scale(const Vector2<T>& _anchor, T _value) noexcept;
 
-    [[nodiscard]] inline Vector2<T> Scale(const Vector2<T>& _anchor, T _value) const noexcept;
+    /**
+     * @brief Returns the result of scaling this vector around an anchor point.
+     * @param _anchor The point around which to scale this vector.
+     * @param _value The scaling factor.
+     * @return A new vector corresponding to the result of the operation.
+     */
+    [[nodiscard]] inline Vector2<T> Scaled(const Vector2<T>& _anchor, T _value) const noexcept;
 
     /**
-     *
-     * @param _anchor
-     * @param _angle
+     * @brief Rotates this vector around an anchor point.
+     * @param _anchor The pivot point around which to rotate this vector.
+     * @param _angle The rotation angle in radians.
+     * @return A reference to the modified vector.
      */
     inline Vector2<T>& Rotate(const Vector2<T>& _anchor, T _angle) noexcept;
 
-    [[nodiscard]] inline Vector2<T> Rotate(const Vector2<T>& _anchor, T _angle) const noexcept;
+    /**
+     * @brief Return the result of rotating this vector around an anchor point.
+     * @param _anchor The pivot point around which to rotate this vector.
+     * @param _angle The rotation angle in radians.
+     * @return A new vector corresponding to the result of the operation.
+     */
+    [[nodiscard]] inline Vector2<T> Rotated(const Vector2<T>& _anchor, T _angle) const noexcept;
 
     /**
-     * @brief
-     * @param _normal
+     * @brief Reflects this vector about the given normal.
+     * @param _normal The normal of the reflecting surface.
+     * @return A reference to the modified vector.
      */
     inline Vector2<T>& Reflect(const Vector2<T>& _normal) noexcept;
 
-    [[nodiscard]] inline Vector2<T> Reflect(const Vector2<T>& _normal) const noexcept;
+    /**
+     * @brief Returns the result of reflecting this vector about the given normal.
+     * @param _normal The normal of the reflecting surface.
+     * @return A new vector corresponding to the result of the operation.
+     */
+    [[nodiscard]] inline Vector2<T> Reflected(const Vector2<T>& _normal) const noexcept;
 
     /**
-     * @brief
-     * @param _normal
-     * @param _ior
+     * @brief Refracts this vector through a surface with a given normal and index of refraction.
+     * @param _normal The normal of the refracting surface.
+     * @param _ior The index of refraction.
+     * @return A reference to the modified vector.
      */
     inline Vector2<T>& Refract(const Vector2<T>& _normal, T _ior) noexcept;
 
-    [[nodiscard]] inline Vector2<T> Refract(const Vector2<T>& _normal, T _ior) const noexcept;
+    /**
+     * @brief Returns te result of refracting this vector through a surface with a given normal and index of refraction.
+     * @param _normal The normal of the refracting surface.
+     * @param _ior The index of refraction.
+     * @return A new vector corresponding to the result of the operation.
+     */
+    [[nodiscard]] inline Vector2<T> Refracted(const Vector2<T>& _normal, T _ior) const noexcept;
 
     /**
-     * @brief
-     * @param _vector
+     * @brief Projects this vector onto another vector.
+     * @param _vector The vector to project onto.
+     * @return A reference to the modified vector.
      */
     inline Vector2<T>& Project(const Vector2<T>& _vector) noexcept;
 
-    [[nodiscard]] inline Vector2<T> Project(const Vector2<T>& _vector) const noexcept;
+    /**
+     * @brief Returns the result of projecting this vector onto another vector.
+     * @param _vector The vector to project onto.
+     * @return A new vector corresponding to the result of the operation.
+     */
+    [[nodiscard]] inline Vector2<T> Projected(const Vector2<T>& _vector) const noexcept;
 
 #pragma endregion
 
@@ -392,15 +528,15 @@ public:
 
     [[nodiscard]] inline static T CrossProduct(const Vector2<T>& _vector1, const Vector2<T>& _vector2) noexcept;
 
-    [[nodiscard]] inline static T SquaredLength(const Vector2<T>& _vector) noexcept;
+    [[nodiscard]] inline static T SqrLength(const Vector2<T>& _vector) noexcept;
 
     [[nodiscard]] inline static T Length(const Vector2<T>& _vector) noexcept;
 
-    [[nodiscard]] inline static T SquaredMagnitude(const Vector2<T>& _vector) noexcept;
+    [[nodiscard]] inline static T SqrMagnitude(const Vector2<T>& _vector) noexcept;
 
     [[nodiscard]] inline static T Magnitude(const Vector2<T>& _vector) noexcept;
 
-    [[nodiscard]] inline static T SquaredDistance(const Vector2<T>& _vector1, const Vector2<T>& _vector2) noexcept;
+    [[nodiscard]] inline static T SqrDistance(const Vector2<T>& _vector1, const Vector2<T>& _vector2) noexcept;
 
     [[nodiscard]] inline static T Distance(const Vector2<T>& _vector1, const Vector2<T>& _vector2) noexcept;
 

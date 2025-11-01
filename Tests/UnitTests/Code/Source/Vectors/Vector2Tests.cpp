@@ -151,7 +151,7 @@ TYPED_TEST(Vector2Test, Length)
 {
     Vec2T v1(static_cast<TypeParam>(3), static_cast<TypeParam>(0));
 
-    EXPECT_EQ(v1.SquaredLength(), static_cast<TypeParam>(9));
+    EXPECT_EQ(v1.SqrLength(), static_cast<TypeParam>(9));
 
     EXPECT_EQ(v1.Length(), static_cast<TypeParam>(3));
 }

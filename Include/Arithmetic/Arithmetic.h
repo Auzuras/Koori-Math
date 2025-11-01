@@ -36,9 +36,9 @@ concept ArithmeticUnsigned = Unsigned<T>;
 #define KM_PI Koori::Math::PI<T>()
 
 /**
- * @brief __KM_INTERNAL_PI macro, defines the internal constant value of PI used in the toolbox
+ * @brief KM_INTERNAL_PI macro, defines the internal constant value of PI used in the toolbox
  */
-#define __KM_INTERNAL_PI 3.14159265358979323846
+#define KM_INTERNAL_PI 3.14159265358979323846
 
 namespace Koori::Math
 {
@@ -61,7 +61,7 @@ namespace Koori::Math
     template<Arithmetic T>
     [[nodiscard]] inline T Pi()
     {
-        return static_cast<T>(__KM_INTERNAL_PI);
+        return static_cast<T>(KM_INTERNAL_PI);
     }
 
     /**
