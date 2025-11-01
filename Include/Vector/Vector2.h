@@ -78,7 +78,7 @@ public:
      * @brief Constructor moving from a rvalue reference.
      * @param _vector Rvalue reference to the Vector2 to move.
      */
-    Vector2(const Vector2<T>&& _vector) noexcept : x(_vector.x), y(_vector.y) { _vector.x = _vector.y = T(); }
+    Vector2(Vector2<T>&& _vector) noexcept : x(_vector.x), y(_vector.y) { _vector.x = _vector.y = T(); }
 
     /**
      * @brief Constructor copying from a pointer.
@@ -754,56 +754,56 @@ public:
      * @param _vector Vector to add.
      * @return A new Vector2 representing the sum of both vectors.
      */
-    inline Vector2<T> operator+(const Vector2<T>& _vector) noexcept;
+    inline Vector2<T> operator+(const Vector2<T>& _vector) const noexcept;
 
     /**
      * @brief Adds a scalar value to each component of the vector.
      * @param _scalar Scalar value to add.
      * @return A new Vector2 with the scalar added to both x and y.
      */
-    inline Vector2<T> operator+(T _scalar) noexcept;
+    inline Vector2<T> operator+(T _scalar) const noexcept;
 
     /**
      * @brief Subtracts two Vector2 objects component-wise.
      * @param _vector Vector to subtract.
      * @return A new Vector2 representing the subtraction of both vectors.
      */
-    inline Vector2<T> operator-(const Vector2<T>& _vector) noexcept;
+    inline Vector2<T> operator-(const Vector2<T>& _vector) const noexcept;
 
     /**
      * @brief Subtracts a scalar value to each component of the vector.
      * @param _scalar Scalar value to subtract.
      * @return A new Vector2 with the scalar subtracted to both x and y.
      */
-    inline Vector2<T> operator-(T _scalar) noexcept;
+    inline Vector2<T> operator-(T _scalar) const noexcept;
 
     /**
      * @brief Multiplies two Vector2 objects component-wise.
      * @param _vector Vector to multiply by.
      * @return A new Vector2 representing the multiplication of both vectors.
      */
-    inline Vector2<T> operator*(const Vector2<T>& _vector) noexcept;
+    inline Vector2<T> operator*(const Vector2<T>& _vector) const noexcept;
 
     /**
      * @brief Multiplies a scalar value to each component of the vector.
      * @param _scalar Scalar value to multiply by.
      * @return A new Vector2 with the scalar multiplied to both x and y.
      */
-    inline Vector2<T> operator*(T _scalar) noexcept;
+    inline Vector2<T> operator*(T _scalar) const noexcept;
 
     /**
      * @brief Divides two Vector2 objects component-wise.
      * @param _vector Vector to divide by.
      * @return A new Vector2 representing the division of both vectors.
      */
-    inline Vector2<T> operator/(const Vector2<T>& _vector) noexcept;
+    inline Vector2<T> operator/(const Vector2<T>& _vector) const noexcept;
 
     /**
      * @brief Divides a scalar value to each component of the vector.
      * @param _scalar Scalar value to divide by.
      * @return A new Vector2 with the scalar divided to both x and y.
      */
-    inline Vector2<T> operator/(T _scalar) noexcept;
+    inline Vector2<T> operator/(T _scalar) const noexcept;
 
     /**
      * @brief Adds another Vector2 to this one, component-wise.
