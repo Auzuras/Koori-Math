@@ -232,7 +232,7 @@ inline Vector2<T> Vector2<T>::Rotated(const Vector2<T>& _anchor, const float _an
 template<Arithmetic T>
 inline Vector2<T>& Vector2<T>::Reflect(const Vector2<T>& _normal) noexcept
 {
-    *this = *this - static_cast<T>(2) * (DotProduct(_normal)) * _normal;
+    *this = *this - _normal * static_cast<T>(2) * DotProduct(_normal);
     return *this;
 }
 
@@ -247,8 +247,9 @@ inline Vector2<T> Vector2<T>::Reflected(const Vector2<T>& _normal) const noexcep
 template<Arithmetic T>
 inline Vector2<T>& Vector2<T>::Refract(const Vector2<T>& _normal, const T _ior) noexcept
 {
-    const T k = static_cast<T>(1) - _ior * _ior * (static_cast<T>(1) - DotProduct(_normal) * Dot(_normal));
-    *this = k < static_cast<T>(0) ? Vector2<T>(0) : _ior * *this - (_ior * DotProduct(_normal) + Koori::Math::Sqrt(k)) * _normal;
+    const T dotNI = DotProduct(_normal);
+    const T k = static_cast<T>(1) - _ior * _ior * (static_cast<T>(1) - dotNI * dotNI);
+    *this = k < static_cast<T>(0) ? Vector2::Zero : (*this * _ior) - _normal * (_ior * dotNI + Koori::Math::Sqrt(k));
     return *this;
 }
 

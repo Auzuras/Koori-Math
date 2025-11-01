@@ -538,7 +538,7 @@ public:
      * @param _normal The normal of the reflecting surface.
      * @return A new vector corresponding to the result of the operation.
      */
-    [[nodiscard]] inline static Vector2<T> Reflect(const Vector2<T>& _incident,const Vector2<T>& _normal) noexcept;
+    [[nodiscard]] inline static Vector2<T> Reflect(const Vector2<T>& _incident, const Vector2<T>& _normal) noexcept;
 
     /**
      * @brief Returns te result of refracting the incident vector through a surface with a given normal and index of refraction.
@@ -602,7 +602,6 @@ public:
      * @return A new Vector2 with the scalar multiplied to both x and y.
      */
     inline Vector2<T> operator*(T _scalar) const noexcept;
-
     /**
      * @brief Divides two Vector2 objects component-wise.
      * @param _vector Vector to divide by.

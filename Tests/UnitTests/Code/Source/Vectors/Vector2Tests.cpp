@@ -278,36 +278,82 @@ TYPED_TEST(Vector2Test, Transform)
 
     // Scale
     {
-        Vec2T v1(static_cast<TypeParam>(1), static_cast<TypeParam>(1));
-        Vec2T v2(static_cast<TypeParam>(2), static_cast<TypeParam>(0));
+        Vec2T v1(static_cast<TypeParam>(3), static_cast<TypeParam>(3));
+        Vec2T v2(static_cast<TypeParam>(0), static_cast<TypeParam>(0));
 
-        //EXPECT_EQ(Vec2T::Scale(v1, v2, 2).x, static_cast<TypeParam>(2));
-        //EXPECT_EQ(Vec2T::Scale(v1, v2, 2).y, static_cast<TypeParam>(2));
+        EXPECT_EQ(Vec2T::Scale(v1, v2, 5).x, static_cast<TypeParam>(15));
+        EXPECT_EQ(Vec2T::Scale(v1, v2, 5).y, static_cast<TypeParam>(15));
 
-        v1 = v1.Scaled(v2, 2);
+        v1 = v1.Scaled(v2, 5);
 
-        //EXPECT_EQ(v1.x, static_cast<TypeParam>(2));
-        //EXPECT_EQ(v1.y, static_cast<TypeParam>(2));
+        EXPECT_EQ(v1.x, static_cast<TypeParam>(15));
+        EXPECT_EQ(v1.y, static_cast<TypeParam>(15));
 
         v1.Scale(v2, 2);
 
-        //EXPECT_EQ(v1.x, static_cast<TypeParam>(4));
-        //EXPECT_EQ(v1.y, static_cast<TypeParam>(4));
+        EXPECT_EQ(v1.x, static_cast<TypeParam>(30));
+        EXPECT_EQ(v1.y, static_cast<TypeParam>(30));
     }
 
     // Rotation
     {
-        Vec2T v1(static_cast<TypeParam>(1), static_cast<TypeParam>(1));
-        Vec2T v2(static_cast<TypeParam>(2), static_cast<TypeParam>(0));
+        Vec2T v1(static_cast<TypeParam>(0), static_cast<TypeParam>(1));
+        Vec2T v2(static_cast<TypeParam>(0), static_cast<TypeParam>(0));
 
-        //EXPECT_EQ(Vec2T::Rotate(v1, v2, 90 * KM_INTERNAL_DEG_2_RAD).x, static_cast<TypeParam>(1));
-        //EXPECT_EQ(Vec2T::Rotate(v1, v2, 90 * KM_INTERNAL_DEG_2_RAD).y, static_cast<TypeParam>(-1));
+        EXPECT_NEAR(Vec2T::Rotate(v1, v2, -90 * KM_INTERNAL_DEG_2_RAD).x, static_cast<TypeParam>(1), 0.001);
+        EXPECT_NEAR(Vec2T::Rotate(v1, v2, -90 * KM_INTERNAL_DEG_2_RAD).y, static_cast<TypeParam>(0), 0.001);
+
+        v1 = v1.Rotated(v2, -90 * KM_INTERNAL_DEG_2_RAD);
+
+        EXPECT_NEAR(v1.x, static_cast<TypeParam>(1), 0.001);
+        EXPECT_NEAR(v1.y, static_cast<TypeParam>(0), 0.001);
+
+        v1.Rotate(v2, 90 * KM_INTERNAL_DEG_2_RAD);
+
+        EXPECT_NEAR(v1.x, static_cast<TypeParam>(0), 0.001);
+        EXPECT_NEAR(v1.y, static_cast<TypeParam>(1), 0.001);
     }
 }
 
 TYPED_TEST(Vector2Test, Physics)
 {
+    // Reflection
+    {
+        Vec2T v1(static_cast<TypeParam>(1), static_cast<TypeParam>(-1));
+        Vec2T v2(static_cast<TypeParam>(0), static_cast<TypeParam>(1));
 
+        EXPECT_EQ(Vec2T::Reflect(v1, v2).x, static_cast<TypeParam>(1));
+        EXPECT_EQ(Vec2T::Reflect(v1, v2).y, static_cast<TypeParam>(1));
+
+        v1 = v1.Reflected(v2);
+
+        EXPECT_EQ(v1.x, static_cast<TypeParam>(1));
+        EXPECT_EQ(v1.y, static_cast<TypeParam>(1));
+
+        v1.Reflect(v2);
+
+        EXPECT_EQ(v1.x, static_cast<TypeParam>(1));
+        EXPECT_EQ(v1.y, static_cast<TypeParam>(-1));
+    }
+
+    // Refraction
+    {
+        Vec2T v1(static_cast<TypeParam>(1), static_cast<TypeParam>(-1));
+        Vec2T v2(static_cast<TypeParam>(0), static_cast<TypeParam>(1));
+
+        EXPECT_NEAR(Vec2T::Refract(v1, v2, 1).x, static_cast<TypeParam>(1), 0.001);
+        EXPECT_NEAR(Vec2T::Refract(v1, v2, 1).y, static_cast<TypeParam>(-1), 0.001);
+
+        v1 = v1.Refracted(v2, 1);
+
+        EXPECT_NEAR(v1.x, static_cast<TypeParam>(1), 0.001);
+        EXPECT_NEAR(v1.y, static_cast<TypeParam>(-1), 0.001);
+
+        v1.Refract(v2, 1);
+
+        EXPECT_NEAR(v1.x, static_cast<TypeParam>(1), 0.001);
+        EXPECT_NEAR(v1.y, static_cast<TypeParam>(-1), 0.001);
+    }
 }
 
 TYPED_TEST(Vector2Test, StaticValues)
