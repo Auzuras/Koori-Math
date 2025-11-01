@@ -32,134 +32,6 @@ Vector2<T> Vector2<T>::Down = Vector2<T>(T(0), T(-1));
 #pragma region Vector2 Methods
 
 template<Arithmetic T>
-inline Vector2<T>& Vector2<T>::AddVector(const Vector2<T>& _vector) noexcept
-{
-    x += _vector.x;
-    y += _vector.y;
-    return *this;
-}
-
-template<Arithmetic T>
-inline Vector2<T> Vector2<T>::AddedVector(const Vector2<T>& _vector) const noexcept
-{
-    Vector2<T> ret = *this;
-    ret.AddVector(_vector);
-    return ret;
-}
-
-template<Arithmetic T>
-inline Vector2<T>& Vector2<T>::AddScalar(const T _scalar) noexcept
-{
-    x += _scalar;
-    y += _scalar;
-    return *this;
-}
-
-template<Arithmetic T>
-inline Vector2<T> Vector2<T>::AddedScalar(const T _scalar) const noexcept
-{
-    Vector2<T> ret = *this;
-    ret.AddScalar(_scalar);
-    return ret;
-}
-
-template<Arithmetic T>
-inline Vector2<T>& Vector2<T>::SubtractVector(const Vector2<T>& _vector) noexcept
-{
-    x -= _vector.x;
-    y -= _vector.y;
-    return *this;
-}
-
-template<Arithmetic T>
-inline Vector2<T> Vector2<T>::SubtractedVector(const Vector2<T>& _vector) const noexcept
-{
-    Vector2<T> ret = *this;
-    ret.SubtractVector(_vector);
-    return ret;
-}
-
-template<Arithmetic T>
-inline Vector2<T>& Vector2<T>::SubtractScalar(const T _scalar) noexcept
-{
-    x -= _scalar;
-    y -= _scalar;
-    return *this;
-}
-
-template<Arithmetic T>
-inline Vector2<T> Vector2<T>::SubtractedScalar(const T _scalar) const noexcept
-{
-    Vector2<T> ret = *this;
-    ret.SubtractScalar(_scalar);
-    return ret;
-}
-
-template<Arithmetic T>
-inline Vector2<T>& Vector2<T>::MultiplyVector(const Vector2<T>& _vector) noexcept
-{
-    x *= _vector.x;
-    y *= _vector.y;
-    return *this;
-}
-
-template<Arithmetic T>
-inline Vector2<T> Vector2<T>::MultipliedVector(const Vector2<T>& _vector) const noexcept
-{
-    Vector2<T> ret = *this;
-    ret.MultiplyVector(_vector);
-    return ret;
-}
-
-template<Arithmetic T>
-inline Vector2<T>& Vector2<T>::MultiplyScalar(const T _scalar) noexcept
-{
-    x *= _scalar;
-    y *= _scalar;
-    return *this;
-}
-
-template<Arithmetic T>
-inline Vector2<T> Vector2<T>::MultipliedScalar(const T _scalar) const noexcept
-{
-    Vector2<T> ret = *this;
-    ret.MultiplyScalar(_scalar);
-    return ret;
-}
-
-template<Arithmetic T>
-inline Vector2<T>& Vector2<T>::DivideVector(const Vector2<T>& _vector) noexcept
-{
-    x /= _vector.x;
-    y /= _vector.y;
-    return *this;
-}
-
-template<Arithmetic T>
-inline Vector2<T> Vector2<T>::DividedVector(const Vector2<T>& _vector) const noexcept
-{
-    Vector2<T> ret = *this;
-    ret.DivideVector(_vector);
-    return ret;
-}
-
-template<Arithmetic T>
-inline Vector2<T>& Vector2<T>::DivideScalar(const T _scalar) noexcept
-{
-    x /= _scalar;
-    y /= _scalar;
-    return *this;
-}
-
-template<Arithmetic T>
-inline Vector2<T> Vector2<T>::DividedScalar(const T _scalar) const noexcept
-{
-    Vector2<T> ret = *this;
-    ret.DivideScalar(_scalar);
-    return ret;
-}
-
-template<Arithmetic T>
 inline T Vector2<T>::DotProduct(const Vector2<T>& _vector) const noexcept
 {
     return x * _vector.x + y * _vector.y;
@@ -186,7 +58,7 @@ inline T Vector2<T>::Length() const noexcept
 template<Arithmetic T>
 inline T Vector2<T>::SqrMagnitude() const noexcept
 {
-    return SqrMagnitude();
+    return SqrLength();
 }
 
 template<Arithmetic T>
@@ -204,7 +76,7 @@ inline T Vector2<T>::SqrDistance(const Vector2<T>& _vector) const noexcept
 template<Arithmetic T>
 inline T Vector2<T>::Distance(const Vector2<T>& _vector) const noexcept
 {
-    return Koori::Math::Sqrt(SquaredDistance(_vector));
+    return Koori::Math::Sqrt(SqrDistance(_vector));
 }
 
 template<Arithmetic T>
@@ -254,7 +126,7 @@ inline bool Vector2<T>::Equal(const Vector2<T>& _vector) const noexcept
 template<Arithmetic T>
 inline float Vector2<T>::Angle(const Vector2<T>& _vector) const noexcept
 {
-    return Koori::Math::ACos(DotProduct(_vector)) / (Length() * _vector.Length());
+    return Koori::Math::ACos(DotProduct(_vector) / (Length() * _vector.Length()));
 }
 
 template<Arithmetic T>
@@ -339,8 +211,12 @@ inline Vector2<T> Vector2<T>::Scaled(const Vector2<T>& _anchor, const T _value) 
 template<Arithmetic T>
 inline Vector2<T>& Vector2<T>::Rotate(const Vector2<T>& _anchor, const T _angle) noexcept
 {
-    x = _anchor.x + (x - _anchor.x) * Koori::Math::Cos(_angle) - (y - _anchor.y) * Koori::Math::Sin(_angle);
-    y = _anchor.y + (x - _anchor.x) * Koori::Math::Sin(_angle) + (y - _anchor.y) * Koori::Math::Cos(_angle);
+    T tx = _anchor.x + (x - _anchor.x) * Koori::Math::Cos(_angle) - (y - _anchor.y) * Koori::Math::Sin(_angle);
+    T ty = _anchor.y + (x - _anchor.x) * Koori::Math::Sin(_angle) + (y - _anchor.y) * Koori::Math::Cos(_angle);
+
+    x = tx;
+    y = ty;
+
     return *this;
 }
 
@@ -371,7 +247,7 @@ inline Vector2<T> Vector2<T>::Reflected(const Vector2<T>& _normal) const noexcep
 template<Arithmetic T>
 inline Vector2<T>& Vector2<T>::Refract(const Vector2<T>& _normal, const T _ior) noexcept
 {
-    const T k = static_cast<T>(1) - _ior * _ior * (static_cast<T>(1) - Dot(_normal) * Dot(_normal));
+    const T k = static_cast<T>(1) - _ior * _ior * (static_cast<T>(1) - DotProduct(_normal) * Dot(_normal));
     *this = k < static_cast<T>(0) ? Vector2<T>(0) : _ior * *this - (_ior * DotProduct(_normal) + Koori::Math::Sqrt(k)) * _normal;
     return *this;
 }
@@ -387,7 +263,7 @@ inline Vector2<T> Vector2<T>::Refracted(const Vector2<T>& _normal, const T _ior)
 template<Arithmetic T>
 inline Vector2<T>& Vector2<T>::Project(const Vector2<T>& _onTo) noexcept
 {
-    *this = *this * (Dotproduct(_onTo) / DotProduct(_onTo));
+    *this = _onTo * (Dotproduct(_onTo) / _onTo.SqrLength());
     return *this;
 }
 
@@ -402,54 +278,6 @@ inline Vector2<T> Vector2<T>::Projected(const Vector2<T>& _onTo) const noexcept
 #pragma endregion
 
 #pragma region Vector2 Static Methods
-
-template<Arithmetic T>
-inline Vector2<T> Vector2<T>::AddVector(const Vector2<T>& _lhs, const Vector2<T>& _rhs) noexcept
-{
-    return _lhs.AddedVector(_rhs);
-}
-
-template<Arithmetic T>
-inline Vector2<T> Vector2<T>::AddScalar(const Vector2<T>& _vector, const T _scalar) noexcept
-{
-    return _vector.AddedScalar(_scalar);
-}
-
-template<Arithmetic T>
-inline Vector2<T> Vector2<T>::SubtractVector(const Vector2<T>& _lhs, const Vector2<T>& _rhs) noexcept
-{
-    return _lhs.SubtractedVector(_rhs);
-}
-
-template<Arithmetic T>
-inline Vector2<T> Vector2<T>::SubtractScalar(const Vector2<T>& _vector, const T _scalar) noexcept
-{
-    return _vector.SubtractedScalar(_scalar);
-}
-
-template<Arithmetic T>
-inline Vector2<T> Vector2<T>::MultiplyVector(const Vector2<T>& _lhs, const Vector2<T>& _rhs) noexcept
-{
-    return _lhs.MultipliedVector(_rhs);
-}
-
-template<Arithmetic T>
-inline Vector2<T> Vector2<T>::MultiplyScalar(const Vector2<T>& _vector, const T _scalar) noexcept
-{
-    return _vector.MultipliedScalar(_scalar);
-}
-
-template<Arithmetic T>
-inline Vector2<T> Vector2<T>::DivideVector(const Vector2<T>& _lhs, const Vector2<T>& _rhs) noexcept
-{
-    return _lhs.DividedVector(_rhs);
-}
-
-template<Arithmetic T>
-inline Vector2<T> Vector2<T>::DivideScalar(const Vector2<T>& _vector, const T _scalar) noexcept
-{
-    return _vector.DividedScalar(_scalar);
-}
 
 template<Arithmetic T>
 inline T Vector2<T>::DotProduct(const Vector2<T>& _lhs, const Vector2<T>& _rhs) noexcept
@@ -593,12 +421,6 @@ inline std::string Vector2<T>::ToString() const
     return "(" + std::to_string(x) + ", " + std::to_string(y) + ")";
 }
 
-template<Arithmetic T>
-inline const char* Vector2<T>::ToCstr() const
-{
-    return ToString().c_str();
-}
-
 #pragma endregion
 
 #pragma region Vector2 Operators
@@ -606,97 +428,121 @@ inline const char* Vector2<T>::ToCstr() const
 template<Arithmetic T>
 inline Vector2<T> Vector2<T>::operator+(const Vector2<T>& _vector) const noexcept
 {
-    return AddedVector(_vector);
+    return Vector2<T>(x + _vector.x, y + _vector.y);
 }
 
 template<Arithmetic T>
 inline Vector2<T> Vector2<T>::operator+(const T _scalar) const noexcept
 {
-    return AddedScalar(_scalar);
+    return Vector2<T>(x + _scalar, y + _scalar);
 }
 
 template<Arithmetic T>
 inline Vector2<T> Vector2<T>::operator-(const Vector2<T>& _vector) const noexcept
 {
-    return SubtractedVector(_vector);
+    return Vector2<T>(x - _vector.x, y - _vector.y);
 }
 
 template<Arithmetic T>
 inline Vector2<T> Vector2<T>::operator-(const T _scalar) const noexcept
 {
-    return SubstractScalar(_scalar);
+    return Vector2<T>(x - _scalar, y - _scalar);
 }
 
 template<Arithmetic T>
 inline Vector2<T> Vector2<T>::operator*(const Vector2<T>& _vector) const noexcept
 {
-    return MultipliedVector(_vector);
+    return Vector2<T>(x * _vector.x, y * _vector.y);
 }
 
 template<Arithmetic T>
 inline Vector2<T> Vector2<T>::operator*(const T _scalar) const noexcept
 {
-    return MultipliedScalar(_scalar);
+    return Vector2<T>(x * _scalar, y * _scalar);
 }
 
 template<Arithmetic T>
 inline Vector2<T> Vector2<T>::operator/(const Vector2<T>& _vector) const noexcept
 {
-    return DividedVector(_vector);
+    return Vector2<T>(x / _vector.x, y / _vector.y);
 }
 
 template<Arithmetic T>
 inline Vector2<T> Vector2<T>::operator/(const T _scalar) const noexcept
 {
-    return DividedScalar(_scalar);
+    return Vector2<T>(x / _scalar, y / _scalar);
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::operator+=(const Vector2<T>& _vector) noexcept
+inline Vector2<T>& Vector2<T>::operator+=(const Vector2<T>& _vector) noexcept
 {
-    AddVector(_vector);
+    x += _vector.x;
+    y += _vector.y;
+
+    return *this;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::operator+=(const T _scalar) noexcept
+inline Vector2<T>& Vector2<T>::operator+=(const T _scalar) noexcept
 {
-    AddScalar(_scalar);
+    x += _scalar;
+    y += _scalar;
+
+    return *this;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::operator-=(const Vector2<T>& _vector) noexcept
+inline Vector2<T>& Vector2<T>::operator-=(const Vector2<T>& _vector) noexcept
 {
-    SubtractVector(_vector);
+    x -= _vector.x;
+    y -= _vector.y;
+
+    return *this;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::operator-=(const T _scalar) noexcept
+inline Vector2<T>& Vector2<T>::operator-=(const T _scalar) noexcept
 {
-    SubtractScalar(_scalar);
+    x -= _scalar;
+    y -= _scalar;
+
+    return *this;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::operator*=(const Vector2<T>& _vector) noexcept
+inline Vector2<T>& Vector2<T>::operator*=(const Vector2<T>& _vector) noexcept
 {
-    MultiplyVector(_vector);
+    x *= _vector.x;
+    y *= _vector.y;
+
+    return *this;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::operator*=(const T _scalar) noexcept
+inline Vector2<T>& Vector2<T>::operator*=(const T _scalar) noexcept
 {
-    MultiplyScalar(_scalar);
+    x *= _scalar;
+    y *= _scalar;
+
+    return *this;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::operator/=(const Vector2<T>& _vector) noexcept
+inline Vector2<T>& Vector2<T>::operator/=(const Vector2<T>& _vector) noexcept
 {
-    DivideVector(_vector);
+    x /= _vector.x;
+    y /= _vector.y;
+
+    return *this;
 }
 
 template<Arithmetic T>
-inline void Vector2<T>::operator/=(const T _scalar) noexcept
+inline Vector2<T>& Vector2<T>::operator/=(const T _scalar) noexcept
 {
-    DivideScalar(_scalar);
+    x /= _scalar;
+    y /= _scalar;
+
+    return *this;
 }
 
 template<Arithmetic T>
@@ -714,6 +560,8 @@ inline Vector2<T>& Vector2<T>::operator=(Vector2<T>&& _vector) noexcept
     x = _vector.x;
     y = _vector.y;
 
+    _vector.x = _vector.y = T(0);
+
     return *this;
 }
 
@@ -724,7 +572,13 @@ inline bool Vector2<T>::operator==(const Vector2<T>& _vector) const noexcept
 }
 
 template<Arithmetic T>
-inline T& Vector2<T>::operator[](const size_t _index) const noexcept
+inline T& Vector2<T>::operator[](const size_t _index) noexcept
+{
+    return Data()[_index];
+}
+
+template<Arithmetic T>
+inline const T& Vector2<T>::operator[](const size_t _index) const noexcept
 {
     return Data()[_index];
 }
