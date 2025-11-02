@@ -165,6 +165,13 @@ public:
     [[nodiscard]] inline T CrossProduct(const Vector2<T>& _vector) const noexcept;
 
     /**
+     * @brief Computes the angle between another vector and this one.
+     * @param _vector The second vector.
+     * @return The angle (in radians) between the two vectors.
+     */
+    [[nodiscard]] inline float Angle(const Vector2<T>& _vector) const noexcept;
+
+    /**
      * @brief Computes the squared length of this vector.
      * @return The value of the squared length.
      */
@@ -240,11 +247,10 @@ public:
     [[nodiscard]] inline bool Equal(const Vector2<T>& _vector) const noexcept;
 
     /**
-     * @brief Computes the angle between another vector and this one.
-     * @param _vector The second vector.
-     * @return The angle (in radians) between the two vectors.
+     * @brief
+     * @return
      */
-    [[nodiscard]] inline float Angle(const Vector2<T>& _vector) const noexcept;
+    [[nodiscard]] inline bool IsNormalized() const noexcept;
 
     /**
      * @brief Linearly interpolates this vector toward another one.
@@ -335,6 +341,18 @@ public:
      * @return A new vector corresponding to the result of the operation.
      */
     [[nodiscard]] inline Vector2<T> Rotated(const Vector2<T>& _anchor, float _angle) const noexcept;
+
+    /**
+     * @brief
+     * @return
+     */
+    inline Vector2<T>& Perpendicular() noexcept;
+
+    /**
+     * @brief
+     * @return
+     */
+    [[nodiscard]] inline Vector2<T> GetPerpendicular() const noexcept;
 
     /**
      * @brief Reflects this vector about the given normal.
@@ -474,6 +492,13 @@ public:
     [[nodiscard]] inline static bool Equal(const Vector2<T>& _lhs, const Vector2<T>& _rhs) noexcept;
 
     /**
+     * @brief
+     * @param _vector
+     * @return
+     */
+    [[nodiscard]] inline static bool IsNormalized(const Vector2<T>& _vector) noexcept;
+
+    /**
      * @brief Returns the angle between two vectors.
      * @param _lhs The left-hand side vector.
      * @param _rhs The right-hand side vector.
@@ -531,6 +556,13 @@ public:
      * @return A new vector corresponding to the result of the operation.
      */
     [[nodiscard]] inline static Vector2<T> Rotate(const Vector2<T>& _vector, const Vector2<T>& _anchor, float _angle) noexcept;
+
+    /**
+     * @brief
+     * @param _vector
+     * @return
+     */
+    [[nodiscard]] inline static Vector2<T> Perpendicular(const Vector2<T>& _vector) noexcept;
 
     /**
      * @brief Returns the result of reflecting the incident vector about the given normal.

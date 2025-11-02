@@ -1,4 +1,4 @@
-#pragma region Vector Type
+#pragma region Vector Types
 
 using Vector2f = Vector2<float>;
 using Vector2d = Vector2<double>;
@@ -41,6 +41,12 @@ template<Arithmetic T>
 inline T Vector2<T>::CrossProduct(const Vector2<T>& _vector) const noexcept
 {
     return x * _vector.y - y * _vector.x;
+}
+
+template<Arithmetic T>
+inline float Vector2<T>::Angle(const Vector2<T>& _vector) const noexcept
+{
+    return Koori::Math::ACos(DotProduct(_vector) / (Length() * _vector.Length()));
 }
 
 template<Arithmetic T>
@@ -124,9 +130,9 @@ inline bool Vector2<T>::Equal(const Vector2<T>& _vector) const noexcept
 }
 
 template<Arithmetic T>
-inline float Vector2<T>::Angle(const Vector2<T>& _vector) const noexcept
+inline bool Vector2<T>::IsNormalized() const noexcept
 {
-    return Koori::Math::ACos(DotProduct(_vector) / (Length() * _vector.Length()));
+    return (SqrLength() < T(1) ? T(1) - SqrLength() : SqrLength() - T(1)) <= Koori::Math::Epsilon<T>();
 }
 
 template<Arithmetic T>
@@ -228,6 +234,23 @@ inline Vector2<T> Vector2<T>::Rotated(const Vector2<T>& _anchor, const float _an
     return ret;
 }
 
+template<Arithmetic T>
+inline Vector2<T>& Vector2<T>::Perpendicular() noexcept
+{
+    T temp = x;
+    x = y;
+    y = -temp;
+
+    return *this;
+}
+
+template<Arithmetic T>
+inline Vector2<T> Vector2<T>::GetPerpendicular() const noexcept
+{
+    Vector2<T> ret = *this;
+    ret.Perpendicular();
+    return ret;
+}
 
 template<Arithmetic T>
 inline Vector2<T>& Vector2<T>::Reflect(const Vector2<T>& _normal) noexcept
@@ -264,7 +287,7 @@ inline Vector2<T> Vector2<T>::Refracted(const Vector2<T>& _normal, const T _ior)
 template<Arithmetic T>
 inline Vector2<T>& Vector2<T>::Project(const Vector2<T>& _onTo) noexcept
 {
-    *this = _onTo * (Dotproduct(_onTo) / _onTo.SqrLength());
+    *this = _onTo * (DotProduct(_onTo) / _onTo.SqrLength());
     return *this;
 }
 
@@ -353,6 +376,13 @@ inline bool Vector2<T>::Equal(const Vector2<T>& _lhs, const Vector2<T>& _rhs) no
 }
 
 template<Arithmetic T>
+inline bool Vector2<T>::IsNormalized(const Vector2<T>& _vector) noexcept
+{
+    return _vector.IsNormalized();
+}
+
+
+template<Arithmetic T>
 inline float Vector2<T>::Angle(const Vector2<T>& _lhs, const Vector2<T>& _rhs) noexcept
 {
     return _lhs.Angle(_rhs);
@@ -392,6 +422,12 @@ template<Arithmetic T>
 inline Vector2<T> Vector2<T>::Rotate(const Vector2<T>& _vector, const Vector2<T>& _anchor, const float _angle) noexcept
 {
     return _vector.Rotated(_anchor, _angle);
+}
+
+template<Arithmetic T>
+inline Vector2<T> Vector2<T>::Perpendicular(const Vector2<T>& _vector) noexcept
+{
+    return _vector.GetPerpendicular();
 }
 
 template<Arithmetic T>
