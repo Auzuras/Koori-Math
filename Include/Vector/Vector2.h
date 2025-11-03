@@ -247,8 +247,8 @@ public:
     [[nodiscard]] inline bool Equal(const Vector2<T>& _vector) const noexcept;
 
     /**
-     * @brief
-     * @return
+     * @brief Checks if the length (magnitude) of the vector is equal to one.
+     * @return A boolean, true if the vectors is normalized, false if not.
      */
     [[nodiscard]] inline bool IsNormalized() const noexcept;
 
@@ -343,14 +343,14 @@ public:
     [[nodiscard]] inline Vector2<T> Rotated(const Vector2<T>& _anchor, float _angle) const noexcept;
 
     /**
-     * @brief
-     * @return
+     * @brief Makes this vector perpendicular to its original direction.
+     * @return A reference to the modified vector.
      */
     inline Vector2<T>& Perpendicular() noexcept;
 
     /**
-     * @brief
-     * @return
+     * @brief Returns a new vector that is perpendicular to this one.
+     * @return A new vector corresponding to the result of the operation.
      */
     [[nodiscard]] inline Vector2<T> GetPerpendicular() const noexcept;
 
@@ -492,9 +492,9 @@ public:
     [[nodiscard]] inline static bool Equal(const Vector2<T>& _lhs, const Vector2<T>& _rhs) noexcept;
 
     /**
-     * @brief
-     * @param _vector
-     * @return
+     * @brief Checks if the length (magnitude) of the vector is equal to one.
+     * @param _vector Vector to check.
+     * @return A boolean, true if the vectors is normalized, false if not.
      */
     [[nodiscard]] inline static bool IsNormalized(const Vector2<T>& _vector) noexcept;
 
@@ -558,9 +558,9 @@ public:
     [[nodiscard]] inline static Vector2<T> Rotate(const Vector2<T>& _vector, const Vector2<T>& _anchor, float _angle) noexcept;
 
     /**
-     * @brief
-     * @param _vector
-     * @return
+     * @brief Returns a new vector that is perpendicular to the given one.
+     * @param _vector The input vector.
+     * @return A new vector corresponding to the result of the operation.
      */
     [[nodiscard]] inline static Vector2<T> Perpendicular(const Vector2<T>& _vector) noexcept;
 

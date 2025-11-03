@@ -1,4 +1,5 @@
 #pragma region Vector Types
+#include "Arithmetic/Equal.h"
 
 using Vector2f = Vector2<float>;
 using Vector2d = Vector2<double>;
@@ -120,19 +121,19 @@ inline Vector2<T> Vector2<T>::Inversed() const noexcept
 template<Arithmetic T>
 inline bool Vector2<T>::IsNull() const noexcept
 {
-    return (Koori::Math::Abs(x) <= KM_EPSILON) && (Koori::Math::Abs(y) <= KM_EPSILON);
+    return Koori::Math::Equal(x, T(0)) && Koori::Math::Equal(y, T(0));
 }
 
 template<Arithmetic T>
 inline bool Vector2<T>::Equal(const Vector2<T>& _vector) const noexcept
 {
-    return (Koori::Math::Abs(x - _vector.x) <= KM_EPSILON) && (Koori::Math::Abs(y - _vector.y) <= KM_EPSILON);
+    return Koori::Math::Equal(x, _vector.x) && Koori::Math::Equal(y, _vector.y);
 }
 
 template<Arithmetic T>
 inline bool Vector2<T>::IsNormalized() const noexcept
 {
-    return (SqrLength() < T(1) ? T(1) - SqrLength() : SqrLength() - T(1)) <= Koori::Math::Epsilon<T>();
+    return Koori::Math::Equal(SqrLength(), T(1));
 }
 
 template<Arithmetic T>
