@@ -126,25 +126,25 @@ public:
      * @brief Provides direct access to the underlying data.
      * @return A pointer to the first element of the vector.
      */
-    [[nodiscard]] constexpr T* Data() noexcept { return &x; };
+    [[nodiscard]] T* Data() noexcept { return &x; };
 
     /**
      * @brief Provides ready-only access to the underlying data.
      * @return A const pointer to the first element of the vector.
      */
-    [[nodiscard]] constexpr const T* Data() const noexcept { return &x; };
+    [[nodiscard]] const T* Data() const noexcept { return &x; };
 
     /**
      * @brief Returns an iterator (pointer) to the first element of the vector.
      * @return A pointer to one past the last element.
      */
-    [[nodiscard]] constexpr T* Begin() noexcept { return &x; };
+    [[nodiscard]] T* Begin() noexcept { return &x; };
 
     /**
      * @brief Returns an iterator (pointer) to one past the last element of the vector.
      * @return A pointer to one past the last element.
      */
-    [[nodiscard]] constexpr T* End() noexcept { return &x + 2; };
+    [[nodiscard]] T* End() noexcept { return &x + 2; };
 
 #pragma endregion
 
