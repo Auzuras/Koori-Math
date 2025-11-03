@@ -176,12 +176,6 @@ TYPED_TEST(Vector2Test, Length)
     EXPECT_EQ(Vec2T::SqrLength(v1), TypeParam(9));
     EXPECT_EQ(Vec2T::Length(v1), TypeParam(3));
 
-    EXPECT_EQ(v1.SqrMagnitude(), TypeParam(9));
-    EXPECT_EQ(v1.Magnitude(), TypeParam(3));
-
-    EXPECT_EQ(Vec2T::SqrMagnitude(v1), TypeParam(9));
-    EXPECT_EQ(Vec2T::Magnitude(v1), TypeParam(3));
-
     v1 = Vec2T(TypeParam(5), TypeParam(5));
     Vec2T v2 = Vec2T(TypeParam(10), TypeParam(5));
 
@@ -235,13 +229,13 @@ TYPED_TEST(Vector2Test, BooleanOperations)
     {
         Vec2T v1(TypeParam(3), TypeParam(0));
 
-        EXPECT_EQ(v1.IsNull(), false);
-        EXPECT_EQ(Vec2T::IsNull(v1), false);
+        EXPECT_EQ(v1.IsZero(), false);
+        EXPECT_EQ(Vec2T::IsZero(v1), false);
 
         v1 = Vec2T(TypeParam(0), TypeParam(0));
 
-        EXPECT_EQ(v1.IsNull(), true);
-        EXPECT_EQ(Vec2T::IsNull(v1), true);
+        EXPECT_EQ(v1.IsZero(), true);
+        EXPECT_EQ(Vec2T::IsZero(v1), true);
     }
 
     // Equal
@@ -274,12 +268,64 @@ TYPED_TEST(Vector2Test, BooleanOperations)
 
 TYPED_TEST(Vector2Test, Lerp)
 {
+    // Lerp
+    {
+        Vec2T v1(TypeParam(0), TypeParam(0));
+        Vec2T v2(TypeParam(1), TypeParam(1));
 
+        EXPECT_NEAR(Vec2T::Lerp(v1, v2, 0.5).x, TypeParam(0.5), 0.001);
+        EXPECT_NEAR(Vec2T::Lerp(v1, v2, 0.5).y, TypeParam(0.5), 0.001);
+
+        v1 = v1.Lerped(v2, 1);
+
+        EXPECT_NEAR(v1.x, TypeParam(1), 0.001);
+        EXPECT_NEAR(v1.y, TypeParam(1), 0.001);
+
+        v1 =  { TypeParam(0), TypeParam(0) };
+        v1.Lerp(v2, 2);
+
+        EXPECT_NEAR(v1.x, TypeParam(2), 0.001);
+        EXPECT_NEAR(v1.y, TypeParam(2), 0.001);
+    }
+
+    // Slerp
+    {
+        Vec2T v1(TypeParam(1), TypeParam(0));
+        Vec2T v2(TypeParam(0), TypeParam(1));
+
+        EXPECT_NEAR(Vec2T::Slerp(v1, v2, 0.5).x, TypeParam(0.70710676908493042), 0.001);
+        EXPECT_NEAR(Vec2T::Slerp(v1, v2, 0.5).y, TypeParam(0.70710676908493042), 0.001);
+
+        v1 = v1.Slerped(v2, 1);
+
+        EXPECT_NEAR(v1.x, TypeParam(0), 0.001);
+        EXPECT_NEAR(v1.y, TypeParam(1), 0.001);
+
+        v1 =  { TypeParam(1), TypeParam(0) };
+        v1.Slerp(v2, 2);
+
+        EXPECT_NEAR(v1.x, TypeParam(-1), 0.001);
+        EXPECT_NEAR(v1.y, TypeParam(0), 0.001);
+    }
 }
 
 TYPED_TEST(Vector2Test, Normalize)
 {
+    Vec2T v1(TypeParam(5), TypeParam(0));
 
+    EXPECT_EQ(Vec2T::Normalize(v1).x, 1);
+    EXPECT_EQ(Vec2T::Normalize(v1).y, 0);
+
+    v1 = v1.Normalized();
+
+    EXPECT_EQ(Vec2T::Normalize(v1).x, 1);
+    EXPECT_EQ(Vec2T::Normalize(v1).y, 0);
+
+    v1 =  { TypeParam(5), TypeParam(0) };
+    v1.Normalize();
+
+    EXPECT_EQ(Vec2T::Normalize(v1).x, 1);
+    EXPECT_EQ(Vec2T::Normalize(v1).y, 0);
 }
 
 TYPED_TEST(Vector2Test, Transform)

@@ -63,18 +63,6 @@ inline T Vector2<T>::Length() const noexcept
 }
 
 template<Arithmetic T>
-inline T Vector2<T>::SqrMagnitude() const noexcept
-{
-    return SqrLength();
-}
-
-template<Arithmetic T>
-inline T Vector2<T>::Magnitude() const noexcept
-{
-    return Length();
-}
-
-template<Arithmetic T>
 inline T Vector2<T>::SqrDistance(const Vector2<T>& _vector) const noexcept
 {
     return (x - _vector.x) * (x - _vector.x) + (y - _vector.y) * (y - _vector.y);
@@ -119,7 +107,7 @@ inline Vector2<T> Vector2<T>::Inversed() const noexcept
 }
 
 template<Arithmetic T>
-inline bool Vector2<T>::IsNull() const noexcept
+inline bool Vector2<T>::IsZero() const noexcept
 {
     return Koori::Math::Equal(x, T(0)) && Koori::Math::Equal(y, T(0));
 }
@@ -154,11 +142,11 @@ inline Vector2<T> Vector2<T>::Lerped(const Vector2<T>& _end, const float _t) con
 template<Arithmetic T>
 inline Vector2<T>& Vector2<T>::Slerp(const Vector2<T>& _end, const float _t) noexcept
 {
-    const float dot = Koori::Math::Clamp(DotProduct(_end), -1.f, 1.f);
+    const float dot = Koori::Math::Clamp(static_cast<float>(DotProduct(_end)), -1.f, 1.f);
     const float theta = Koori::Math::ACos(dot) * _t;
 
-    Vector2<float> relative = (_end - (*this) * dot).Normalize();
-    *this = *this * Koori::Math::Cos(theta) + relative * Koori::Math::Sin(theta);
+    const Vector2<T> relative = (_end - (*this) * dot).Normalize();
+    *this = relative * Koori::Math::Sin(theta) + *this * Koori::Math::Cos(theta);
     return *this;
 }
 
@@ -329,18 +317,6 @@ inline T Vector2<T>::Length(const Vector2<T>& _vector) noexcept
 }
 
 template<Arithmetic T>
-inline T Vector2<T>::SqrMagnitude(const Vector2<T>& _vector) noexcept
-{
-    return _vector.SqrLength();
-}
-
-template<Arithmetic T>
-inline T Vector2<T>::Magnitude(const Vector2<T>& _vector) noexcept
-{
-    return _vector.Length();
-}
-
-template<Arithmetic T>
 inline T Vector2<T>::SqrDistance(const Vector2<T>& _lhs, const Vector2<T>& _rhs) noexcept
 {
     return _lhs.SqrDistance(_rhs);
@@ -365,9 +341,9 @@ inline Vector2<T> Vector2<T>::Inverse(const Vector2<T>& _vector) noexcept
 }
 
 template<Arithmetic T>
-inline bool Vector2<T>::IsNull(const Vector2<T>& _vector) noexcept
+inline bool Vector2<T>::IsZero(const Vector2<T>& _vector) noexcept
 {
-    return _vector.IsNull();
+    return _vector.IsZero();
 }
 
 template<Arithmetic T>

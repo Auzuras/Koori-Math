@@ -184,18 +184,6 @@ public:
     [[nodiscard]] inline T Length() const noexcept;
 
     /**
-     * @brief Computes the squared magnitude of this vector (Alias for squared length).
-     * @return The value of the squared magnitude.
-     */
-    [[nodiscard]] inline T SqrMagnitude() const noexcept;
-
-    /**
-     * @brief Computes the magnitude of this vector (Alias for length).
-     * @return The value of the magnitude.
-     */
-    [[nodiscard]] inline T Magnitude() const noexcept;
-
-    /**
      * @brief Computes the squared distance between another vector and this one.
      * @param _vector The second vector required to compute the squared distance.
      * @return The squared distance between the two vectors.
@@ -234,10 +222,10 @@ public:
     [[nodiscard]] inline Vector2<T> Inversed() const noexcept;
 
     /**
-     * @brief Checks if the components of this vector are close to zero (i.e., near null).
+     * @brief Checks if the components of this vector are close to zero.
      * @return A boolean, true if the vector's components are close to zero.
      */
-    [[nodiscard]] inline bool IsNull() const noexcept;
+    [[nodiscard]] inline bool IsZero() const noexcept;
 
     /**
      * @brief Checks the equality of another vector and this one.
@@ -247,7 +235,8 @@ public:
     [[nodiscard]] inline bool Equal(const Vector2<T>& _vector) const noexcept;
 
     /**
-     * @brief Checks if the length (magnitude) of the vector is equal to one.
+     * @brief Checks if the length
+     * of the vector is equal to one.
      * @return A boolean, true if the vectors is normalized, false if not.
      */
     [[nodiscard]] inline bool IsNormalized() const noexcept;
@@ -433,20 +422,6 @@ public:
     [[nodiscard]] inline static T Length(const Vector2<T>& _vector) noexcept;
 
     /**
-     * @brief Computes the squared magnitude of a vector (Alias for squared length).
-     * @param _vector The input vector.
-     * @return The value of the squared magnitude.
-     */
-    [[nodiscard]] inline static T SqrMagnitude(const Vector2<T>& _vector) noexcept;
-
-    /**
-     * @brief Computes the magnitude of a vector (Alias for length).
-     * @param _vector The input vector.
-     * @return The value of the magnitude.
-     */
-    [[nodiscard]] inline static T Magnitude(const Vector2<T>& _vector) noexcept;
-
-    /**
      * @brief Computes the squared distance between two vectors.
      * @param _lhs The left-hand side vector.
      * @param _rhs The right-hand side vector.
@@ -477,11 +452,11 @@ public:
     [[nodiscard]] inline static Vector2<T> Inverse(const Vector2<T>& _vector) noexcept;
 
     /**
-     * @brief Checks if the components of a vector are close to zero (i.e., near null).
+     * @brief Checks if the components of a vector are close to zero.
      * @param _vector Vector to check.
      * @return A boolean, true if the vector's components are close to zero.
      */
-    [[nodiscard]] inline static bool IsNull(const Vector2<T>& _vector) noexcept;
+    [[nodiscard]] inline static bool IsZero(const Vector2<T>& _vector) noexcept;
 
     /**
      * @brief Returns the equality of two vectors.
@@ -492,7 +467,7 @@ public:
     [[nodiscard]] inline static bool Equal(const Vector2<T>& _lhs, const Vector2<T>& _rhs) noexcept;
 
     /**
-     * @brief Checks if the length (magnitude) of the vector is equal to one.
+     * @brief Checks if the length of the vector is equal to one.
      * @param _vector Vector to check.
      * @return A boolean, true if the vectors is normalized, false if not.
      */

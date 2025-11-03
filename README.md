@@ -16,14 +16,12 @@ Many methods are primarily designed for signed floating-point values, and there 
 
 - SquaredLength
 - Length
-- SquaredMagnitude
-- Magnitude
 - SquaredDistance
 - Distance
 - Inverse
 
 
-- IsNull
+- IsZero
 - Equal
 
 
