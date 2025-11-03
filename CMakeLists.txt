@@ -10,7 +10,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 add_library(KooriMath INTERFACE
         Include/Quaternion/Quaternion.h
         Include/Matrix/Matrix4.h
-        Include/Arithmetic/Equal.h)
+        Include/Arithmetic/Equal.h
+        Include/Vector/Vector3.h)
 
 target_include_directories(KooriMath INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Include> $<INSTALL_INTERFACE:Include>)
 

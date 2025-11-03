@@ -1,4 +1,5 @@
 #pragma region Vector Types
+
 #include "Arithmetic/Equal.h"
 
 using Vector2f = Vector2<float>;
