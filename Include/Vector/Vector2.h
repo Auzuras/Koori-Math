@@ -53,38 +53,38 @@ public:
     /**
      * @brief Default constructor, initializes all components to a default value.
      */
-    constexpr Vector2() noexcept : x(T()), y(T()) {}
+    constexpr Vector2() noexcept;
 
     /**
      * @brief Constructor initializing all the components to the same value.
      * @param _value Value to assign to x and y .
      */
-    explicit constexpr Vector2(T _value) noexcept : x(_value), y(_value) {}
+    explicit constexpr Vector2(T _value) noexcept;
 
     /**
      * @brief Constructor initializing each component to a specific value.
      * @param _xValue Value to assign to x.
      * @param _yValue Value to assign to y.
      */
-    constexpr Vector2(T _xValue, T _yValue) noexcept : x(_xValue), y(_yValue) {}
+    constexpr Vector2(T _xValue, T _yValue) noexcept;
 
     /**
      * @brief Constructor copying from a reference.
      * @param _vector Reference to the Vector2 to copy.
      */
-    constexpr Vector2(const Vector2<T>& _vector) noexcept : x(_vector.x), y(_vector.y) {}
+    constexpr Vector2(const Vector2<T>& _vector) noexcept;
 
     /**
      * @brief Constructor moving from a rvalue reference.
      * @param _vector Rvalue reference to the Vector2 to move.
      */
-    constexpr Vector2(Vector2<T>&& _vector) noexcept : x(_vector.x), y(_vector.y) { _vector.x = _vector.y = T(); }
+    constexpr Vector2(Vector2<T>&& _vector) noexcept;
 
     /**
      * @brief Constructor copying from a pointer.
      * @param _vector Pointer to the Vector2 to copy.
      */
-    explicit constexpr Vector2<T>(const Vector2<T>* _vector) noexcept : x(_vector->x), y(_vector->y) {}
+    explicit constexpr Vector2(const Vector2<T>* _vector) noexcept;
 
 #pragma endregion
 

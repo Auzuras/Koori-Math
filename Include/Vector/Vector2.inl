@@ -8,6 +8,42 @@ using Vector2ui = Vector2<unsigned int>;
 
 #pragma endregion
 
+#pragma region Constructors
+
+template<Arithmetic T>
+constexpr Vector2<T>::Vector2() noexcept
+    : x(T()), y(T())
+{}
+
+template<Arithmetic T>
+constexpr Vector2<T>::Vector2(T _value) noexcept
+    : x(_value), y(_value)
+{}
+
+template<Arithmetic T>
+constexpr Vector2<T>::Vector2(T _xValue, T _yValue) noexcept
+    : x(_xValue), y(_yValue)
+{}
+
+template<Arithmetic T>
+constexpr Vector2<T>::Vector2(const Vector2<T>& _vector) noexcept
+    : x(_vector.x), y(_vector.y)
+{}
+
+template<Arithmetic T>
+constexpr Vector2<T>::Vector2(Vector2<T>&& _vector) noexcept
+    : x(_vector.x), y(_vector.y)
+{
+    _vector.x = _vector.y = T();
+}
+
+template<Arithmetic T>
+constexpr Vector2<T>::Vector2(const Vector2<T>* _vector) noexcept
+    : x(_vector->x), y(_vector->y)
+{}
+
+#pragma endregion
+
 #pragma region Vector2 Methods
 
 template<Arithmetic T>
