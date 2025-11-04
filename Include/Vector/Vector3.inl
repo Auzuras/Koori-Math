@@ -50,7 +50,7 @@ constexpr Vector3<T>::Vector3(const Vector3<T>* _vector) noexcept
 template<Arithmetic T>
 constexpr T Vector3<T>::DotProduct(const Vector3<T>& _vector) const noexcept
 {
-    return x * _vector.x + y * _vector.y; + z * _vector.z;
+    return x * _vector.x + y * _vector.y + z * _vector.z;
 }
 
 template<Arithmetic T>
@@ -223,24 +223,6 @@ Vector3<T> Vector3<T>::Rotated(const Vector3<T>& _anchor, const float _angle) co
 }
 
 template<Arithmetic T>
-Vector3<T>& Vector3<T>::Perpendicular() noexcept
-{
-    T temp = x;
-    x = y;
-    y = -temp;
-
-    return *this;
-}
-
-template<Arithmetic T>
-Vector3<T> Vector3<T>::GetPerpendicular() const noexcept
-{
-    Vector3<T> ret = *this;
-    ret.Perpendicular();
-    return ret;
-}
-
-template<Arithmetic T>
 Vector3<T>& Vector3<T>::Reflect(const Vector3<T>& _normal) noexcept
 {
     *this = *this - _normal * static_cast<T>(2) * DotProduct(_normal);
@@ -379,12 +361,6 @@ template<Arithmetic T>
 Vector3<T> Vector3<T>::Rotate(const Vector3<T>& _vector, const Vector3<T>& _anchor, const float _angle) noexcept
 {
     return _vector.Rotated(_anchor, _angle);
-}
-
-template<Arithmetic T>
-Vector3<T> Vector3<T>::Perpendicular(const Vector3<T>& _vector) noexcept
-{
-    return _vector.GetPerpendicular();
 }
 
 template<Arithmetic T>

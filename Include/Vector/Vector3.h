@@ -335,18 +335,6 @@ public:
     [[nodiscard]] Vector3<T> Rotated(const Vector3<T>& _anchor, float _angle) const noexcept;
 
     /**
-     * @brief Makes this vector perpendicular to its original direction.
-     * @return A reference to the modified vector.
-     */
-    Vector3<T>& Perpendicular() noexcept;
-
-    /**
-     * @brief Returns a new vector that is perpendicular to this one.
-     * @return A new vector corresponding to the result of the operation.
-     */
-    [[nodiscard]] Vector3<T> GetPerpendicular() const noexcept;
-
-    /**
      * @brief Reflects this vector about the given normal.
      * @param _normal The normal of the reflecting surface.
      * @return A reference to the modified vector.
@@ -512,13 +500,6 @@ public:
      * @return A new vector corresponding to the result of the operation.
      */
     [[nodiscard]] static Vector3<T> Rotate(const Vector3<T>& _vector, const Vector3<T>& _anchor, float _angle) noexcept;
-
-    /**
-     * @brief Returns a new vector that is perpendicular to the given one.
-     * @param _vector The input vector.
-     * @return A new vector corresponding to the result of the operation.
-     */
-    [[nodiscard]] static Vector3<T> Perpendicular(const Vector3<T>& _vector) noexcept;
 
     /**
      * @brief Returns the result of reflecting the incident vector about the given normal.
