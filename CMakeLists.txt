@@ -11,7 +11,9 @@ add_library(KooriMath INTERFACE
         Include/Quaternion/Quaternion.h
         Include/Matrix/Matrix4.h
         Include/Arithmetic/Equal.h
-        Include/Vector/Vector3.h)
+        Include/Vector/Vector3.h
+        Include/Vector/Vector2.h
+        Include/Vector/Vector4.h)
 
 target_include_directories(KooriMath INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/Include> $<INSTALL_INTERFACE:Include>)
 
