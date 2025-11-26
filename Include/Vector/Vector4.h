@@ -67,7 +67,7 @@ public:
 
     /**
      * @brief Constructor initializing all the components to the same value.
-     * @param _value Value to assign to x, y, z and w .
+     * @param _value Value to assign to x, y, z and w.
      */
     explicit constexpr Vector4(T _value) noexcept;
 
