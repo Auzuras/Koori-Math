@@ -19,32 +19,32 @@ public:
     /**
      * @brief Zero vector constant: (0, 0)
      */
-    static constexpr Vector2<T> Zero = Vector2<T>(T(0));
+    static const Vector2<T> Zero;
 
     /**
      * @brief One vector constant: (1, 1)
      */
-    static constexpr Vector2<T> One = Vector2<T>(T(1));
+    static const Vector2<T> One;
 
     /**
      * @brief Right vector constant: (1, 0)
      */
-    static constexpr Vector2<T> Right = Vector2<T>(T(1), T(0));
+    static const Vector2<T> Right;
 
     /**
      * @brief Up vector constant: (0, 1)
      */
-    static constexpr Vector2<T> Up = Vector2<T>(T(0), T(1));
+    static const Vector2<T> Up;
 
     /**
      * @brief Left vector constant: (-1, 0)
      */
-    static constexpr Vector2<T> Left = Vector2<T>(T(-1), T(0));
+    static const Vector2<T> Left;
 
     /**
      * @brief Down vector constant: (0, -1)
      */
-    static constexpr Vector2<T> Down = Vector2<T>(T(0), T(-1));
+    static const Vector2<T> Down;
 
 #pragma endregion
 

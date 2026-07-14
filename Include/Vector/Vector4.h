@@ -19,42 +19,42 @@ public:
     /**
      * @brief Zero vector constant: (0, 0, 0, 0)
      */
-    static constexpr Vector4<T> Zero = Vector4<T>(T(0));
+    static const Vector4<T> Zero;
 
     /**
      * @brief One vector constant: (1, 1, 1, 1)
      */
-    static constexpr Vector4<T> One = Vector4<T>(T(1));
+    static const Vector4<T> One;
 
     /**
      * @brief Right vector constant: (1, 0, 0, 0)
      */
-    static constexpr Vector4<T> Right = Vector4<T>(T(1), T(0), T(0));
+    static const Vector4<T> Right;
 
     /**
      * @brief Up vector constant: (0, 1, 0, 0)
      */
-    static constexpr Vector4<T> Up = Vector4<T>(T(0), T(1), T(0), T(0));
+    static const Vector4<T> Up;
 
     /**
      * @brief Forward vector constant: (0, 0, 1, 0)
      */
-    static constexpr Vector4<T> Forward = Vector4<T>(T(0), T(0), T(1), T(0));
+    static const Vector4<T> Forward;
 
     /**
      * @brief Left vector constant: (-1, 0, 0, 0)
      */
-    static constexpr Vector4<T> Left = Vector4<T>(T(-1), T(0), T(0), T(0));
+    static const Vector4<T> Left;
 
     /**
      * @brief Down vector constant: (0, -1, 0, 0)
      */
-    static constexpr Vector4<T> Down = Vector4<T>(T(0), T(-1), T(0), T(0));
+    static const Vector4<T> Down;
 
     /**
      * @brief Forward vector constant: (0, 0, 1, 0)
      */
-    static constexpr Vector4<T> Backward = Vector4<T>(T(0), T(0), T(-1), T(0));
+    static const Vector4<T> Backward;
 
 #pragma endregion
 

@@ -9,6 +9,34 @@ using Vector4ui = Vector4<unsigned int>;
 
 #pragma endregion
 
+#pragma region Static Vectors
+
+template<Arithmetic T>
+inline constexpr Vector4<T> Vector4<T>::Zero = Vector4<T>(T(0));
+
+template<Arithmetic T>
+inline constexpr Vector4<T> Vector4<T>::One = Vector4<T>(T(1));
+
+template<Arithmetic T>
+inline constexpr Vector4<T> Vector4<T>::Right = Vector4<T>(T(1), T(0), T(0), T(0));
+
+template<Arithmetic T>
+inline constexpr Vector4<T> Vector4<T>::Up = Vector4<T>(T(0), T(1), T(0), T(0));
+
+template<Arithmetic T>
+inline constexpr Vector4<T> Vector4<T>::Forward = Vector4<T>(T(0), T(0), T(1), T(0));
+
+template<Arithmetic T>
+inline constexpr Vector4<T> Vector4<T>::Left = Vector4<T>(T(-1), T(0), T(0), T(0));
+
+template<Arithmetic T>
+inline constexpr Vector4<T> Vector4<T>::Down = Vector4<T>(T(0), T(-1), T(0), T(0));
+
+template<Arithmetic T>
+inline constexpr Vector4<T> Vector4<T>::Backward = Vector4<T>(T(0), T(0), T(-1), T(0));
+
+#pragma endregion
+
 #pragma region Constructors
 
 template<Arithmetic T>

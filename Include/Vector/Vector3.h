@@ -19,42 +19,42 @@ public:
     /**
      * @brief Zero vector constant: (0, 0, 0)
      */
-    static constexpr Vector3<T> Zero = Vector3<T>(T(0));
+    static const Vector3<T> Zero;
 
     /**
      * @brief One vector constant: (1, 1, 1)
      */
-    static constexpr Vector3<T> One = Vector3<T>(T(1));
+    static const Vector3<T> One;
 
     /**
      * @brief Right vector constant: (1, 0, 0)
      */
-    static constexpr Vector3<T> Right = Vector3<T>(T(1), T(0), T(0));
+    static const Vector3<T> Right;
 
     /**
      * @brief Up vector constant: (0, 1, 0)
      */
-    static constexpr Vector3<T> Up = Vector3<T>(T(0), T(1), T(0));
+    static const Vector3<T> Up;
 
     /**
      * @brief Forward vector constant: (0, 0, 1)
      */
-    static constexpr Vector3<T> Forward = Vector3<T>(T(0), T(0), T(1));
+    static const Vector3<T> Forward;
 
     /**
      * @brief Left vector constant: (-1, 0, 0)
      */
-    static constexpr Vector3<T> Left = Vector3<T>(T(-1), T(0), T(0));
+    static const Vector3<T> Left;
 
     /**
      * @brief Down vector constant: (0, -1, 0)
      */
-    static constexpr Vector3<T> Down = Vector3<T>(T(0), T(-1), T(0));
+    static const Vector3<T> Down;
 
     /**
      * @brief Forward vector constant: (0, 0, 1)
      */
-    static constexpr Vector3<T> Backward = Vector3<T>(T(0), T(0), T(-1));
+    static const Vector3<T> Backward;
 
 #pragma endregion
 

@@ -9,6 +9,28 @@ using Vector2ui = Vector2<unsigned int>;
 
 #pragma endregion
 
+#pragma region Static Vectors
+
+template<Arithmetic T>
+inline constexpr Vector2<T> Vector2<T>::Zero = Vector2<T>(T(0));
+
+template<Arithmetic T>
+inline constexpr Vector2<T> Vector2<T>::One = Vector2<T>(T(1));
+
+template<Arithmetic T>
+inline constexpr Vector2<T> Vector2<T>::Right = Vector2<T>(T(1), T(0));
+
+template<Arithmetic T>
+inline constexpr Vector2<T> Vector2<T>::Up = Vector2<T>(T(0), T(1));
+
+template<Arithmetic T>
+inline constexpr Vector2<T> Vector2<T>::Left = Vector2<T>(T(-1), T(0));
+
+template<Arithmetic T>
+inline constexpr Vector2<T> Vector2<T>::Down = Vector2<T>(T(0), T(-1));
+
+#pragma endregion
+
 #pragma region Constructors
 
 template<Arithmetic T>

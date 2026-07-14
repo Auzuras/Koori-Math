@@ -9,6 +9,34 @@ using Vector3ui = Vector3<unsigned int>;
 
 #pragma endregion
 
+#pragma region Static Vectors
+
+template<Arithmetic T>
+inline constexpr Vector3<T> Vector3<T>::Zero = Vector3<T>(T(0));
+
+template<Arithmetic T>
+inline constexpr Vector3<T> Vector3<T>::One = Vector3<T>(T(1));
+
+template<Arithmetic T>
+inline constexpr Vector3<T> Vector3<T>::Right = Vector3<T>(T(1), T(0), T(0));
+
+template<Arithmetic T>
+inline constexpr Vector3<T> Vector3<T>::Up = Vector3<T>(T(0), T(1), T(0));
+
+template<Arithmetic T>
+inline constexpr Vector3<T> Vector3<T>::Forward = Vector3<T>(T(0), T(0), T(1));
+
+template<Arithmetic T>
+inline constexpr Vector3<T> Vector3<T>::Left = Vector3<T>(T(-1), T(0), T(0));
+
+template<Arithmetic T>
+inline constexpr Vector3<T> Vector3<T>::Down = Vector3<T>(T(0), T(-1), T(0));
+
+template<Arithmetic T>
+inline constexpr Vector3<T> Vector3<T>::Backward = Vector3<T>(T(0), T(0), T(-1));
+
+#pragma endregion
+
 #pragma region Constructors
 
 template<Arithmetic T>
