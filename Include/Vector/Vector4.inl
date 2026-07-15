@@ -82,12 +82,6 @@ constexpr T Vector4<T>::DotProduct(const Vector4<T>& _vector) const noexcept
 }
 
 template<Arithmetic T>
-constexpr Vector4<T> Vector4<T>::CrossProduct(const Vector4<T>& _vector) const noexcept
-{
-    return Vector4<T>(y * _vector.z - z * _vector.y, z * _vector.x - x * _vector.z, x * _vector.y - y * _vector.x);
-}
-
-template<Arithmetic T>
 constexpr float Vector4<T>::Angle(const Vector4<T>& _vector) const noexcept
 {
     return Koori::Math::ACos(DotProduct(_vector) / (Length() * _vector.Length()));
@@ -308,12 +302,6 @@ constexpr T Vector4<T>::DotProduct(const Vector4<T>& _lhs, const Vector4<T>& _rh
 }
 
 template<Arithmetic T>
-constexpr Vector4<T> Vector4<T>::CrossProduct(const Vector4<T>& _lhs, const Vector4<T>& _rhs) noexcept
-{
-    return _lhs.CrossProduct(_rhs);
-}
-
-template<Arithmetic T>
 constexpr float Vector4<T>::Angle(const Vector4<T>& _lhs, const Vector4<T>& _rhs) noexcept
 {
     return _lhs.Angle(_rhs);
@@ -456,51 +444,51 @@ constexpr bool Vector4<T>::IsNormalized(const Vector4<T>& _vector) noexcept
 template<Arithmetic T>
 constexpr Vector4<T> Vector4<T>::operator+(const Vector4<T>& _vector) const noexcept
 {
-    return Vector4<T>(x + _vector.x, y + _vector.y, z + _vector.z);
+    return Vector4<T>(x + _vector.x, y + _vector.y, z + _vector.z, w + _vector.w);
 }
 
 template<Arithmetic T>
 constexpr Vector4<T> Vector4<T>::operator+(const T _scalar) const noexcept
 {
-    return Vector4<T>(x + _scalar, y + _scalar, z + _scalar);
+    return Vector4<T>(x + _scalar, y + _scalar, z + _scalar, w + _scalar);
 }
 
 template<Arithmetic T>
 constexpr Vector4<T> Vector4<T>::operator-(const Vector4<T>& _vector) const noexcept
 {
-    return Vector4<T>(x - _vector.x, y - _vector.y, z - _vector.z);
+    return Vector4<T>(x - _vector.x, y - _vector.y, z - _vector.z, w - _vector.w);
 }
 
 template<Arithmetic T>
 constexpr Vector4<T> Vector4<T>::operator-(const T _scalar) const noexcept
 {
-    return Vector4<T>(x - _scalar, y - _scalar, z - _scalar);
+    return Vector4<T>(x - _scalar, y - _scalar, z - _scalar, w - _scalar);
 }
 
 template<Arithmetic T>
 constexpr Vector4<T> Vector4<T>::operator*(const Vector4<T>& _vector) const noexcept
 {
-    return Vector4<T>(x * _vector.x, y * _vector.y, z * _vector.z);
+    return Vector4<T>(x * _vector.x, y * _vector.y, z * _vector.z, w * _vector.w);
 }
 
 template<Arithmetic T>
 constexpr Vector4<T> Vector4<T>::operator*(const T _scalar) const noexcept
 {
-    return Vector4<T>(x * _scalar, y * _scalar, z * _scalar);
+    return Vector4<T>(x * _scalar, y * _scalar, z * _scalar, w * _scalar);
 }
 
 template<Arithmetic T>
 Vector4<T> Vector4<T>::operator/(const Vector4<T>& _vector) const noexcept
 {
     // TODO: Add verification for division by 0
-    return Vector4<T>(x / _vector.x, y / _vector.y, z / _vector.z);
+    return Vector4<T>(x / _vector.x, y / _vector.y, z / _vector.z, w / _vector.w);
 }
 
 template<Arithmetic T>
 Vector4<T> Vector4<T>::operator/(const T _scalar) const noexcept
 {
     // TODO: Add verification for division by 0
-    return Vector4<T>(x / _scalar, y / _scalar, z / _scalar);
+    return Vector4<T>(x / _scalar, y / _scalar, z / _scalar, w / _scalar);
 }
 
 template<Arithmetic T>
@@ -509,6 +497,7 @@ Vector4<T>& Vector4<T>::operator+=(const Vector4<T>& _vector) noexcept
     x += _vector.x;
     y += _vector.y;
     z += _vector.z;
+    w += _vector.w;
 
     return *this;
 }
@@ -519,6 +508,7 @@ Vector4<T>& Vector4<T>::operator+=(const T _scalar) noexcept
     x += _scalar;
     y += _scalar;
     z += _scalar;
+    w += _scalar;
 
     return *this;
 }
@@ -529,6 +519,7 @@ Vector4<T>& Vector4<T>::operator-=(const Vector4<T>& _vector) noexcept
     x -= _vector.x;
     y -= _vector.y;
     z -= _vector.z;
+    w -= _vector.w;
 
     return *this;
 }
@@ -539,6 +530,7 @@ Vector4<T>& Vector4<T>::operator-=(const T _scalar) noexcept
     x -= _scalar;
     y -= _scalar;
     z -= _scalar;
+    w -= _scalar;
 
     return *this;
 }
@@ -549,6 +541,7 @@ Vector4<T>& Vector4<T>::operator*=(const Vector4<T>& _vector) noexcept
     x *= _vector.x;
     y *= _vector.y;
     z *= _vector.z;
+    w *= _vector.w;
 
     return *this;
 }
@@ -559,6 +552,7 @@ Vector4<T>& Vector4<T>::operator*=(const T _scalar) noexcept
     x *= _scalar;
     y *= _scalar;
     z *= _scalar;
+    w *= _scalar;
 
     return *this;
 }
@@ -579,6 +573,7 @@ Vector4<T>& Vector4<T>::operator/=(const T _scalar) noexcept
     x /= _scalar;
     y /= _scalar;
     z /= _scalar;
+    w /= _scalar;
 
     return *this;
 }
@@ -586,7 +581,7 @@ Vector4<T>& Vector4<T>::operator/=(const T _scalar) noexcept
 template<Arithmetic T>
 constexpr Vector4<T> Vector4<T>::operator-() noexcept
 {
-    return Vector4<T>(-x, -y, -z);
+    return Vector4<T>(-x, -y, -z, -w);
 }
 
 template<Arithmetic T>
@@ -595,6 +590,7 @@ Vector4<T>& Vector4<T>::operator=(const Vector4<T>& _vector) noexcept
     x = _vector.x;
     y = _vector.y;
     z = _vector.z;
+    w = _vector.w;
 
     return *this;
 }
@@ -605,8 +601,9 @@ Vector4<T>& Vector4<T>::operator=(Vector4<T>&& _vector) noexcept
     x = _vector.x;
     y = _vector.y;
     z = _vector.z;
+    w = _vector.w;
 
-    _vector.x = _vector.y = _vector.z = T(0);
+    _vector.x = _vector.y = _vector.z = _vector.w = T(0);
 
     return *this;
 }
@@ -642,7 +639,7 @@ constexpr const T& Vector4<T>::operator[](const size_t _index) const noexcept
 template<Arithmetic T>
 std::string Vector4<T>::ToString() const
 {
-    return "(" + std::to_string(x) + ", " + std::to_string(y) + ", " + std::to_string(z) + ")";
+    return "(" + std::to_string(x) + ", " + std::to_string(y) + ", " + std::to_string(z) + std::to_string(w) + ")";
 }
 
 #pragma endregion

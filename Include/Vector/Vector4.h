@@ -194,13 +194,6 @@ public:
     [[nodiscard]] constexpr T DotProduct(const Vector4<T>& _vector) const noexcept;
 
     /**
-     * @brief Computes the cross product between another vector and this one.
-     * @param _vector The second vector required to compute the cross product.
-     * @return The result of the 2D cross product.
-     */
-    [[nodiscard]] constexpr Vector4<T> CrossProduct(const Vector4<T>& _vector) const noexcept;
-
-    /**
      * @brief Computes the angle between another vector and this one.
      * @param _vector The second vector.
      * @return The angle (in radians) between the two vectors.
@@ -402,14 +395,6 @@ public:
      * @return The result of the dot product.
      */
     [[nodiscard]] constexpr static T DotProduct(const Vector4<T>& _lhs, const Vector4<T>& _rhs) noexcept;
-
-    /**
-     * @brief Computes the cross product between two vectors.
-     * @param _lhs The left-hand side vector.
-     * @param _rhs The right-hand side vector.
-     * @return The result of the 2D cross product.
-     */
-    [[nodiscard]] constexpr static Vector4<T> CrossProduct(const Vector4<T>& _lhs, const Vector4<T>& _rhs) noexcept;
 
     /**
      * @brief Returns the angle between two vectors.
