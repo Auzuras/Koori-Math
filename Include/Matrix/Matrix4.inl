@@ -1,6 +1,10 @@
-#pragma region Matrix Types
+#include <Arithmetic/Equal.h>
 
-#include "Arithmetic/Equal.h"
+#include <Vector/Vector3.h>
+
+#include <Quaternion/Quaternion.h>
+
+#pragma region Matrix Types
 
 using Matrix4f = Matrix4<float>;
 using Matrix4d = Matrix4<double>;

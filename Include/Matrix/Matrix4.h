@@ -3,9 +3,15 @@
 
 #include <Arithmetic/Arithmetic.h>
 
-#include <Vector/Vector3.h>
+#pragma region Forward Declarations
 
-#include <Quaternion/Quaternion.h>
+template<Arithmetic T>
+struct Vector3;
+
+template<Arithmetic T>
+struct Quaternion;
+
+#pragma endregion
 
 template<Arithmetic T>
 struct Matrix4
