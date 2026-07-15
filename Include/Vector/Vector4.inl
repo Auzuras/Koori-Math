@@ -78,7 +78,7 @@ constexpr Vector4<T>::Vector4(const Vector4<T>* _vector) noexcept
 template<Arithmetic T>
 constexpr T Vector4<T>::DotProduct(const Vector4<T>& _vector) const noexcept
 {
-    return x * _vector.x + y * _vector.y + z * _vector.z;
+    return x * _vector.x + y * _vector.y + z * _vector.z + w * _vector.w;
 }
 
 template<Arithmetic T>
@@ -90,7 +90,7 @@ constexpr float Vector4<T>::Angle(const Vector4<T>& _vector) const noexcept
 template<Arithmetic T>
 constexpr T Vector4<T>::SqrLength() const noexcept
 {
-    return x * x + y * y + z * z;
+    return x * x + y * y + z * z + w * w;
 }
 
 template<Arithmetic T>
@@ -102,7 +102,7 @@ constexpr T Vector4<T>::Length() const noexcept
 template<Arithmetic T>
 constexpr T Vector4<T>::SqrDistance(const Vector4<T>& _vector) const noexcept
 {
-    return (x - _vector.x) * (x - _vector.x) + (y - _vector.y) * (y - _vector.y) + (z - _vector.z) * (z - _vector.z);
+    return (x - _vector.x) * (x - _vector.x) + (y - _vector.y) * (y - _vector.y) + (z - _vector.z) * (z - _vector.z) + (w - _vector.w) * (w - _vector.w);
 }
 
 template<Arithmetic T>
@@ -134,6 +134,7 @@ Vector4<T>& Vector4<T>::Inverse() noexcept
     x = one / x;
     y = one / y;
     z = one / z;
+    w = one / w;
     return *this;
 }
 
@@ -563,6 +564,7 @@ Vector4<T>& Vector4<T>::operator/=(const Vector4<T>& _vector) noexcept
     x /= _vector.x;
     y /= _vector.y;
     z /= _vector.z;
+    w /= _vector.w;
 
     return *this;
 }

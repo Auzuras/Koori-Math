@@ -111,9 +111,9 @@ TYPED_TEST(Vector4Test, Addition)
     v2 += v2;
 
     EXPECT_EQ(v2.x, TypeParam(10));
-    EXPECT_EQ(v2.y, TypeParam(4));
-    EXPECT_EQ(v2.z, TypeParam(30));
-    EXPECT_EQ(v2.w, TypeParam(40));
+    EXPECT_EQ(v2.y, TypeParam(2));
+    EXPECT_EQ(v2.z, TypeParam(10));
+    EXPECT_EQ(v2.w, TypeParam(0));
 }
 
 TYPED_TEST(Vector4Test, Subtraction)
@@ -151,9 +151,9 @@ TYPED_TEST(Vector4Test, Multiplication)
     v2 *= v2;
 
     EXPECT_EQ(v2.x, TypeParam(36));
-    EXPECT_EQ(v2.y, TypeParam(100));
-    EXPECT_EQ(v2.z, TypeParam(9));
-    EXPECT_EQ(v2.w, TypeParam(900));
+    EXPECT_EQ(v2.y, TypeParam(4));
+    EXPECT_EQ(v2.z, TypeParam(1));
+    EXPECT_EQ(v2.w, TypeParam(4));
 }
 
 TYPED_TEST(Vector4Test, Division)
@@ -165,15 +165,15 @@ TYPED_TEST(Vector4Test, Division)
 
     EXPECT_EQ(v1.x, TypeParam(5));
     EXPECT_EQ(v1.y, TypeParam(5));
-    EXPECT_EQ(v1.w, TypeParam(2));
-    EXPECT_EQ(v1.z, TypeParam(8));
+    EXPECT_EQ(v1.z, TypeParam(2));
+    EXPECT_EQ(v1.w, TypeParam(8));
 
     v2 /= v2;
 
     EXPECT_EQ(v2.x, TypeParam(1));
     EXPECT_EQ(v2.y, TypeParam(1));
-    EXPECT_EQ(v2.w, TypeParam(1));
     EXPECT_EQ(v2.z, TypeParam(1));
+    EXPECT_EQ(v2.w, TypeParam(1));
 }
 
 TYPED_TEST(Vector4Test, Math)
@@ -196,22 +196,22 @@ TYPED_TEST(Vector4Test, Math)
 
 TYPED_TEST(Vector4Test, Length)
 {
-    Vec4T v1(TypeParam(3), TypeParam(0), TypeParam(5), TypeParam(10));
+    Vec4T v1(TypeParam(3), TypeParam(4), TypeParam(0), TypeParam(12));
 
-    EXPECT_EQ(v1.SqrLength(), TypeParam(9));
-    EXPECT_EQ(v1.Length(), TypeParam(3));
+    EXPECT_EQ(v1.SqrLength(), TypeParam(169));
+    EXPECT_EQ(v1.Length(), TypeParam(13));
 
-    EXPECT_EQ(Vec4T::SqrLength(v1), TypeParam(9));
-    EXPECT_EQ(Vec4T::Length(v1), TypeParam(3));
+    EXPECT_EQ(Vec4T::SqrLength(v1), TypeParam(169));
+    EXPECT_EQ(Vec4T::Length(v1), TypeParam(13));
 
-    v1 = Vec4T(TypeParam(5), TypeParam(5), TypeParam(5), TypeParam(5));
-    Vec4T v2 = Vec4T(TypeParam(10), TypeParam(5), TypeParam(20), TypeParam(25));
+    v1 = Vec4T(TypeParam(1), TypeParam(2), TypeParam(3), TypeParam(4));
+    Vec4T v2 = Vec4T(TypeParam(9), TypeParam(2), TypeParam(3), TypeParam(19));
 
-    EXPECT_EQ(v1.SqrDistance(v2), TypeParam(25));
-    EXPECT_EQ(v1.Distance(v2), TypeParam(5));
+    EXPECT_EQ(v1.SqrDistance(v2), TypeParam(289));
+    EXPECT_EQ(v1.Distance(v2), TypeParam(17));
 
-    EXPECT_EQ(Vec4T::SqrDistance(v1, v2), TypeParam(25));
-    EXPECT_EQ(Vec4T::Distance(v1, v2), TypeParam(5));
+    EXPECT_EQ(Vec4T::SqrDistance(v1, v2), TypeParam(289));
+    EXPECT_EQ(Vec4T::Distance(v1, v2), TypeParam(17));
 }
 
 TYPED_TEST(Vector4Test, Negate)
@@ -254,7 +254,7 @@ TYPED_TEST(Vector4Test, Inverse)
     EXPECT_NEAR(v1.z, TypeParam(0.5), 0.001);
     EXPECT_NEAR(v1.w, TypeParam(0.5), 0.001);
 
-    v1 = { TypeParam(5), TypeParam(0), TypeParam(0), TypeParam(0) };
+    v1 = { TypeParam(5), TypeParam(5), TypeParam(5), TypeParam(5) };
     v1.Inverse();
 
     EXPECT_NEAR(v1.x, TypeParam(0.2), 0.001);
@@ -294,7 +294,7 @@ TYPED_TEST(Vector4Test, BooleanOperations)
 
     // Is Normalized
     {
-        Vec4T v1(TypeParam(5), TypeParam(0), TypeParam(5), TypeParam(10));
+        Vec4T v1(TypeParam(5), TypeParam(0), TypeParam(0), TypeParam(0));
 
         EXPECT_EQ(v1.IsNormalized(), false);
         EXPECT_EQ(Vec4T::IsNormalized(v1), false);
@@ -341,15 +341,15 @@ TYPED_TEST(Vector4Test, Lerp)
 
         EXPECT_NEAR(Vec4T::Slerp(v1, v2, 0.5).x, TypeParam(0.70710676908493042), 0.001);
         EXPECT_NEAR(Vec4T::Slerp(v1, v2, 0.5).y, TypeParam(0.70710676908493042), 0.001);
-        EXPECT_NEAR(Vec4T::Slerp(v1, v2, 0.5).z, TypeParam(0.70710676908493042), 0.001);
-        EXPECT_NEAR(Vec4T::Slerp(v1, v2, 0.5).w, TypeParam(0.70710676908493042), 0.001);
+        EXPECT_NEAR(Vec4T::Slerp(v1, v2, 0.5).z, TypeParam(0), 0.001);
+        EXPECT_NEAR(Vec4T::Slerp(v1, v2, 0.5).w, TypeParam(0), 0.001);
 
         v1 = v1.Slerped(v2, 1);
 
         EXPECT_NEAR(v1.x, TypeParam(0), 0.001);
         EXPECT_NEAR(v1.y, TypeParam(1), 0.001);
-        EXPECT_NEAR(v1.z, TypeParam(1), 0.001);
-        EXPECT_NEAR(v1.w, TypeParam(1), 0.001);
+        EXPECT_NEAR(v1.z, TypeParam(0), 0.001);
+        EXPECT_NEAR(v1.w, TypeParam(0), 0.001);
 
         v1 =  { TypeParam(1), TypeParam(0), TypeParam(0), TypeParam(0) };
         v1.Slerp(v2, 2);
@@ -365,25 +365,25 @@ TYPED_TEST(Vector4Test, Normalize)
 {
     Vec4T v1(TypeParam(5), TypeParam(0), TypeParam(0), TypeParam(0));
 
-    EXPECT_EQ(Vec4T::Normalize(v1).x, 1);
-    EXPECT_EQ(Vec4T::Normalize(v1).y, 0);
-    EXPECT_EQ(Vec4T::Normalize(v1).z, 0);
-    EXPECT_EQ(Vec4T::Normalize(v1).w, 0);
+    EXPECT_EQ(Vec4T::Normalize(v1).x, TypeParam(1));
+    EXPECT_EQ(Vec4T::Normalize(v1).y, TypeParam(0));
+    EXPECT_EQ(Vec4T::Normalize(v1).z, TypeParam(0));
+    EXPECT_EQ(Vec4T::Normalize(v1).w, TypeParam(0));
 
     v1 = v1.Normalized();
 
-    EXPECT_EQ(Vec4T::Normalize(v1).x, 1);
-    EXPECT_EQ(Vec4T::Normalize(v1).y, 0);
-    EXPECT_EQ(Vec4T::Normalize(v1).z, 0);
-    EXPECT_EQ(Vec4T::Normalize(v1).w, 0);
+    EXPECT_EQ(Vec4T::Normalize(v1).x, TypeParam(1));
+    EXPECT_EQ(Vec4T::Normalize(v1).y, TypeParam(0));
+    EXPECT_EQ(Vec4T::Normalize(v1).z, TypeParam(0));
+    EXPECT_EQ(Vec4T::Normalize(v1).w, TypeParam(0));
 
-    v1 =  { TypeParam(5), TypeParam(0), TypeParam(0), TypeParam(10) };
+    v1 =  { TypeParam(5), TypeParam(0), TypeParam(0), TypeParam(0) };
     v1.Normalize();
 
-    EXPECT_EQ(Vec4T::Normalize(v1).x, 1);
-    EXPECT_EQ(Vec4T::Normalize(v1).y, 0);
-    EXPECT_EQ(Vec4T::Normalize(v1).z, 0);
-    EXPECT_EQ(Vec4T::Normalize(v1).w, 0);
+    EXPECT_EQ(Vec4T::Normalize(v1).x, TypeParam(1));
+    EXPECT_EQ(Vec4T::Normalize(v1).y, TypeParam(0));
+    EXPECT_EQ(Vec4T::Normalize(v1).z, TypeParam(0));
+    EXPECT_EQ(Vec4T::Normalize(v1).w, TypeParam(0));
 }
 
 TYPED_TEST(Vector4Test, Transform)
@@ -459,8 +459,8 @@ TYPED_TEST(Vector4Test, Transform)
 
         EXPECT_NEAR(v1.x, TypeParam(0), 0.001);
         EXPECT_NEAR(v1.y, TypeParam(1), 0.001);
-        EXPECT_NEAR(v1.z, TypeParam(1), 0.001);
-        EXPECT_NEAR(v1.w, TypeParam(1), 0.001);
+        EXPECT_NEAR(v1.z, TypeParam(0), 0.001);
+        EXPECT_NEAR(v1.w, TypeParam(0), 0.001);
     }
 }
 
@@ -473,22 +473,22 @@ TYPED_TEST(Vector4Test, Projection)
 
         EXPECT_EQ(Vec4T::Reflect(v1, v2).x, TypeParam(1));
         EXPECT_EQ(Vec4T::Reflect(v1, v2).y, TypeParam(1));
-        EXPECT_EQ(Vec4T::Reflect(v1, v2).z, TypeParam(1));
-        EXPECT_EQ(Vec4T::Reflect(v1, v2).w, TypeParam(1));
+        EXPECT_EQ(Vec4T::Reflect(v1, v2).z, TypeParam(0));
+        EXPECT_EQ(Vec4T::Reflect(v1, v2).w, TypeParam(0));
 
         v1 = v1.Reflected(v2);
 
         EXPECT_EQ(v1.x, TypeParam(1));
         EXPECT_EQ(v1.y, TypeParam(1));
-        EXPECT_EQ(v1.z, TypeParam(1));
-        EXPECT_EQ(v1.w, TypeParam(1));
+        EXPECT_EQ(v1.z, TypeParam(0));
+        EXPECT_EQ(v1.w, TypeParam(0));
 
         v1.Reflect(v2);
 
         EXPECT_EQ(v1.x, TypeParam(1));
         EXPECT_EQ(v1.y, TypeParam(-1));
-        EXPECT_EQ(v1.z, TypeParam(-1));
-        EXPECT_EQ(v1.w, TypeParam(-1));
+        EXPECT_EQ(v1.z, TypeParam(0));
+        EXPECT_EQ(v1.w, TypeParam(0));
     }
 
     // Refraction
@@ -498,22 +498,22 @@ TYPED_TEST(Vector4Test, Projection)
 
         EXPECT_NEAR(Vec4T::Refract(v1, v2, 1).x, TypeParam(1), 0.001);
         EXPECT_NEAR(Vec4T::Refract(v1, v2, 1).y, TypeParam(-1), 0.001);
-        EXPECT_NEAR(Vec4T::Refract(v1, v2, 1).z, TypeParam(-1), 0.001);
-        EXPECT_NEAR(Vec4T::Refract(v1, v2, 1).w, TypeParam(-1), 0.001);
+        EXPECT_NEAR(Vec4T::Refract(v1, v2, 1).z, TypeParam(0), 0.001);
+        EXPECT_NEAR(Vec4T::Refract(v1, v2, 1).w, TypeParam(0), 0.001);
 
         v1 = v1.Refracted(v2, 1);
 
         EXPECT_NEAR(v1.x, TypeParam(1), 0.001);
         EXPECT_NEAR(v1.y, TypeParam(-1), 0.001);
-        EXPECT_NEAR(v1.z, TypeParam(-1), 0.001);
-        EXPECT_NEAR(v1.w, TypeParam(-1), 0.001);
+        EXPECT_NEAR(v1.z, TypeParam(0), 0.001);
+        EXPECT_NEAR(v1.w, TypeParam(0), 0.001);
 
         v1.Refract(v2, 1);
 
         EXPECT_NEAR(v1.x, TypeParam(1), 0.001);
         EXPECT_NEAR(v1.y, TypeParam(-1), 0.001);
-        EXPECT_NEAR(v1.z, TypeParam(-1), 0.001);
-        EXPECT_NEAR(v1.w, TypeParam(-1), 0.001);
+        EXPECT_NEAR(v1.z, TypeParam(0), 0.001);
+        EXPECT_NEAR(v1.w, TypeParam(0), 0.001);
     }
 
     // Projection
@@ -538,8 +538,8 @@ TYPED_TEST(Vector4Test, Projection)
 
         EXPECT_NEAR(v1.x, TypeParam(1), 0.001);
         EXPECT_NEAR(v1.y, TypeParam(1), 0.001);
-        EXPECT_NEAR(v1.z, TypeParam(1), 0.001);
-        EXPECT_NEAR(v1.w, TypeParam(1), 0.001);
+        EXPECT_NEAR(v1.z, TypeParam(0), 0.001);
+        EXPECT_NEAR(v1.w, TypeParam(0), 0.001);
     }
 }
 
@@ -570,8 +570,8 @@ TYPED_TEST(Vector4Test, StaticValues)
 
     EXPECT_EQ(v.x, TypeParam(0));
     EXPECT_EQ(v.y, TypeParam(1));
-    EXPECT_EQ(v.z, TypeParam(1));
-    EXPECT_EQ(v.w, TypeParam(1));
+    EXPECT_EQ(v.z, TypeParam(0));
+    EXPECT_EQ(v.w, TypeParam(0));
 
     v = Vec4T::Forward;
 
