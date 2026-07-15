@@ -10,6 +10,10 @@ public:
 
     T w, x, y, z;
 
+public:
+
+    constexpr Quaternion() noexcept;
+
 };
 
 #include "Quaternion.inl"

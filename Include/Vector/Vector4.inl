@@ -405,13 +405,13 @@ Vector4<T> Vector4<T>::Project(const Vector4<T>& _vector, const Vector4<T>& _onT
 template<Arithmetic T>
 constexpr bool Vector4<T>::IsZero() const noexcept
 {
-    return Koori::Math::Equal(x, T(0)) && Koori::Math::Equal(y, T(0)) && Koori::Math::Equal(z, T(0));
+    return Koori::Math::Equal(x, T(0)) && Koori::Math::Equal(y, T(0)) && Koori::Math::Equal(z, T(0)) && Koori::Math::Equal(w, T(0));
 }
 
 template<Arithmetic T>
 constexpr bool Vector4<T>::Equal(const Vector4<T>& _vector) const noexcept
 {
-    return Koori::Math::Equal(x, _vector.x) && Koori::Math::Equal(y, _vector.y) && Koori::Math::Equal(z, _vector.z);
+    return Koori::Math::Equal(x, _vector.x) && Koori::Math::Equal(y, _vector.y) && Koori::Math::Equal(z, _vector.z) && Koori::Math::Equal(w, _vector.w);
 }
 
 template<Arithmetic T>
