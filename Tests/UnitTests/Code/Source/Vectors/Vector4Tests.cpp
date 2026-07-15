@@ -132,8 +132,8 @@ TYPED_TEST(Vector4Test, Subtraction)
 
     EXPECT_EQ(v2.x, TypeParam(0));
     EXPECT_EQ(v2.y, TypeParam(0));
-    EXPECT_EQ(v2.w, TypeParam(0));
     EXPECT_EQ(v2.z, TypeParam(0));
+    EXPECT_EQ(v2.w, TypeParam(0));
 }
 
 TYPED_TEST(Vector4Test, Multiplication)
@@ -229,8 +229,8 @@ TYPED_TEST(Vector4Test, Negate)
 
     EXPECT_EQ(v1.x, TypeParam(-5));
     EXPECT_EQ(v1.y, TypeParam(-5));
-    EXPECT_EQ(v1.w, TypeParam(-5));
     EXPECT_EQ(v1.z, TypeParam(-5));
+    EXPECT_EQ(v1.w, TypeParam(-5));
 
     EXPECT_EQ(Vec4T::Negate(v1).x, TypeParam(5));
     EXPECT_EQ(Vec4T::Negate(v1).y, TypeParam(5));
