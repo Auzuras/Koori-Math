@@ -8,6 +8,9 @@
 template<Arithmetic T>
 struct Matrix4;
 
+template<Arithmetic T>
+struct Vector3;
+
 #pragma endregion
 
 template<Arithmetic T>
