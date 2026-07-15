@@ -111,7 +111,7 @@ constexpr T Matrix4<T>::Determinant() const noexcept
 }
 
 template<Arithmetic T>
-constexpr Matrix4<T> Matrix4<T>::Transpose() const noexcept
+Matrix4<T> Matrix4<T>::Transpose() const noexcept
 {
     return Matrix4<T>(
         m00, m10, m20, m30,
@@ -122,13 +122,13 @@ constexpr Matrix4<T> Matrix4<T>::Transpose() const noexcept
 }
 
 template<Arithmetic T>
-constexpr Matrix4<T> Matrix4<T>::Inverse() const noexcept
+Matrix4<T> Matrix4<T>::Inverse() const noexcept
 {
     return Matrix4<T>();
 }
 
 template<Arithmetic T>
-constexpr Matrix4<T> Matrix4<T>::Translation(const T _x, const T _y, const T _z) const noexcept
+Matrix4<T> Matrix4<T>::Translation(const T _x, const T _y, const T _z) const noexcept
 {
     return Matrix4<T>(
         T(1), T(0), T(0), T(_x),
@@ -139,13 +139,13 @@ constexpr Matrix4<T> Matrix4<T>::Translation(const T _x, const T _y, const T _z)
 }
 
 template<Arithmetic T>
-constexpr Matrix4<T> Matrix4<T>::Translation(const Vector3<T>& _translation) const noexcept
+Matrix4<T> Matrix4<T>::Translation(const Vector3<T>& _translation) const noexcept
 {
     return Translation(_translation.x, _translation.y, _translation.z);
 }
 
 template<Arithmetic T>
-constexpr Matrix4<T> Matrix4<T>::XRotation(const T _angle) const noexcept
+Matrix4<T> Matrix4<T>::XRotation(const T _angle) const noexcept
 {
     const T c = Koori::Math::Cos(_angle);
     const T s = Koori::Math::Sin(_angle);
@@ -159,7 +159,7 @@ constexpr Matrix4<T> Matrix4<T>::XRotation(const T _angle) const noexcept
 }
 
 template<Arithmetic T>
-constexpr Matrix4<T> Matrix4<T>::YRotation(const T _angle) const noexcept
+Matrix4<T> Matrix4<T>::YRotation(const T _angle) const noexcept
 {
     const T c = Koori::Math::Cos(_angle);
     const T s = Koori::Math::Sin(_angle);
@@ -173,7 +173,7 @@ constexpr Matrix4<T> Matrix4<T>::YRotation(const T _angle) const noexcept
 }
 
 template<Arithmetic T>
-constexpr Matrix4<T> Matrix4<T>::ZRotation(const T _angle) const noexcept
+Matrix4<T> Matrix4<T>::ZRotation(const T _angle) const noexcept
 {
     const T c = Koori::Math::Cos(_angle);
     const T s = Koori::Math::Sin(_angle);
@@ -187,19 +187,19 @@ constexpr Matrix4<T> Matrix4<T>::ZRotation(const T _angle) const noexcept
 }
 
 template<Arithmetic T>
-constexpr Matrix4<T> Matrix4<T>::Rotation(const T _angle, const Vector3<T>& _axis) const noexcept
+Matrix4<T> Matrix4<T>::Rotation(const T _angle, const Vector3<T>& _axis) const noexcept
 {
     return Matrix4<T>();
 }
 
 template<Arithmetic T>
-constexpr Matrix4<T> Matrix4<T>::Rotation(const Quaternion<T>& _rotation) const noexcept
+Matrix4<T> Matrix4<T>::Rotation(const Quaternion<T>& _rotation) const noexcept
 {
     return Matrix4<T>();
 }
 
 template<Arithmetic T>
-constexpr Matrix4<T> Matrix4<T>::Scaling(const T _x, const T _y, const T _z) const noexcept
+Matrix4<T> Matrix4<T>::Scaling(const T _x, const T _y, const T _z) const noexcept
 {
     return Matrix4<T>(
         T(_x), T(0), T(0), T(0),
@@ -210,25 +210,25 @@ constexpr Matrix4<T> Matrix4<T>::Scaling(const T _x, const T _y, const T _z) con
 }
 
 template<Arithmetic T>
-constexpr Matrix4<T> Matrix4<T>::Scaling(const Vector3<T>& _scaling) const noexcept
+Matrix4<T> Matrix4<T>::Scaling(const Vector3<T>& _scaling) const noexcept
 {
     return Scaling(_scaling.x, _scaling.y, _scaling.z);
 }
 
 template<Arithmetic T>
-constexpr Matrix4<T> Matrix4<T>::TRS(const Matrix4<T>& _translation, const Matrix4<T>& _rotation, const Matrix4<T>& _scaling) const noexcept
+Matrix4<T> Matrix4<T>::TRS(const Matrix4<T>& _translation, const Matrix4<T>& _rotation, const Matrix4<T>& _scaling) const noexcept
 {
     return _translation * _rotation * _scaling;
 }
 
 template<Arithmetic T>
-constexpr Matrix4<T> Matrix4<T>::TRS(const Vector3<T>& _translation, const Quaternion<T>& _rotation, const Vector3<T>& _scaling) const noexcept
+Matrix4<T> Matrix4<T>::TRS(const Vector3<T>& _translation, const Quaternion<T>& _rotation, const Vector3<T>& _scaling) const noexcept
 {
     return Matrix4<T>();
 }
 
 template<Arithmetic T>
-constexpr Matrix4<T> Matrix4<T>::PerspectiveProjection(const T _near, const T _far, const T _aspect, const T _fov) const noexcept
+Matrix4<T> Matrix4<T>::PerspectiveProjection(const T _near, const T _far, const T _aspect, const T _fov) const noexcept
 {
     // Perspective RH matrix with | 0 - 1
     const T tanHalfFov = Koori::Math::Tan(_fov * T(0.5));
@@ -244,7 +244,7 @@ constexpr Matrix4<T> Matrix4<T>::PerspectiveProjection(const T _near, const T _f
 }
 
 template<Arithmetic T>
-constexpr Matrix4<T> Matrix4<T>::OrthographicProjection(const T _near, const T _far, const T _top, const T _bottom, const T _right, const T _left) const noexcept
+Matrix4<T> Matrix4<T>::OrthographicProjection(const T _near, const T _far, const T _top, const T _bottom, const T _right, const T _left) const noexcept
 {
     // Orthographic RH matrix with | 0 - 1
     return Matrix4<T>(
