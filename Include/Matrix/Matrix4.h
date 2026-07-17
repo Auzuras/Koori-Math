@@ -102,7 +102,7 @@ public:
                   
     [[nodiscard]] Matrix4<T> Scaling(const Vector3<T>& _scaling) const noexcept;
                   
-    [[nodiscard]] Matrix4<T> TRS(const Vector3<T>& _translation, const Matrix4<T>& _rotation, const Vector3<T>& _scaling) const noexcept;
+    [[nodiscard]] Matrix4<T> TRS(const Matrix4<T>& _translation, const Matrix4<T>& _rotation, const Matrix4<T>& _scaling) const noexcept;
                   
     [[nodiscard]] Matrix4<T> TRS(const Vector3<T>& _translation, const Quaternion<T>& _rotation, const Vector3<T>& _scaling) const noexcept;
                   
