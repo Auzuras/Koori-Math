@@ -110,6 +110,8 @@ public:
                   
     [[nodiscard]] Matrix4<T> OrthographicProjection(const T _near, const T _far, const T _top, const T _bottom, const T _right, const T _left) const noexcept;
 
+    [[nodiscard]] Matrix4<T> ViewMatrix(const Vector3<T>& _eye, const Vector3<T>& _lookAt, const Vector3<T>& _up) const noexcept;
+
 #pragma endregion
 
 #pragma region Boolean Operations

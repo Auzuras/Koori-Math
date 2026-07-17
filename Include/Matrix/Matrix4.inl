@@ -259,6 +259,24 @@ Matrix4<T> Matrix4<T>::OrthographicProjection(const T _near, const T _far, const
     );
 }
 
+template<Arithmetic T>
+Matrix4<T> Matrix4<T>::ViewMatrix(const Vector3<T>& _eye, const Vector3<T>& _lookAt, const Vector3<T>& _up) const noexcept
+{
+    Vector3<T> zAxis = (_lookAt - _eye);
+    zAxis = zAxis.Normalize();
+    Vector3<T> xAxis = zAxis.CrossProduct(_up);
+    zAxis = zAxis.Normalize();
+    Vector3<T> yAxis = xAxis.CrossProduct(zAxis);
+    yAxis = zAxis.Normalize();
+
+    return Matrix4<T>(
+        xAxis.x, yAxis.x, zAxis.x, T(0),
+        xAxis.y, yAxis.y, zAxis.y, T(0),
+        xAxis.z, yAxis.z, zAxis.z, T(0),
+        -_eye.x, -_eye.y, -_eye.x, T(1)
+    );
+}
+
 #pragma endregion
 
 #pragma region Boolean Operations
