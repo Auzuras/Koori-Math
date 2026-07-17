@@ -220,7 +220,7 @@ Matrix4<T> Matrix4<T>::Scaling(const Vector3<T>& _scaling) const noexcept
 }
 
 template<Arithmetic T>
-Matrix4<T> Matrix4<T>::TRS(const Matrix4<T>& _translation, const Matrix4<T>& _rotation, const Matrix4<T>& _scaling) const noexcept
+Matrix4<T> Matrix4<T>::TRS(const Vector3<T>& _translation, const Matrix4<T>& _rotation, const Matrix4<T>& _scaling) const noexcept
 {
     return _translation * _rotation * _scaling;
 }
