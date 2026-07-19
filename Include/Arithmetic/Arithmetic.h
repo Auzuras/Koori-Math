@@ -36,6 +36,16 @@ concept ArithmeticUnsigned = Unsigned<T>;
 #define KM_PI Koori::Math::PI<T>()
 
 /**
+ * @brief KM_RAD_2_DEG macro, calls the Rad2Deg<T>() function
+ */
+#define KM_RAD_2_DEG Koori::Math::Rad2Deg<T>()
+
+/**
+ * @brief KM_DEG_2_RAD macro, calls the Deg2Rad<T>() function
+ */
+#define KM_DEG_2_RAD Koori::Math::Deg2Rad<T>()
+
+/**
  * @brief KM_INTERNAL_PI macro, defines the internal constant value of PI used in the toolbox
  */
 #define KM_INTERNAL_PI 3.14159265358979323846
@@ -64,6 +74,28 @@ namespace Koori::Math
     [[nodiscard]] inline T Pi()
     {
         return static_cast<T>(KM_INTERNAL_PI);
+    }
+
+    /**
+     * @brief Returns the radians-to-degrees conversion factor for a specified arithmetic type.
+     * @tparam T Type of the value.
+     * @return The conversion factor used to convert radians to degrees for the specified type (e.g., float, double, int).
+     */
+    template<Arithmetic T>
+    [[nodiscard]] inline T Rad2Deg()
+    {
+        return static_cast<T>(KM_INTERNAL_RAD_2_DEG);
+    }
+
+    /**
+     * @brief Returns the degrees-to-radians conversion factor for a specified arithmetic type.
+     * @tparam T Type of the value.
+     * @return The conversion factor used to convert degrees to radians for the specified type (e.g., float, double, int).
+     */
+    template<Arithmetic T>
+    [[nodiscard]] inline T Deg2Rad()
+    {
+        return static_cast<T>(KM_INTERNAL_DEG_2_RAD);
     }
 
     /**
