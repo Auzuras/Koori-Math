@@ -33,17 +33,17 @@ concept ArithmeticUnsigned = Unsigned<T>;
 /**
  * @brief KM_PI macro, calls the PI<T>() function
  */
-#define KM_PI Koori::Math::PI<T>()
+#define KM_PI(T) Koori::Math::Pi<T>()
 
 /**
  * @brief KM_RAD_2_DEG macro, calls the Rad2Deg<T>() function
  */
-#define KM_RAD_2_DEG Koori::Math::Rad2Deg<T>()
+#define KM_RAD_2_DEG(T) Koori::Math::Rad2Deg<T>()
 
 /**
  * @brief KM_DEG_2_RAD macro, calls the Deg2Rad<T>() function
  */
-#define KM_DEG_2_RAD Koori::Math::Deg2Rad<T>()
+#define KM_DEG_2_RAD(T) Koori::Math::Deg2Rad<T>()
 
 /**
  * @brief KM_INTERNAL_PI macro, defines the internal constant value of PI used in the toolbox
